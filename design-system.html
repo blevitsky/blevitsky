@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#F3F3F1">
+<title>Design System — Ben Levitsky</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=20260930e">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="nav-logo" href="index.html" aria-label="Ben Levitsky — home">
+    <svg class="nav-logo-mark" width="38" height="38" viewBox="0 0 32 32" aria-hidden="true">
+      <text x="2" y="21">bl</text>
+      <rect class="nav-logo-cursor" x="18" y="9" width="5" height="14"/>
+    </svg>
+  </a>
+  <ul class="nav-mid">
+    <li><a href="index.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.linkedin.com/in/benjamin-levitsky-3704362a4/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.instagram.com/ben.levitsky/" target="_blank" rel="noopener">Instagram</a>
+    <a href="images/Ben-Levitsky-Resume.pdf" target="_blank" rel="noopener" style="font-weight:700">Resume ↓</a>
+    <a href="world/index.html" class="nav-game">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 10v4M5 12h4"/><circle cx="16" cy="10.5" r="1"/><circle cx="18.5" cy="13" r="1"/></svg>
+      Game Mode
+    </a>
+  </div>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mob" id="mob">
+  <a href="index.html">Work</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="world/index.html" class="mob-game">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 10v4M5 12h4"/><circle cx="16" cy="10.5" r="1"/><circle cx="18.5" cy="13" r="1"/></svg>
+    Game Mode
+  </a>
+  <div class="mob-foot">
+    <a href="https://www.linkedin.com/in/benjamin-levitsky-3704362a4/" target="_blank" style="color:var(--coral)">LinkedIn</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/ben.levitsky/" target="_blank" style="color:var(--coral)">Instagram</a>
+    &nbsp;·&nbsp;
+    <a href="images/Ben-Levitsky-Resume.pdf" target="_blank" style="color:var(--coral)">Resume</a>
+  </div>
+</div>
+
+<section class="ds-hero">
+  <div class="wrap">
+    <div class="ds-hero-eyebrow rv">Design System</div>
+    <h1 class="rv" style="transition-delay:.05s">This portfolio.</h1>
+    <p class="rv" style="transition-delay:.1s">
+      The colors, type, spacing, and components behind this site. Every swatch below is the
+      actual CSS it ships with — not a mock style tile.
+    </p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="ab2-layout ds-layout">
+    <nav class="ab2-side" id="dsSide">
+      <a href="#color" class="ab2-side-link active">Color</a>
+      <a href="#type" class="ab2-side-link">Typography</a>
+      <a href="#spacing" class="ab2-side-link">Spacing</a>
+      <a href="#radius" class="ab2-side-link">Radius &amp; buttons</a>
+      <a href="#borders" class="ab2-side-link">Borders</a>
+      <a href="#shadows" class="ab2-side-link">Shadows</a>
+      <a href="#motion" class="ab2-side-link">Motion</a>
+      <a href="#icons" class="ab2-side-link">Iconography</a>
+      <a href="#provenance" class="ab2-side-link">Provenance</a>
+      <a href="#voice" class="ab2-side-link">Voice</a>
+      <a href="#components" class="ab2-side-link">Components</a>
+    </nav>
+
+    <div class="ab2-content">
+
+<section class="ds-section ab2-section" id="color">
+  <div class="ds-section-label">Color</div>
+    <h2>One ink, one cream, one accent that has to earn it.</h2>
+    <p>Almost everything on this site is ink text on a warm off-white background. Coral only shows up for things that are genuinely interactive or genuinely mine — links, the nav cursor, active states — never as decoration.</p>
+    <div class="ds-color-grid">
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background:#0C0C0C"></div>
+        <div class="ds-color-meta"><div class="ds-color-name">Ink — text &amp; headings</div><div class="ds-color-hex">#0C0C0C</div></div>
+      </div>
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background:#6B6B6B"></div>
+        <div class="ds-color-meta"><div class="ds-color-name">Ink 60 — body copy</div><div class="ds-color-hex">#6B6B6B</div></div>
+      </div>
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background:#F0F0EE;border-bottom:1px solid var(--ink10)"></div>
+        <div class="ds-color-meta"><div class="ds-color-name">Background — cream</div><div class="ds-color-hex">#F0F0EE</div></div>
+      </div>
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background:#0FA37F"></div>
+        <div class="ds-color-meta"><div class="ds-color-name">Coral — accent, dark contexts</div><div class="ds-color-hex">#0FA37F</div></div>
+      </div>
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background:#0A6E57"></div>
+        <div class="ds-color-meta"><div class="ds-color-name">Coral text — light contexts</div><div class="ds-color-hex">#0A6E57</div></div>
+      </div>
+      <div class="ds-color-card">
+        <div class="ds-color-swatch" style="background:#FFFFFF;border-bottom:1px solid var(--ink10)"></div>
+        <div class="ds-color-meta"><div class="ds-color-name">Surface — white</div><div class="ds-color-hex">#FFFFFF</div></div>
+      </div>
+    </div>
+    <p class="ds-token-note">Coral and coral-text are the same color at two different weights — full-strength on a dark background where it has contrast to spare, a darker shade wherever it sits on the light cream so small text still clears accessible contrast.</p>
+</section>
+
+<section class="ds-section ab2-section" id="type">
+  <div class="ds-section-label">Typography</div>
+    <h2>Inter, and a lot of restraint on weight.</h2>
+    <p>One typeface for the entire site — headings and body both, just different weights and sizes. No display font, no serif anywhere except the one intentional exception in the Still case study's own scoped styles.</p>
+    <div style="border-top:1px solid var(--ink10)">
+      <div class="ds-type-row">
+        <div class="ds-type-sample" style="font-size:52px;font-weight:700;letter-spacing:-.02em">ben levitsky</div>
+        <div class="ds-type-label">Inter Bold / clamp(32–52px) / -2% tracking</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-sample" style="font-size:32px;font-weight:700;letter-spacing:-.015em">Section heading</div>
+        <div class="ds-type-label">Inter Bold / clamp(24–32px)</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-sample" style="font-size:19px;font-weight:700">Card / timeline title</div>
+        <div class="ds-type-label">Inter Bold / 19px</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-sample" style="font-size:15.5px;font-weight:400;color:var(--ink60)">Body copy sits here, set for reading at 1.75 line height, not display.</div>
+        <div class="ds-type-label">Inter Regular / 15.5px / 1.75 line</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-sample" style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--coral-text)">Eyebrow / kicker label</div>
+        <div class="ds-type-label">Inter Bold / 11px / 12% tracking</div>
+      </div>
+    </div>
+</section>
+
+<section class="ds-section ab2-section" id="spacing">
+  <div class="ds-section-label">Spacing &amp; layout</div>
+    <h2>One column width, reused everywhere.</h2>
+    <p>Every page shares the same horizontal rhythm — 5% side padding on <code>.wrap</code>, no hard-coded max-width, so the layout scales with the actual browser window instead of stopping short on a wide monitor. Case studies use a slightly narrower 1040px content column for readability.</p>
+    <div>
+      <div class="ds-scale-row"><div class="ds-scale-label">5% — page-level side padding</div><div class="ds-scale-bar" style="width:40px"></div></div>
+      <div class="ds-scale-row"><div class="ds-scale-label">1040px — case study content column</div><div class="ds-scale-bar" style="width:200px"></div></div>
+      <div class="ds-scale-row"><div class="ds-scale-label">96px — section-to-section rhythm</div><div class="ds-scale-bar" style="width:96px"></div></div>
+      <div class="ds-scale-row"><div class="ds-scale-label">64px — nav height</div><div class="ds-scale-bar" style="width:64px"></div></div>
+    </div>
+</section>
+
+<section class="ds-section ab2-section" id="radius">
+  <div class="ds-section-label">Corner radius &amp; buttons</div>
+    <h2>Rounded, but not the same amount everywhere.</h2>
+    <p>Cards and image frames get a real radius so nothing feels sharp against the soft background. Buttons go all the way to pill-shaped, which is the one place the radius scale intentionally breaks from everything else.</p>
+    <div class="ds-radius-grid">
+      <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:20px"></div><div class="ds-radius-label">20px — cards, images</div></div>
+      <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:14px"></div><div class="ds-radius-label">14px — small cards</div></div>
+      <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:99px;background:#0C0C0C"></div><div class="ds-radius-label">Pill — primary button</div></div>
+      <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:99px;background:transparent;border:1.5px solid #0C0C0C"></div><div class="ds-radius-label">Pill — secondary button</div></div>
+    </div>
+    <div class="ds-btn-row" style="margin-top:36px">
+      <a class="btn btn-dark" style="width:auto;padding:14px 30px;display:inline-flex">Primary CTA</a>
+      <a class="btn btn-soft" style="width:auto;padding:12px 28px;display:inline-flex">Secondary</a>
+    </div>
+</section>
+
+<section class="ds-section ab2-section" id="borders">
+  <div class="ds-section-label">Borders &amp; dividers</div>
+    <h2>Two weights of hairline, nothing heavier.</h2>
+    <p>Nothing on this site uses a border thicker than 1.5px, and most of what looks like structure is actually spacing and color doing the work — these two are for the genuine cases that need a literal line: a divider between sections, a card outline, a subtle hover fill.</p>
+    <div class="ds-border-grid">
+      <div class="ds-border-card">
+        <div class="ds-border-sample" style="border-bottom:2px solid var(--ink10)"></div>
+        <div class="ds-color-meta"><div class="ds-color-name">Ink 10 — dividers, card outlines</div><div class="ds-color-hex">rgba(12,12,12,.10) · 44 uses</div></div>
+      </div>
+      <div class="ds-border-card">
+        <div class="ds-border-sample" style="border-bottom:2px solid var(--ink06)"></div>
+        <div class="ds-color-meta"><div class="ds-color-name">Ink 06 — quieter dividers, hover fills</div><div class="ds-color-hex">rgba(12,12,12,.06) · 25 uses</div></div>
+      </div>
+    </div>
+</section>
+
+<section class="ds-section ab2-section" id="shadows">
+  <div class="ds-section-label">Shadows</div>
+    <h2>Contextual, not a fixed scale.</h2>
+    <p>There's no elevation system with named steps here — each shadow is tuned to whatever it's lifting off the page. A poster shifting slightly on hover gets a soft neutral shadow; a dark button getting a coral hover gets a shadow tinted to match, so the glow reads as light from the color, not a generic drop shadow.</p>
+    <div class="ds-shadow-grid">
+      <div class="ds-shadow-card">
+        <div class="ds-shadow-sample" style="box-shadow:0 6px 18px rgba(12,12,12,.12)"></div>
+        <div class="ds-color-meta"><div class="ds-color-name">Neutral lift — movie posters, image hovers</div><div class="ds-color-hex">0 6px 18px rgba(12,12,12,.12)</div></div>
+      </div>
+      <div class="ds-shadow-card">
+        <div class="ds-shadow-sample ds-shadow-sample-dark" style="box-shadow:0 8px 24px rgba(15,163,127,.28)"></div>
+        <div class="ds-color-meta"><div class="ds-color-name">Coral glow — primary button hover</div><div class="ds-color-hex">0 8px 24px rgba(15,163,127,.28)</div></div>
+      </div>
+    </div>
+</section>
+
+<section class="ds-section ab2-section" id="motion">
+  <div class="ds-section-label">Motion</div>
+    <h2>Two curves, used on purpose.</h2>
+    <p>Nearly every transition on the site reaches for the same settling curve — a quick start that eases into place, never linear. A springier curve is reserved for exactly one kind of moment: things that get flipped or picked, like a toggle switch or a selected filter pill.</p>
+    <div class="ds-motion-grid">
+      <div class="ds-motion-card">
+        <div class="ds-motion-track"><div class="ds-motion-ball ds-motion-ease"></div></div>
+        <div class="ds-color-meta"><div class="ds-color-name">--ease · 45 uses</div><div class="ds-color-hex">cubic-bezier(.16, 1, .3, 1)</div></div>
+      </div>
+      <div class="ds-motion-card">
+        <div class="ds-motion-track"><div class="ds-motion-ball ds-motion-spring"></div></div>
+        <div class="ds-color-meta"><div class="ds-color-name">--spring · 3 uses</div><div class="ds-color-hex">cubic-bezier(.175, .885, .32, 1.275)</div></div>
+      </div>
+    </div>
+    <p class="ds-token-note">Hover either track to re-run it. The fade-up-as-you-scroll effect you've seen on every page runs on <code>--ease</code> too — it's the same curve, just applied to opacity and position instead of a hover state.</p>
+</section>
+
+<section class="ds-section ab2-section" id="icons">
+  <div class="ds-section-label">Iconography</div>
+    <h2>Line icons only — stroke, never fill.</h2>
+    <p>Every icon on the site is drawn the same way: roughly 2px stroke weight, rounded caps and joins, no filled shapes. No icon library — these are hand-drawn paths, kept deliberately simple so they read at 13–16px without getting muddy.</p>
+    <div class="ds-icon-grid">
+      <div class="ds-icon-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 10v4M5 12h4"/><circle cx="16" cy="10.5" r="1"/><circle cx="18.5" cy="13" r="1"/></svg><div class="ds-icon-label">Game mode</div></div>
+      <div class="ds-icon-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5-10-5Z"/><path d="M6 11v5c0 1 2.5 3 6 3s6-2 6-3v-5"/></svg><div class="ds-icon-label">School</div></div>
+      <div class="ds-icon-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><div class="ds-icon-label">Work</div></div>
+      <div class="ds-icon-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z"/></svg><div class="ds-icon-label">Personal</div></div>
+    </div>
+</section>
+
+<section class="ds-section ab2-section" id="provenance">
+  <div class="ds-section-label">Provenance markers</div>
+    <h2>A small badge, not a label that shouts.</h2>
+    <p>Every card on the work grid gets the same small circular marker in the corner — the company logo for an internship, a graduation cap for school work, a lightning bolt for something vibe-coded on my own. Same size, same position, every time, so provenance reads at a glance without needing its own paragraph.</p>
+    <div class="ds-prov-demo">
+      <span class="pc-prov-dot" title="Internship" style="position:static"><img src="images/logo-premier.png" alt="Internship logo example" style="width:100%;height:100%;object-fit:contain;border-radius:50%"></span>
+      <span class="pc-prov-dot pc-prov-school" title="School Project" style="position:static"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span>
+      <span class="pc-prov-dot pc-prov-vibe" title="Vibe-Coded" style="position:static"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></span>
+    </div>
+</section>
+
+<section class="ds-section ab2-section" id="voice">
+  <div class="ds-section-label">Voice</div>
+    <h2>One blinking cursor, opening and closing the site.</h2>
+    <p>The nav mark isn't just "bl" — it's "bl" with a cursor that blinks like it's waiting for input. The footer closes every page on a terminal line signing off. Same cursor-blink animation, same idea, used exactly twice: once to open the site, once to close it. That's the whole personality budget — small and specific, not scattered everywhere.</p>
+    <div class="ds-voice-demo">
+      <div class="ds-voice-card">
+        <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><text x="2" y="21" style="font-family:var(--f-head);font-weight:800;font-size:20px;fill:var(--ink)">bl</text><rect x="18" y="9" width="5" height="14" fill="var(--coral-text)" class="ds-voice-cursor"/></svg>
+        <div class="ds-color-meta"><div class="ds-color-name">Nav mark — opens the site</div></div>
+      </div>
+      <div class="ds-voice-card ds-voice-card-dark">
+        <div class="ds-voice-term">ben@portfolio<span style="opacity:.5">:~$</span> always_open_to_the_next_thing<span class="ds-voice-cursor ds-voice-cursor-block"></span></div>
+        <div class="ds-color-meta"><div class="ds-color-name" style="color:rgba(255,255,255,.6)">Footer — closes every page</div></div>
+      </div>
+    </div>
+</section>
+
+<section class="ds-section ab2-section" id="components">
+  <div class="ds-section-label">One shared component system</div>
+    <h2>The About page timeline reuses the same card as a case study.</h2>
+    <p>This isn't just a style guide that sits separate from the real pages — it's the literal source. The role/label pattern used in every case study's stats row is the same one behind the Timeline section on the About page: same label size, same value weight, same spacing.</p>
+    <div class="ds-role-demo">
+      <div class="cs-role-item"><div class="cs-role-label">Year</div><div class="cs-role-value">2026</div></div>
+      <div class="cs-role-item"><div class="cs-role-label">Type</div><div class="cs-role-value">Internship</div></div>
+      <div class="cs-role-item"><div class="cs-role-label">Tools</div><div class="cs-role-value">Figma, Wix Studio, Fusion 360</div></div>
+    </div>
+</section>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="f-top">
+    <div class="f-headline">Got a project in mind?<br><a href="mailto:bglevitsky@icloud.com">Let's talk.</a></div>
+  </div>
+  <div class="f-row">
+    <span class="f-logo">Ben Levitsky</span>
+    <div class="f-links">
+      <a href="index.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="mailto:bglevitsky@icloud.com">Email</a>
+      <a href="https://www.linkedin.com/in/benjamin-levitsky-3704362a4/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/ben.levitsky/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <span class="f-copy">© 2026 Ben Levitsky</span>
+  </div>
+  <div class="f-term">ben@portfolio<span class="f-term-dim">:~$</span> always_open_to_the_next_thing<span class="f-cursor"></span></div>
+</footer>
+
+<script src="js/site-common.js?v=20260930e"></script>
+<script>
+(function(){
+  const sideLinks = document.querySelectorAll('.ab2-side-link');
+  const sections = Array.from(sideLinks).map(l => document.querySelector(l.getAttribute('href')));
+  if (!sideLinks.length || !sections.length) return;
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = '#' + entry.target.id;
+        sideLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  sections.forEach(s => { if (s) spy.observe(s); });
+})();
+</script>
+</body>
+</html>

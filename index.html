@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#F3F3F1">
+<title>Ben Levitsky — UX Designer</title>
+<meta name="description" content="UX/product design student at the University of Michigan. Research, prototyping, and design systems — from an internship rebuild for a national contractor to coded prototypes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=20260930e">
+</head>
+<body>
+
+<!-- ──────── ENTRANCE ──────── -->
+<div id="introOverlay" role="button" tabindex="0" aria-label="Skip intro animation">
+  <div class="intro-glow intro-glow-a" aria-hidden="true"></div>
+  <div class="intro-glow intro-glow-b" aria-hidden="true"></div>
+
+  <!-- Floating prototype cards & sketched icons -->
+  <div class="intro-float intro-f1" aria-hidden="true"><div class="intro-float-bob">
+    <svg width="58" height="44" viewBox="0 0 58 44"><rect x="1" y="1" width="56" height="42" rx="8" fill="#fff" stroke="var(--ink)" stroke-width="1.6"/><circle cx="8" cy="8" r="1.6" fill="#FF5F57"/><circle cx="13" cy="8" r="1.6" fill="#FEBC2E"/><circle cx="18" cy="8" r="1.6" fill="#28C840"/><rect x="7" y="16" width="30" height="3" rx="1.5" fill="var(--ink10)"/><rect x="7" y="23" width="44" height="3" rx="1.5" fill="var(--ink10)"/><rect x="7" y="30" width="20" height="3" rx="1.5" fill="var(--coral)"/></svg>
+  </div></div>
+
+  <div class="intro-float intro-f2" aria-hidden="true"><div class="intro-float-bob">
+    <svg width="40" height="56" viewBox="0 0 40 56"><rect x="1.5" y="1.5" width="37" height="53" rx="9" fill="#fff" stroke="var(--ink)" stroke-width="1.6"/><rect x="7" y="9" width="26" height="32" rx="2.5" fill="var(--ink06)"/><rect x="13" y="46" width="14" height="2.4" rx="1.2" fill="var(--ink10)"/></svg>
+  </div></div>
+
+  <div class="intro-float intro-f3" aria-hidden="true"><div class="intro-float-bob">
+    <svg width="46" height="42" viewBox="0 0 46 42"><path d="M9 15h22a2 2 0 0 1 2 2v11a9 9 0 0 1-9 9h-8a9 9 0 0 1-9-9V17a2 2 0 0 1 2-2z" fill="#fff" stroke="var(--ink)" stroke-width="1.7"/><path d="M33 19h3a4 4 0 0 1 0 8h-3" fill="none" stroke="var(--ink)" stroke-width="1.7"/><path d="M15 10c-1.5 1.5-1.5 3 0 4.5M22 10c-1.5 1.5-1.5 3 0 4.5M29 10c-1.5 1.5-1.5 3 0 4.5" stroke="var(--coral)" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg>
+  </div></div>
+
+  <div class="intro-float intro-f4" aria-hidden="true"><div class="intro-float-bob">
+    <svg width="52" height="34" viewBox="0 0 52 34"><path d="M19 8L7 17l12 9" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M33 8l12 9-12 9" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="29" y1="4" x2="23" y2="30" stroke="var(--coral)" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </div></div>
+
+  <!-- Frankie, curled up -->
+  <div class="intro-float intro-f5" aria-hidden="true"><div class="intro-float-bob">
+    <svg width="46" height="46" viewBox="0 0 20 20" shape-rendering="crispEdges">
+      <ellipse cx="10" cy="16.5" rx="8" ry="1.6" fill="rgba(60,35,10,.14)"/>
+      <rect x="3" y="10" width="10" height="6" rx="1" fill="#7a3f21"/>
+      <rect x="2" y="12" width="3" height="4" fill="#7a3f21"/>
+      <rect x="11" y="6" width="7" height="7" fill="#7a3f21"/>
+      <rect x="12" y="5" width="3" height="3" fill="#5a2e18"/>
+      <rect x="16" y="4" width="3" height="4" fill="#5a2e18"/>
+      <rect x="16" y="9" width="3" height="3" fill="#a8622f"/>
+      <rect x="18" y="10" width="1" height="1" fill="#1a0f0a"/>
+      <rect x="14" y="8" width="1" height="1" fill="#1a0f0a"/>
+      <rect x="4" y="11" width="2" height="1" fill="#a8622f"/>
+    </svg>
+  </div></div>
+
+  <!-- Coby, mid-zoomie -->
+  <div class="intro-float intro-f6" aria-hidden="true"><div class="intro-float-bob">
+    <svg width="46" height="46" viewBox="0 0 20 20" shape-rendering="crispEdges">
+      <ellipse cx="10" cy="17" rx="7.5" ry="1.4" fill="rgba(60,35,10,.14)"/>
+      <rect x="3" y="10" width="10" height="6" rx="1" fill="#f4f0e8"/>
+      <rect x="1" y="11" width="3" height="4" fill="#f4f0e8"/>
+      <rect x="11" y="5" width="8" height="8" fill="#f4f0e8"/>
+      <rect x="12" y="4" width="3" height="3" fill="#e8e0cf"/>
+      <rect x="17" y="4" width="3" height="4" fill="#e8e0cf"/>
+      <rect x="18" y="9" width="1" height="1" fill="#1a1a1a"/>
+      <rect x="14" y="7" width="1.4" height="1.4" fill="#1a1a1a"/>
+      <rect x="15" y="10" width="4" height="3" fill="#e0708a"/>
+      <rect x="3" y="16" width="2" height="2" fill="#f4f0e8"/>
+      <rect x="9" y="16" width="2" height="2" fill="#f4f0e8"/>
+    </svg>
+  </div></div>
+
+  <!-- Pixel-Ben, drumming -->
+  <div class="intro-float intro-f7" aria-hidden="true"><div class="intro-float-bob">
+    <svg width="52" height="52" viewBox="0 0 20 20" shape-rendering="crispEdges">
+      <rect x="7" y="3" width="6" height="5" fill="#4B3222"/>
+      <rect x="6" y="3" width="1" height="2" fill="#4B3222"/>
+      <rect x="13" y="3" width="1" height="2" fill="#4B3222"/>
+      <rect x="8" y="6" width="4" height="3" fill="#E3AC7E"/>
+      <rect x="7" y="9" width="6" height="6" fill="#4A4550"/>
+      <rect x="6" y="16" width="3" height="3" fill="#2B2730"/>
+      <rect x="11" y="16" width="3" height="3" fill="#2B2730"/>
+      <rect x="3" y="15" width="14" height="2" fill="#8B5A2B"/>
+      <rect x="2" y="12" width="3" height="4" fill="#DFFF24" opacity=".9"/>
+      <rect x="15" y="12" width="3" height="4" fill="#DFFF24" opacity=".9"/>
+      <g class="drum-arm-l"><rect x="5" y="8" width="3" height="2" fill="#E3AC7E"/><rect x="2" y="6" width="4" height="1.4" fill="#C9A227"/></g>
+      <g class="drum-arm-r"><rect x="12" y="8" width="3" height="2" fill="#E3AC7E"/><rect x="14" y="6" width="4" height="1.4" fill="#C9A227"/></g>
+    </svg>
+  </div></div>
+
+  <!-- Pixel-Ben, at the computer -->
+  <div class="intro-float intro-f8" aria-hidden="true"><div class="intro-float-bob">
+    <svg width="52" height="52" viewBox="0 0 20 20" shape-rendering="crispEdges">
+      <rect x="4" y="13" width="12" height="6" rx="0" fill="#F0F0EE" stroke="var(--ink10)" stroke-width=".3"/>
+      <rect x="5" y="6" width="10" height="7" fill="#0C0C0C" rx="1"/>
+      <rect x="6" y="7" width="8" height="5" fill="#17324A"/>
+      <rect class="crt-cursor" x="7" y="8.5" width="2" height="1" fill="#DFFF24"/>
+      <rect x="9" y="13" width="2" height="1.4" fill="#8A8A8A"/>
+      <rect x="7" y="3.4" width="6" height="5" fill="#4B3222"/>
+      <rect x="6" y="3.4" width="1" height="2" fill="#4B3222"/>
+      <rect x="13" y="3.4" width="1" height="2" fill="#4B3222"/>
+      <rect x="8" y="6.4" width="4" height="3" fill="#E3AC7E"/>
+      <rect x="7" y="9.4" width="6" height="6" fill="#4A4550"/>
+      <g class="type-hand-l"><rect x="6" y="14.6" width="2.4" height="1.6" fill="#E3AC7E"/></g>
+      <g class="type-hand-r"><rect x="11.6" y="14.6" width="2.4" height="1.6" fill="#E3AC7E"/></g>
+    </svg>
+  </div></div>
+
+  <div class="intro-center">
+    <div class="intro-burst" aria-hidden="true">
+      <span class="intro-confetti ic-1"></span><span class="intro-confetti ic-2"></span>
+      <span class="intro-confetti ic-3"></span><span class="intro-confetti ic-4"></span>
+      <span class="intro-confetti ic-5"></span><span class="intro-confetti ic-6"></span>
+      <span class="intro-confetti ic-7"></span><span class="intro-confetti ic-8"></span>
+    </div>
+    <svg class="intro-svg" viewBox="0 0 200 200" aria-hidden="true">
+      <rect class="intro-box" x="4" y="4" width="192" height="192" rx="18"/>
+      <rect class="intro-fill" x="4" y="4" width="192" height="192" rx="18"/>
+      <circle class="intro-cursor" r="4"/>
+      <text class="intro-mono" x="100" y="122" text-anchor="middle">BL</text>
+    </svg>
+  </div>
+  <span class="intro-skip">Click to skip</span>
+</div>
+<script>
+  // Runs synchronously, immediately after the element exists in the DOM,
+  // so a repeat visit within the same session never flashes the overlay
+  // before the deferred script at the bottom of the page can react.
+  if (sessionStorage.getItem('introSeen')) {
+    document.getElementById('introOverlay').style.display = 'none';
+  } else {
+    sessionStorage.setItem('introSeen', '1');
+    // Hero content stays hidden until the intro hands off to it —
+    // see the reveal transition wired up at the bottom of the page.
+    document.documentElement.classList.add('intro-pending');
+  }
+</script>
+
+<div id="read-progress"></div>
+
+<!-- ──────── NAV ──────── -->
+<nav class="nav" id="nav">
+  <a class="nav-logo" href="index.html" aria-label="Ben Levitsky — home">
+    <svg class="nav-logo-mark" width="38" height="38" viewBox="0 0 32 32" aria-hidden="true">
+      <text x="2" y="21">bl</text>
+      <rect class="nav-logo-cursor" x="18" y="9" width="5" height="14"/>
+    </svg>
+  </a>
+  <ul class="nav-mid">
+    <li><a href="index.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.linkedin.com/in/benjamin-levitsky-3704362a4/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.instagram.com/ben.levitsky/" target="_blank" rel="noopener">Instagram</a>
+    <a href="images/Ben-Levitsky-Resume.pdf" target="_blank" rel="noopener" style="font-weight:700">Resume ↓</a>
+    <a href="world/index.html" class="nav-game">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 10v4M5 12h4"/><circle cx="16" cy="10.5" r="1"/><circle cx="18.5" cy="13" r="1"/></svg>
+      Game Mode
+    </a>
+  </div>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mob" id="mob">
+  <a href="index.html">Work</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="world/index.html" class="mob-game">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 10v4M5 12h4"/><circle cx="16" cy="10.5" r="1"/><circle cx="18.5" cy="13" r="1"/></svg>
+    Game Mode
+  </a>
+  <div class="mob-foot">
+    <a href="https://www.linkedin.com/in/benjamin-levitsky-3704362a4/" target="_blank" style="color:var(--coral)">LinkedIn</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/ben.levitsky/" target="_blank" style="color:var(--coral)">Instagram</a>
+    &nbsp;·&nbsp;
+    <a href="images/Ben-Levitsky-Resume.pdf" target="_blank" style="color:var(--coral)">Resume</a>
+  </div>
+</div>
+
+<!-- ──────── HERO ──────── -->
+<section class="hero hero-min" id="home">
+  <div class="hm-name">ben levitsky</div>
+  <p class="hm-tag">I design UX rooted in human insight, creativity, and code.</p>
+  <p class="hm-cred">I study Design at the <strong>University of Michigan</strong>. Interned at <strong>PREMIER Design + Build Group</strong> and <strong>Ogilvy</strong>. Studied UX in <strong>Copenhagen</strong>. <span class="hm-dot" title="Open to work"></span></p>
+</section>
+
+<!-- ──────── WORK ──────── -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="proj-grid">
+
+      <!-- 0 — Premier (flagship) -->
+      <div class="pc pc-premier-card" onclick="openProj('premier')" onmouseenter="const v=this.querySelector('.pc-video');if(v){v.currentTime=0;v.play().catch(()=>{})}" onmouseleave="const v=this.querySelector('.pc-video');if(v){v.pause()}" role="button" tabindex="0" aria-label="View PREMIER Design + Build Group case study" style="cursor:pointer;--card-accent:#174D7B">
+        <img class="pc-img" src="images/premier-video-poster.png" alt="PREMIER Design + Build Group">
+        <video class="pc-video" src="images/premier-hover.mp4?v=20260914a" muted playsinline preload="none"></video>
+        <div class="pc-scrim"></div>
+        <div class="pc-arrow">↗</div>
+        <span class="pc-prov-dot pc-prov-logo" title="Internship — PREMIER Design + Build Group" aria-label="Internship — PREMIER Design + Build Group"><img src="images/logo-premier.png" alt="PREMIER Design + Build Group"></span>
+        <div class="pc-body">
+          <span class="pc-pill">PREMIER · 2026</span>
+          <p class="pc-mini-desc">Full site redesign &amp; rebrand, live in production.</p>
+        </div>
+      </div>
+
+      <!-- 1 — Safeplay -->
+      <div class="pc pc-1 rv" style="transition-delay:.10s;--card-accent:#C13D2C" onclick="openProj('safeplay')" onmouseenter="const v=this.querySelector('.pc-video');if(v){v.currentTime=0;v.play().catch(()=>{})}" onmouseleave="const v=this.querySelector('.pc-video');if(v){v.pause()}" role="button" tabindex="0" aria-label="View Safeplay case study">
+        <img class="pc-img" src="images/safeplay-video-poster.png" alt="Safeplay App">
+        <video class="pc-video" src="images/safeplay-hover.mp4?v=20260914a" muted playsinline preload="none"></video>
+        <div class="pc-scrim"></div>
+        <div class="pc-arrow">↗</div>
+        <span class="pc-prov-dot pc-prov-logo" title="School Project — Michigan" aria-label="School Project — Michigan"><img src="images/logo-umich.png" alt="University of Michigan"></span>
+        <div class="pc-body">
+          <span class="pc-pill">Safeplay · 2025</span>
+          <p class="pc-mini-desc">Playdate-vetting app, iOS — 6/6 usability testers succeeded in 87 seconds.</p>
+        </div>
+      </div>
+
+      <!-- 2 — Danmark -->
+      <div class="pc pc-2 rv" style="transition-delay:.16s;--card-accent:#2B7684" onclick="openProj('denmark')" onmouseenter="const v=this.querySelector('.pc-video');if(v){v.currentTime=0;v.play().catch(()=>{})}" onmouseleave="const v=this.querySelector('.pc-video');if(v){v.pause()}" role="button" tabindex="0" aria-label="View Danmark Museum case study">
+        <img class="pc-img" src="images/denmark-video-poster.png" alt="Danmark Museum">
+        <video class="pc-video" src="images/denmark-hover.mp4?v=20260914a" muted playsinline preload="none"></video>
+        <div class="pc-scrim"></div>
+        <div class="pc-arrow">↗</div>
+        <span class="pc-prov-dot pc-prov-school" title="School Project — Copenhagen study abroad" aria-label="School Project — Copenhagen study abroad"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span>
+        <div class="pc-body">
+          <span class="pc-pill">DTM Museum · 2026</span>
+          <p class="pc-mini-desc">Museum app prototype, coded solo — its custom timeline was singled out in review.</p>
+        </div>
+      </div>
+
+      <!-- 3 — YouTube Watch -->
+      <div class="pc pc-3 rv" style="transition-delay:.22s;--card-accent:#CC1F1F" onclick="openProj('youtube')" role="button" tabindex="0" aria-label="View YouTube Watch UI case study">
+        <img class="pc-img" src="images/youtube.png" alt="YouTube Watch UI">
+        <div class="pc-scrim"></div>
+        <div class="pc-arrow">↗</div>
+        <span class="pc-prov-dot pc-prov-logo" title="School Project — Michigan" aria-label="School Project — Michigan"><img src="images/logo-umich.png" alt="University of Michigan"></span>
+        <div class="pc-body">
+          <span class="pc-pill">YouTube Watch · 2025</span>
+          <p class="pc-mini-desc">watchOS concept, redesigned around the Digital Crown instead of touch.</p>
+        </div>
+      </div>
+
+      <!-- 4 — Still -->
+      <div class="pc pc-4 rv" style="transition-delay:.28s;--card-accent:#4A5FBF;cursor:pointer" onclick="openProj('still')" onmouseenter="const v=this.querySelector('.pc-video');if(v){v.currentTime=0;v.play().catch(()=>{})}" onmouseleave="const v=this.querySelector('.pc-video');if(v){v.pause()}" role="button" tabindex="0" aria-label="View Still case study">
+        <img class="pc-img" src="images/still-video-poster.png" alt="Still — anxiety companion app">
+        <video class="pc-video" src="images/still-hover.mp4?v=20260914a" muted playsinline preload="none"></video>
+        <div class="pc-scrim"></div>
+        <div class="pc-arrow">↗</div>
+        <span class="pc-prov-dot pc-prov-vibe" title="Vibe-Coded — Personal Project" aria-label="Vibe-Coded — Personal Project"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></span>
+        <div class="pc-body">
+          <span class="pc-pill">Still · 2026</span>
+          <p class="pc-mini-desc">Anxiety companion, vibe-coded in a weekend.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────── GRAPHIC DESIGN ──────── -->
+<div class="gd rv" id="graphic">
+  <div class="ey" style="margin-bottom:14px">
+    <div class="ey-line" style="background:var(--lime)"></div>
+    <span class="ey-txt" style="color:rgba(255,255,255,.35)">Graphic Design</span>
+  </div>
+  <h2 class="sec-h" style="color:var(--white);margin-bottom:36px">Visual work</h2>
+
+  <div class="masonry">
+    <div class="m-item" onclick="openImg(this)" data-desc="Brand identity for a sports partnership campaign with Ogilvy."><img src="https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/323bd96e-af8c-473f-b224-9f53a5f0bc45/Screenshot+2025-08-13+at+2.28.23%E2%80%AFPM.png" alt="Team Orbit" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Team Orbit</span><span class="m-lbl-desc">Brand identity for a sports partnership campaign with Ogilvy.</span><span class="m-btn">View</span></div></div>
+    <div class="m-item" onclick="openImg(this)" data-desc="Festival poster — Copenhagen Jazz Festival concept."><img src="https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/e5d613cb-2269-4838-a835-999bd8675f28/Everything+jazz-04.png" alt="Everything Jazz" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Everything Jazz</span><span class="m-lbl-desc">Festival poster — Copenhagen Jazz Festival concept.</span><span class="m-btn">View</span></div></div>
+    <div class="m-item" onclick="openImg(this)" data-desc="Editorial layout exploration for Bloomberg."><img src="https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/2d01a59e-5f24-4f3b-b076-ecbd6383451b/Screenshot+2025-08-13+at+2.10.39%E2%80%AFPM.png" alt="Bloomberg" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Bloomberg</span><span class="m-lbl-desc">Editorial layout exploration for Bloomberg.</span><span class="m-btn">View</span></div></div>
+    <div class="m-item" onclick="openImg(this)" data-desc="Magazine cover concept exploring AI and design."><img src="https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/10d9e578-2d50-4817-a814-37a96c0b3cc4/AI+Magazine.png" alt="AI Magazine" loading="lazy"><div class="m-hover"><span class="m-lbl-title">AI Magazine</span><span class="m-lbl-desc">Magazine cover concept exploring AI and design.</span><span class="m-btn">View</span></div></div>
+    <div class="m-item" onclick="openImg(this)" data-desc="Alternative poster variant for the Jazz Festival series."><img src="https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/b1a307a5-e99c-4eec-8491-e4fef4bcbdf7/Alt+jazz+poster.png" alt="Alt Jazz" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Alt Jazz</span><span class="m-lbl-desc">Alternative poster variant for the Jazz Festival series.</span><span class="m-btn">View</span></div></div>
+    <div class="m-item" onclick="openImg(this)" data-desc="Designed during my internship at PREMIER Design + Build Group."><img src="https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/e1f80c21-e907-45b2-ae62-94547f85106b/Sequence+911829.jpg" alt="Intern Project" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Intern Project</span><span class="m-lbl-desc">Designed during my internship at PREMIER Design + Build Group.</span><span class="m-btn">View</span></div></div>
+    <div class="m-item" onclick="openImg(this)" data-desc="Poster for a personal music project."><img src="https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/1e98272c-084c-4dc9-8a87-e26ab9b9a86d/Coby+poster.png" alt="Coby Poster" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Coby</span><span class="m-lbl-desc">Poster for a personal music project.</span><span class="m-btn">View</span></div></div>
+    <div class="m-item" onclick="openImg(this)" data-desc="Album art concept — typography-driven."><img src="https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/b4119328-4a03-4942-a572-a19802675144/Screenshot+2025-04-01+at+9.20.49+AM.png" alt="Bliss of Disappointment" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Bliss of Disappointment</span><span class="m-lbl-desc">Album art concept — typography-driven.</span><span class="m-btn">View</span></div></div>
+    <div class="m-item" onclick="openImg(this)" data-desc="Album art exploration — mood and contrast."><img src="https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/ef7d5bcb-62c1-4651-ae11-babbecf9887f/Screenshot+2025-01-06+at+2.29.48+PM.png" alt="Let Down" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Let Down</span><span class="m-lbl-desc">Album art exploration — mood and contrast.</span><span class="m-btn">View</span></div></div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px">
+    <a class="btn btn-lime" href="https://www.ben-levitsky.com/work/moment-tkxps" target="_blank" rel="noopener" style="display:inline-flex;width:auto">Full Gallery ↗</a>
+  </div>
+</div>
+
+<!-- ──────── 3D / PRODUCT ──────── -->
+<div class="gd rv" id="product">
+  <div class="ey" style="margin-bottom:14px">
+    <div class="ey-line" style="background:var(--coral)"></div>
+    <span class="ey-txt" style="color:rgba(255,255,255,.35)">Product Design</span>
+  </div>
+  <h2 class="sec-h" style="color:var(--white);margin-bottom:16px">3D modeling</h2>
+  <p style="font-size:15px;line-height:1.7;color:rgba(255,255,255,.5);max-width:520px;margin-bottom:36px">
+    Physical products modeled in <strong style="color:rgba(255,255,255,.85)">Autodesk Fusion 360</strong> and 3D-printed. Each piece explores form, function, and character.
+  </p>
+
+  <div class="masonry">
+    <div class="m-item" onclick="openImg(this)" data-desc="A ceramic-inspired tea cup, modeled and 3D-printed."><img src="images/teacup.jpg" alt="Tea Cup" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Tea Cup</span><span class="m-lbl-desc">A ceramic-inspired tea cup, modeled and 3D-printed.</span><span class="m-btn">View</span></div></div>
+    <div class="m-item" onclick="openImg(this)" data-desc="Milly the Mouse — part of the MistMates collection."><img src="images/critter-mouse.jpg" alt="Milly the Mouse" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Milly the Mouse</span><span class="m-lbl-desc">Part of the MistMates collection.</span><span class="m-btn">View</span></div></div>
+    <div class="m-item" onclick="openImg(this)" data-desc="Terry the Turtle — part of the MistMates collection."><img src="images/critter-turtle.jpg" alt="Terry the Turtle" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Terry the Turtle</span><span class="m-lbl-desc">Part of the MistMates collection.</span><span class="m-btn">View</span></div></div>
+    <div class="m-item" onclick="openImg(this)" data-desc="Petey the Penguin — part of the MistMates collection."><img src="images/critter-penguin.jpg" alt="Petey the Penguin" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Petey the Penguin</span><span class="m-lbl-desc">Part of the MistMates collection.</span><span class="m-btn">View</span></div></div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px">
+    <a class="btn btn-lime" href="https://www.ben-levitsky.com/work/ppcircuit-mppcy" target="_blank" rel="noopener" style="display:inline-flex;width:auto">Full 3D Portfolio ↗</a>
+  </div>
+</div>
+
+<!-- ──────── FOOTER ──────── -->
+<footer class="footer">
+  <div class="f-top">
+    <div class="f-headline">Got a project in mind?<br><a href="mailto:bglevitsky@icloud.com">Let's talk.</a></div>
+  </div>
+  <div class="f-row">
+    <span class="f-logo">Ben Levitsky</span>
+    <div class="f-links">
+      <a href="index.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="mailto:bglevitsky@icloud.com">Email</a>
+      <a href="https://www.linkedin.com/in/benjamin-levitsky-3704362a4/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/ben.levitsky/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <span class="f-copy">© 2026 Ben Levitsky</span>
+  </div>
+  <div class="f-term">ben@portfolio<span class="f-term-dim">:~$</span> always_open_to_the_next_thing<span class="f-cursor"></span></div>
+</footer>
+
+<!-- ──────── IMAGE / WATCH LIGHTBOXES ──────── -->
+<div class="watch-lb" id="watchLb" onclick="closeWatchLb()">
+  <button class="img-lb-close" onclick="closeWatchLb()" aria-label="Close">✕</button>
+  <img id="watchLbImg" src="" alt="">
+  <span class="watch-lb-cap" id="watchLbCap"></span>
+</div>
+
+<div class="img-lb" id="imgLb" onclick="closeLb()">
+  <button class="img-lb-close" onclick="event.stopPropagation();closeLb()" aria-label="Close">✕</button>
+  <img id="imgLbImg" src="" alt="" onclick="event.stopPropagation()">
+  <span class="img-lb-cap" id="imgLbCap" onclick="event.stopPropagation()"></span>
+</div>
+
+<!-- ──────── CASE STUDY LAYER ──────── -->
+<div class="cs-backdrop" id="csBackdrop" onclick="closeCS()"></div>
+<div class="cs-layer" id="csLayer" role="dialog" aria-modal="true" aria-label="Case study">
+  <div class="cs-back">
+    <button class="cs-corner-btn" id="csExpandBtn" onclick="toggleCSExpand()" aria-label="Expand to full screen" title="Expand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    </button>
+    <button class="cs-corner-btn" onclick="closeCS()" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="csInner"></div>
+</div>
+
+<script>
+// Image paths in PROJ data are bare filenames (e.g. 'premier-mockup.jpg');
+// this app lives at /images/, so re-root them once, here, for every page.
+window.IMG_BASE = 'images/';
+</script>
+<script src="js/site.js?v=20260930e"></script>
+<script>
+// Re-root PROJ image fields to the images/ folder without editing every path by hand.
+(function(){
+  function rootImg(v){ return (typeof v === 'string' && v && !v.startsWith('http') && !v.startsWith('images/')) ? ('images/' + v) : v; }
+  Object.values(PROJ).forEach(p => {
+    ['cover','hero','downloadUrl','logo'].forEach(k => { if (p[k]) p[k] = rootImg(p[k]); });
+    (p.sections||[]).forEach(s => {
+      ['_img','img','video','src','beforeSrc','afterSrc','beforeImg','afterImg'].forEach(k => { if (s[k]) s[k] = rootImg(s[k]); });
+      if (s.desktop) s.desktop.src = rootImg(s.desktop.src);
+      if (s.mobile)  s.mobile.src  = rootImg(s.mobile.src);
+      if (s.images)  s.images.forEach(im => { if (im.src) im.src = rootImg(im.src); });
+      if (s.imgs)    s.imgs.forEach(im => { if (im.src) im.src = rootImg(im.src); });
+    });
+  });
+})();
+// Deep link: index.html?case=premier opens that case study on load
+(function(){
+  const id = new URLSearchParams(location.search).get('case');
+  if (id && PROJ[id]) openProj(id);
+})();
+</script>
+<script src="js/site-common.js?v=20260930e"></script>
+<script>
+// Entrance animation — plays once per browser session, skippable.
+// (Session gating itself happens synchronously right after the
+// overlay markup, above, to avoid a flash on repeat page loads.)
+(function(){
+  const overlay = document.getElementById('introOverlay');
+  if (!overlay || overlay.style.display === 'none') return;
+
+  document.body.style.overflow = 'hidden';
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function finish(){
+    if (!overlay.isConnected) return;
+    document.body.style.overflow = '';
+    overlay.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('intro-pending');
+
+    if (reduce) {
+      overlay.remove();
+      return;
+    }
+
+    // The overlay dissolves on its own cream background — no color
+    // flash — while the hero content quietly comes into focus
+    // underneath it, so the handoff feels considered, not loud.
+    overlay.classList.add('leaving');
+    const hero = document.querySelector('.hero');
+    if (hero) hero.classList.add('hero-pop');
+    setTimeout(() => overlay.remove(), 520);
+  }
+
+  overlay.addEventListener('click', finish);
+  overlay.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') finish();
+  });
+
+  setTimeout(finish, reduce ? 0 : 2900);
+})();
+</script>
+
+</body>
+</html>

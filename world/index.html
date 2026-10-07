@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b1612">
+<title>Ben's Studio — a walkable portfolio</title>
+<meta name="description" content="Walk around Ben Levitsky's studio. Every object is a way into his work, music, dogs, and contact info.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="c" tabindex="0" role="img"
+        aria-label="Interactive studio scene. Use the Places menu or arrow keys to explore. All content is also available from the regular portfolio."></canvas>
+<div id="labels" aria-hidden="true"></div>
+
+<!-- HUD -->
+<header id="hud" hidden>
+  <div class="hud-left">
+    <span class="hud-title">Ben's Studio</span>
+    <span class="hud-progress" id="progress" title="Things you've explored"><b id="found">0</b>/<span id="total">8</span> explored</span>
+  </div>
+  <div class="hud-right">
+    <div class="places">
+      <button id="placesBtn" class="pill" aria-expanded="false" aria-controls="placesList">Places</button>
+      <ul id="placesList" hidden></ul>
+    </div>
+    <button id="muteBtn" class="pill icon" aria-pressed="false" aria-label="Sound on" title="Sound">
+      <svg id="icoOn" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      <svg id="icoOff" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>
+    </button>
+    <a class="pill ghost" id="skipLink" href="../index.html">Regular site →</a>
+  </div>
+</header>
+
+<div id="hint" hidden></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- Drum play mode — key legend + exit, shown while playing the kit -->
+<div id="drumPlay" hidden>
+  <button id="drumPlayExit" class="drumplay-exit" type="button">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    Done playing
+  </button>
+  <div class="drumplay-legend">
+    <span><kbd>1</kbd>Hi-hat</span>
+    <span><kbd>2</kbd>Snare</span>
+    <span><kbd>3</kbd>Kick</span>
+    <span><kbd>4</kbd>Tom</span>
+    <span><kbd>5</kbd>Crash</span>
+    <span class="drumplay-esc"><kbd>Esc</kbd>to stop</span>
+  </div>
+</div>
+
+<!-- Walkthrough — shown once, right after entering -->
+<div id="walk" hidden>
+  <div class="walk-card">
+    <div class="walk-step" data-step="0">
+      <div class="walk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+      <h3>Walking around</h3>
+      <p><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or the arrow keys move you. You can also just click anywhere on the floor — I'll path around the furniture.</p>
+    </div>
+    <div class="walk-step" data-step="1" hidden>
+      <div class="walk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></div>
+      <h3>Opening things</h3>
+      <p>Every labeled object is real content. Walk up and press <kbd>E</kbd>, or just click its label — Work, About, Music, and a few more.</p>
+    </div>
+    <div class="walk-step" data-step="2" hidden>
+      <div class="walk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5a4.5 4.5 0 0 1 5-7l2.5 2.5 2.5-2.5a4.5 4.5 0 1 1 6 6.5L12 20l-7.5-7.5Z"/></svg></div>
+      <h3>Frankie &amp; Coby</h3>
+      <p>My dogs follow you around the room. Click on either one to say hi — they nap in their bed if you wander off too long.</p>
+    </div>
+    <div class="walk-step" data-step="3" hidden>
+      <div class="walk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v14"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div>
+      <h3>There's a second room</h3>
+      <p>The door on the left wall leads to a small drum studio — there's music already going, and the kit is fully playable.</p>
+    </div>
+    <div class="walk-dots"><span class="on"></span><span></span><span></span><span></span></div>
+    <div class="walk-actions">
+      <button id="walkSkip" class="walk-skip">Skip</button>
+      <button id="walkNext" class="cta walk-next">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- Intro -->
+<section id="intro">
+  <div class="intro-card">
+    <div class="eyebrow">Ben Levitsky · UX &amp; product design</div>
+    <h1>Welcome to my studio.</h1>
+    <p>Walk around and poke things. Everything in here is real: my work, my music, my dogs.</p>
+    <button id="enter" class="cta">Enter the studio</button>
+    <div class="intro-row">
+      <label class="check"><input type="checkbox" id="soundOpt" checked> Sound</label>
+      <a id="introSkip" href="../index.html">Skip to the regular portfolio</a>
+    </div>
+    <div class="keys" id="introKeys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrows to walk <span>·</span> <kbd>E</kbd> to open <span>·</span> or just click</div>
+  </div>
+</section>
+
+<!-- Content panel -->
+<div id="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle" hidden>
+  <div class="card" id="card">
+    <div class="card-head">
+      <h2 id="panelTitle"></h2>
+      <button id="panelClose" class="close" aria-label="Close">✕</button>
+    </div>
+    <div class="card-body" id="panelBody"></div>
+  </div>
+</div>
+
+<div id="live" class="sr" aria-live="polite"></div>
+
+<noscript>
+  <div class="noscript">This studio needs JavaScript. <a href="../index.html">Open the regular portfolio</a>.</div>
+</noscript>
+
+<script src="game.js"></script>
+</body>
+</html>
