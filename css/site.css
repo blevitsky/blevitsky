@@ -863,13 +863,10 @@ body.ui-mode .h-badge{background:var(--mint)}
 .cs-corner-btn:hover{opacity:1;transform:scale(1.06)}
 .cs-corner-btn svg{width:14px;height:14px}
 
-/* A full-page embed (the 3D gallery) draws its own controls in the
-   top-right corner, which collides with the modal's close button sitting
-   right on top of it. Drop close down to the empty bottom-left corner
-   instead, as its own fixed element outside the row's layout. */
-.cs-layer.cs-embedded .cs-close-btn{
-  position:fixed;top:auto;right:auto;bottom:28px;left:24px;z-index:20;
-}
+/* Close always lives top-right, like every other modal on the site — a
+   full-page embed (the 3D gallery) keeps its own controls out of that
+   corner instead (see lobby.html's .lb-info), rather than moving the
+   modal's close button around per case study. */
 .cs-back-btn{
   display:flex;align-items:center;gap:8px;
   font-family:var(--f-head);
@@ -3661,7 +3658,7 @@ body.ui-mode .h-badge{background:var(--mint)}
   border:1px solid var(--ink10);
 }
 .vibe-card-img{position:relative;aspect-ratio:3/2;overflow:hidden;background:#eee}
-.vibe-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.vibe-card-img img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .vibe-card-tag{
   position:absolute;top:14px;left:14px;
   font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
@@ -4051,6 +4048,8 @@ html.intro-pending .hero .hm-cred{
 
 /* Simple contact page */
 .contact-hero{padding:calc(var(--nav-h) + 56px) 0 60px}
+.contact-wrap{display:flex;align-items:center;justify-content:space-between;gap:48px}
+.contact-main{flex:1 1 560px;min-width:0}
 .contact-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-text);margin-bottom:20px}
 .contact-h1{font-family:var(--f-head);font-size:clamp(32px,4.5vw,52px);font-weight:700;letter-spacing:-.02em;line-height:1.05;margin-bottom:28px}
 .contact-body{font-size:clamp(16px,1.6vw,19px);line-height:1.75;color:var(--ink60);max-width:560px;margin-bottom:40px}
@@ -4062,6 +4061,46 @@ html.intro-pending .hero .hm-cred{
 }
 .contact-link-row span{font-size:12px;color:var(--ink60);font-weight:500;letter-spacing:.02em}
 .contact-link-row:hover{color:var(--coral-text)}
+
+/* Right-rail companion to the link list — fills what would otherwise be
+   dead space on wide viewports with real information (status, location)
+   instead of pure decoration. Hidden once the layout gets tight. */
+.contact-side{
+  flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:20px;
+}
+.contact-status-ring{
+  position:relative;width:190px;height:190px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--ink10);
+  background:radial-gradient(circle, color-mix(in srgb, var(--coral) 7%, transparent) 0%, transparent 72%);
+}
+.contact-status-ring::before{
+  content:'';position:absolute;inset:16px;border-radius:50%;
+  border:1px dashed var(--ink10);
+}
+.contact-status-dot{
+  position:absolute;top:30px;left:50%;transform:translateX(-50%);
+  width:8px;height:8px;border-radius:50%;background:var(--coral);
+  box-shadow:0 0 0 5px color-mix(in srgb, var(--coral) 16%, transparent);
+  animation:contactPulse 2.4s ease-in-out infinite;
+}
+@keyframes contactPulse{
+  0%,100%{box-shadow:0 0 0 5px color-mix(in srgb, var(--coral) 16%, transparent)}
+  50%{box-shadow:0 0 0 9px color-mix(in srgb, var(--coral) 8%, transparent)}
+}
+.contact-status-label{
+  font-family:var(--f-head);font-weight:700;font-size:15px;letter-spacing:-.01em;
+  line-height:1.3;text-align:center;color:var(--ink);
+}
+.contact-side-note{
+  font-size:12.5px;line-height:1.7;color:var(--ink60);text-align:center;
+}
+@media(max-width:980px){
+  .contact-side{display:none}
+}
+@media(prefers-reduced-motion: reduce){
+  .contact-status-dot{animation:none}
+}
 
 /* ═══════════════════════════════════════
    ABOUT PAGE v2 — sidebar nav, timeline,
@@ -4211,6 +4250,12 @@ html.intro-pending .hero .hm-cred{
 }
 .ab2-tl-card[aria-expanded="true"] .ab2-tl-detail{max-height:400px;margin-top:14px}
 .ab2-tl-detail p{font-size:14.5px;line-height:1.7;color:var(--ink60);max-width:60ch}
+.ab2-tl-link{
+  display:inline-block;margin-top:12px;
+  font-size:13px;font-weight:700;color:var(--coral-text);
+  border-bottom:1px solid currentColor;padding-bottom:1px;
+}
+.ab2-tl-link:hover{opacity:.75}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.55}}
 @media(prefers-reduced-motion: reduce){
   .ab2-tl-ongoing-dot{animation:none}

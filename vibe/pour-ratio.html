@@ -111,9 +111,22 @@
   .btn-primary.copied{background:var(--coral-text)}
 
   .foot{margin-top:18px;font-size:12px;color:var(--ink60);text-align:center;line-height:1.6}
+
+  .back-link{
+    position:fixed;top:20px;left:20px;z-index:5;
+    display:flex;align-items:center;gap:6px;
+    font-size:13px;font-weight:600;color:var(--ink60);
+    text-decoration:none;transition:color .15s;
+  }
+  .back-link:hover{color:var(--ink)}
+  .back-link svg{width:14px;height:14px}
 </style>
 </head>
 <body>
+<a class="back-link" href="../index.html#vibe">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+  Ben Levitsky
+</a>
 <div class="card">
   <div class="eyebrow">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><line class="steam steam-a" x1="6" y1="1" x2="6" y2="4"/><line class="steam steam-b" x1="10" y1="1" x2="10" y2="4"/><line class="steam steam-a" x1="14" y1="1" x2="14" y2="4"/></svg>

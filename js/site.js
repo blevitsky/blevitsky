@@ -111,11 +111,6 @@ const PROJ = {
         label: 'Number counter — Velo / JavaScript',
       },
       {
-        type: 'premier-nav',
-        desktop: { src: 'premier-nav-desktop.jpg', caption: 'Desktop navigation' },
-        mobile:  { src: 'premier-nav-mobile.webm', caption: 'Mobile navigation' },
-      },
-      {
         type: 'chapter',
         label: 'The pages',
         headline: 'Home leads with scale, Projects proves it.',
@@ -133,11 +128,6 @@ const PROJ = {
         thumbCaption: 'Projects page, full length',
         video: 'premier-projects.webm',
         mirror: true,
-      },
-      {
-        type: 'premier-home-split',
-        video: 'premier-careers.webm',
-        bleed: true,
       },
       {
         type: 'reflection',

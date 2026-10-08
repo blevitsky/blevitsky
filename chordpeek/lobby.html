@@ -26,8 +26,12 @@
   .lb-brand-icon svg{width:17px;height:17px;color:#fff}
   .lb-brand-by{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ink)}
 
+  /* Fixed bottom-left, out of the modal's top-right close button — this
+     page is also embedded full-page inside a case-study modal elsewhere
+     on the site, and close always lives top-right there. */
   .lb-info{
-    pointer-events:auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+    pointer-events:auto;position:fixed;left:24px;bottom:30px;z-index:11;
+    width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);
     backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink60);
     transition:color .15s,border-color .15s;
   }
@@ -35,9 +39,9 @@
   .lb-info svg{width:16px;height:16px}
 
   .lb-tooltip{
-    position:fixed;top:66px;right:24px;z-index:11;pointer-events:none;background:var(--ink);color:#F5F4F2;
+    position:fixed;left:24px;bottom:76px;z-index:11;pointer-events:none;background:var(--ink);color:#F5F4F2;
     padding:14px 16px;border-radius:12px;font-size:12.5px;line-height:1.55;max-width:230px;opacity:0;
-    transform:translateY(-6px);transition:opacity .2s,transform .2s;box-shadow:0 20px 40px -12px rgba(0,0,0,.35);
+    transform:translateY(6px);transition:opacity .2s,transform .2s;box-shadow:0 20px 40px -12px rgba(0,0,0,.35);
   }
   .lb-tooltip.open{opacity:1;transform:translateY(0);pointer-events:auto}
 
@@ -112,7 +116,8 @@
   .lb-transition.on{opacity:1;pointer-events:auto}
 
   @media (max-width:640px){
-    .lb-tooltip{max-width:180px;right:16px;top:60px}
+    .lb-tooltip{max-width:180px;left:16px;bottom:70px}
+    .lb-info{left:16px;bottom:26px}
     .lb-top{padding:16px 16px 0}
     .lb-nav{right:16px;bottom:94px}
     .lb-bottom{padding:0 16px 20px}
@@ -133,10 +138,12 @@
       <span class="lb-brand-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
       <span class="lb-brand-by">Ben Levitsky</span>
     </a>
-    <button class="lb-info" id="lbInfoBtn" type="button" aria-label="How this works">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01"/></svg>
-    </button>
   </div>
+
+  <!-- fixed bottom-left, out from under the case-study modal's close button -->
+  <button class="lb-info" id="lbInfoBtn" type="button" aria-label="How this works">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01"/></svg>
+  </button>
 
   <div class="lb-bottom">
     <div class="lb-search-wrap">
