@@ -373,7 +373,7 @@ glScene.add(screenGlow);
 /* ───────────────────────────────────────────────────────────
    Theater shell — near-black room, raked floor, back wall
 ─────────────────────────────────────────────────────────── */
-glScene.add(new THREE.AmbientLight(0x0a0a0d, 1));
+glScene.add(new THREE.AmbientLight(0x1a1620, 1));
 
 const wallMat = new THREE.MeshStandardMaterial({ color: 0x0a0a0c, roughness: 0.95 });
 const floorMat = new THREE.MeshStandardMaterial({ color: 0x07070a, roughness: 0.9 });
@@ -427,6 +427,7 @@ glScene.add(floor);
    to this song's mood color instead of a fixed blue.
 ─────────────────────────────────────────────────────────── */
 const ledMat = new THREE.MeshBasicMaterial({ color: accent3D });
+const cupMat = new THREE.MeshStandardMaterial({ color: 0x1c171a, emissive: accent3D, emissiveIntensity: 0.55, roughness: 0.55 });
 function seat(x, z, lift){
   const g = new THREE.Group();
   g.position.set(x, lift, z);
@@ -451,9 +452,11 @@ function seat(x, z, lift){
   stripLight.position.set(0, 0.1, 0.24);
   g.add(stripLight);
 
-  /* lit cupholder in the right armrest */
-  const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.02, 14), ledMat);
-  cup.position.set(0.33, 0.78, 0.12);
+  /* lit cupholder in the right armrest — a shaded emissive ring, not a
+     flat unlit dot, so it reads as a small backlit fixture set into the
+     armrest rather than a glow floating loose in the dark */
+  const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.032, 0.014, 14), cupMat);
+  cup.position.set(0.3, 0.775, 0.1);
   g.add(cup);
 
   glScene.add(g);
