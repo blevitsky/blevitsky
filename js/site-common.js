@@ -267,3 +267,175 @@
     if (img.parentElement) img.replaceWith(box);
   }, true);
 })();
+
+/* ═══════════════════════════════════════════════════
+   WELCOME CHAT — a tiny, honest "why are you here?"
+   widget. No backend, no real AI — a small set of warm,
+   specific responses picked by keyword. Lives bottom-left
+   on every page (drumBen already owns bottom-right on
+   home), closed by default, with a one-time gentle nudge
+   on first visit.
+═══════════════════════════════════════════════════ */
+(function(){
+  if (document.getElementById('chatWidget')) return;
+
+  const onIndex = (location.pathname.split('/').pop() || 'index.html') === 'index.html';
+  const workHref = onIndex ? '#work' : 'index.html#work';
+  const dsHref   = onIndex ? 'design-system.html' : 'design-system.html';
+  const contactHref = onIndex ? 'contact.html' : 'contact.html';
+
+  const REPLIES = [
+    {
+      id: 'hiring',
+      test: /\b(hir|recruit|job|intern|review|manager|resume|résumé|candidate|position|role|screen)/i,
+      chip: "Hiring, or reviewing my work",
+      html: `That means a lot — thank you for taking the time. <a href="${workHref}">PREMIER</a> is the fullest picture of how I actually work, start to finish. If you want the short version first, my <a href="${contactHref}">resume's right here</a> too.`,
+    },
+    {
+      id: 'design',
+      test: /\b(design|ux|ui|portfolio|student|craft|product|figma)/i,
+      chip: "Fellow designer, comparing notes",
+      html: `Love that — always good to meet someone in it. The <a href="${dsHref}">design system page</a> is probably the most "me" thing on here, and the <a href="${workHref}">case studies</a> go deep on process if you want the full story.`,
+    },
+    {
+      id: 'explore',
+      test: /\b(friend|bored|random|curious|explor|nothing|idk|dunno|just|around|here)/i,
+      chip: "Just exploring",
+      html: `That's honestly my favorite reason. No agenda — just poke around. There's an easter egg or two if you look closely (try the corner, or Game Mode up top).`,
+    },
+  ];
+  const FALLBACK = `Glad you're here either way — hope you find something worth sticking around for. Feel free to look around and reach out if anything stands out.`;
+
+  function pickReply(text){
+    const hit = REPLIES.find(r => r.test.test(text));
+    return hit ? hit.html : FALLBACK;
+  }
+
+  function build(){
+    const btn = document.createElement('button');
+    btn.id = 'chatWidget';
+    btn.className = 'chat-fab';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'Open chat');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`;
+
+    const peek = document.createElement('div');
+    peek.className = 'chat-peek';
+    peek.innerHTML = `<span>Got a sec? 👋</span>`;
+
+    const panel = document.createElement('div');
+    panel.className = 'chat-panel';
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-label', 'Chat with Ben’s portfolio');
+    panel.innerHTML = `
+      <div class="chat-panel-head">
+        <span class="chat-avatar">BL</span>
+        <div>
+          <div class="chat-panel-title">Quick question</div>
+          <div class="chat-panel-sub">No pressure, just curious</div>
+        </div>
+        <button class="chat-close" type="button" aria-label="Close chat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="chat-msg chat-msg-bot">Hey — why are you here? 😊</div>
+      </div>
+      <div class="chat-chips" id="chatChips"></div>
+      <form class="chat-input-row" id="chatForm">
+        <input class="chat-input" id="chatInput" type="text" placeholder="…or tell me in your own words" autocomplete="off" maxlength="140">
+        <button class="chat-send" type="submit" aria-label="Send">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+        </button>
+      </form>
+    `;
+
+    document.body.appendChild(peek);
+    document.body.appendChild(panel);
+    document.body.appendChild(btn);
+
+    const body  = panel.querySelector('#chatBody');
+    const chips = panel.querySelector('#chatChips');
+    const form  = panel.querySelector('#chatForm');
+    const input = panel.querySelector('#chatInput');
+    let answered = false;
+
+    REPLIES.forEach(r => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'chat-chip';
+      chip.textContent = r.chip;
+      chip.addEventListener('click', () => respond(r.chip, r.html));
+      chips.appendChild(chip);
+    });
+
+    function addMsg(text, who, html){
+      const m = document.createElement('div');
+      m.className = 'chat-msg chat-msg-' + who;
+      if (html) m.innerHTML = text; else m.textContent = text;
+      body.appendChild(m);
+      body.scrollTop = body.scrollHeight;
+      return m;
+    }
+
+    function respond(userText, replyHtml){
+      addMsg(userText, 'user');
+      chips.classList.add('chat-chips-hide');
+      const typing = addMsg('<span class="chat-dot"></span><span class="chat-dot"></span><span class="chat-dot"></span>', 'bot', true);
+      typing.classList.add('chat-typing');
+      answered = true;
+      setTimeout(() => {
+        typing.remove();
+        addMsg(replyHtml || pickReply(userText), 'bot', true);
+      }, 620);
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = input.value.trim();
+      if (!val) return;
+      respond(val, pickReply(val));
+      input.value = '';
+    });
+
+    function openPanel(){
+      panel.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      peek.classList.remove('show');
+      try { sessionStorage.setItem('chatEngaged', '1'); } catch(e){}
+      setTimeout(() => input.focus(), 350);
+    }
+    function closePanel(){
+      panel.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+
+    btn.addEventListener('click', () => {
+      panel.classList.contains('open') ? closePanel() : openPanel();
+    });
+    panel.querySelector('.chat-close').addEventListener('click', closePanel);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
+    });
+
+    // A one-time, gentle nudge — never again once they've engaged or
+    // explicitly dismissed it, and never for anyone who prefers reduced motion.
+    let engaged = false;
+    try { engaged = !!sessionStorage.getItem('chatEngaged'); } catch(e){}
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!engaged && !reduce) {
+      setTimeout(() => {
+        if (!panel.classList.contains('open')) peek.classList.add('show');
+      }, 4200);
+      setTimeout(() => peek.classList.remove('show'), 10200);
+    }
+    peek.addEventListener('click', openPanel);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
+    build();
+  }
+})();
