@@ -673,10 +673,10 @@ const PROJ = {
     ]
   },
 
-  /* ─── 4. CHORDPEEK — just the live app, nothing around it. ── */
+  /* ─── 4. THE GALLERY — just the live app, nothing around it. ── */
   chordpeek: {
-    title: 'ChordPeek',
-    embedSrc: 'chordpeek/prototype.html',
+    title: 'The Gallery',
+    embedSrc: 'chordpeek/lobby.html',
     accentColor: '#4A5FBF',
     accentColorDark: '#8E9AF2',
     nextId: 'safeplay',
