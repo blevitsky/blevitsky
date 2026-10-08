@@ -862,6 +862,14 @@ body.ui-mode .h-badge{background:var(--mint)}
 }
 .cs-corner-btn:hover{opacity:1;transform:scale(1.06)}
 .cs-corner-btn svg{width:14px;height:14px}
+
+/* A full-page embed (the 3D gallery) draws its own controls in the
+   top-right corner, which collides with the modal's close button sitting
+   right on top of it. Drop close down to the empty bottom-left corner
+   instead, as its own fixed element outside the row's layout. */
+.cs-layer.cs-embedded .cs-close-btn{
+  position:fixed;top:auto;right:auto;bottom:28px;left:24px;z-index:20;
+}
 .cs-back-btn{
   display:flex;align-items:center;gap:8px;
   font-family:var(--f-head);

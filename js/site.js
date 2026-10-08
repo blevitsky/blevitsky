@@ -1408,6 +1408,10 @@ function openCS(id) {
   layer.style.setProperty('--cs-accent', p.accentColor || 'var(--coral)');
   layer.style.setProperty('--cs-accent-dark', p.accentColorDark || p.accentColor || 'var(--coral-text)');
   layer.classList.toggle('theme-still', p.theme === 'still');
+  /* a full-page embed (the 3D gallery) has its own UI in the top-right
+     corner, which the modal's own close button would otherwise sit on
+     top of — move close down to the empty bottom-left corner instead */
+  layer.classList.toggle('cs-embedded', !!p.embedSrc);
   layer.scrollTop = 0;
   document.body.style.overflow = 'hidden';
   layer.dataset.current = id;
