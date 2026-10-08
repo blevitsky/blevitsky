@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=20260930e">
+<link rel="stylesheet" href="css/site.css?v=20260930h">
 </head>
 <body>
 
@@ -245,15 +245,15 @@
       </div>
 
       <!-- 4 — Still -->
-      <div class="pc pc-4 rv" style="transition-delay:.28s;--card-accent:#4A5FBF;cursor:pointer" onclick="openProj('still')" onmouseenter="const v=this.querySelector('.pc-video');if(v){v.currentTime=0;v.play().catch(()=>{})}" onmouseleave="const v=this.querySelector('.pc-video');if(v){v.pause()}" role="button" tabindex="0" aria-label="View Still case study">
-        <img class="pc-img" src="images/still-video-poster.png" alt="Still — anxiety companion app">
-        <video class="pc-video" src="images/still-hover.mp4?v=20260914a" muted playsinline preload="none"></video>
+      <div class="pc pc-4 rv" style="transition-delay:.28s;--card-accent:#4A5FBF;cursor:pointer" onclick="openProj('chordpeek')" onmouseenter="const v=this.querySelector('.pc-video');if(v){v.currentTime=0;v.play().catch(()=>{})}" onmouseleave="const v=this.querySelector('.pc-video');if(v){v.pause()}" role="button" tabindex="0" aria-label="View ChordPeek case study">
+        <img class="pc-img" src="images/chordpeek-video-poster.png" alt="ChordPeek — AI-compiled chord finder">
+        <video class="pc-video" src="images/chordpeek-hover.mp4" muted playsinline preload="none"></video>
         <div class="pc-scrim"></div>
         <div class="pc-arrow">↗</div>
         <span class="pc-prov-dot pc-prov-vibe" title="Vibe-Coded — Personal Project" aria-label="Vibe-Coded — Personal Project"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></span>
         <div class="pc-body">
-          <span class="pc-pill">Still · 2026</span>
-          <p class="pc-mini-desc">Anxiety companion, vibe-coded in a weekend.</p>
+          <span class="pc-pill">ChordPeek · 2026</span>
+          <p class="pc-mini-desc">33-song chord library — guitar, ukulele &amp; piano, with full-progression playback.</p>
         </div>
       </div>
 
@@ -282,9 +282,6 @@
     <div class="m-item" onclick="openImg(this)" data-desc="Album art exploration — mood and contrast."><img src="https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/ef7d5bcb-62c1-4651-ae11-babbecf9887f/Screenshot+2025-01-06+at+2.29.48+PM.png" alt="Let Down" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Let Down</span><span class="m-lbl-desc">Album art exploration — mood and contrast.</span><span class="m-btn">View</span></div></div>
   </div>
 
-  <div style="text-align:center;margin-top:48px">
-    <a class="btn btn-lime" href="https://www.ben-levitsky.com/work/moment-tkxps" target="_blank" rel="noopener" style="display:inline-flex;width:auto">Full Gallery ↗</a>
-  </div>
 </div>
 
 <!-- ──────── 3D / PRODUCT ──────── -->
@@ -305,9 +302,6 @@
     <div class="m-item" onclick="openImg(this)" data-desc="Petey the Penguin — part of the MistMates collection."><img src="images/critter-penguin.jpg" alt="Petey the Penguin" loading="lazy"><div class="m-hover"><span class="m-lbl-title">Petey the Penguin</span><span class="m-lbl-desc">Part of the MistMates collection.</span><span class="m-btn">View</span></div></div>
   </div>
 
-  <div style="text-align:center;margin-top:48px">
-    <a class="btn btn-lime" href="https://www.ben-levitsky.com/work/ppcircuit-mppcy" target="_blank" rel="noopener" style="display:inline-flex;width:auto">Full 3D Portfolio ↗</a>
-  </div>
 </div>
 
 <!-- ──────── FOOTER ──────── -->
@@ -362,7 +356,7 @@
 // this app lives at /images/, so re-root them once, here, for every page.
 window.IMG_BASE = 'images/';
 </script>
-<script src="js/site.js?v=20260930e"></script>
+<script src="js/site.js?v=20260930h"></script>
 <script>
 // Re-root PROJ image fields to the images/ folder without editing every path by hand.
 (function(){
@@ -384,7 +378,7 @@ window.IMG_BASE = 'images/';
   if (id && PROJ[id]) openProj(id);
 })();
 </script>
-<script src="js/site-common.js?v=20260930e"></script>
+<script src="js/site-common.js?v=20260930h"></script>
 <script>
 // Entrance animation — plays once per browser session, skippable.
 // (Session gating itself happens synchronously right after the

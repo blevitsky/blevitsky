@@ -257,8 +257,13 @@
     const label = (parentDesc && parentDesc.dataset.desc) || img.alt || 'Image unavailable';
     box.setAttribute('aria-label', label);
     box.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Image unavailable</span>';
-    const cs = getComputedStyle(img);
-    box.style.aspectRatio = cs.aspectRatio !== 'auto' ? cs.aspectRatio : (img.width && img.height ? `${img.width}/${img.height}` : '4/3');
+    // A failed <img>'s own computed/natural size can't be trusted — browsers report
+    // the broken-image-icon placeholder's dimensions here, not 'auto', so reading
+    // getComputedStyle(img).aspectRatio silently produced boxes like "333 / 26"
+    // instead of a sane fallback. None of this site's images carry explicit
+    // width/height attributes (the one value that *would* survive a failed
+    // decode), so there's nothing reliable to read — just use a sane default.
+    box.style.aspectRatio = '4 / 3';
     if (img.parentElement) img.replaceWith(box);
   }, true);
 })();

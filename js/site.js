@@ -579,7 +579,7 @@ const PROJ = {
     tags: ['Wearable UX', 'Watch Design', 'Micro-Interactions'],
     cover: 'youtube.png',
     externalLink: 'https://www.ben-levitsky.com/youtube-interface-watch-design',
-    nextId: 'still',
+    nextId: 'chordpeek',
     sections: [
       {
         type: 'intro',
@@ -673,12 +673,12 @@ const PROJ = {
     ]
   },
 
-  /* ─── 4. STILL — just the live app, nothing around it. ── */
-  still: {
-    title: 'Still',
-    embedSrc: 'still/prototype.html',
-    accentColor: '#3F7D8C',
-    accentColorDark: '#4D99AC',
+  /* ─── 4. CHORDPEEK — just the live app, nothing around it. ── */
+  chordpeek: {
+    title: 'ChordPeek',
+    embedSrc: 'chordpeek/prototype.html',
+    accentColor: '#4A5FBF',
+    accentColorDark: '#8E9AF2',
     nextId: 'safeplay',
   },
 

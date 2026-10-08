@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meeting Cost — vibe-coded by Ben Levitsky</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0C0C0C; --ink60:#6B6B6B; --ink10:rgba(12,12,12,.1); --ink06:rgba(12,12,12,.06);
+    --coral:#0FA37F; --coral-text:#0C7E62; --lime:#DFFF24; --mint:#FF5A36; --bg:#F0F0EE; --white:#FFFFFF;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    background:
+      radial-gradient(circle at 85% 0%, rgba(255,90,54,.08), transparent 55%),
+      radial-gradient(circle at 5% 100%, rgba(15,163,127,.10), transparent 50%),
+      var(--bg);
+    font:16px/1.5 'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink);
+    padding:32px 20px;
+  }
+  @media(prefers-reduced-motion: reduce){ *{transition-duration:0.01ms !important; animation-duration:0.01ms !important} }
+  :focus-visible{outline:2.5px solid var(--coral);outline-offset:2px;border-radius:6px}
+
+  .card{
+    width:100%;max-width:460px;
+    background:var(--white);
+    border-radius:28px;
+    border:1px solid var(--ink10);
+    padding:36px 32px 32px;
+    box-shadow:0 30px 80px rgba(12,12,12,.12);
+  }
+  .eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--coral-text);margin-bottom:16px}
+  .eyebrow svg{width:14px;height:14px}
+  .live-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);display:inline-block;transition:background .2s var(--ease)}
+  .meter.running .live-dot{background:var(--mint);animation:pulse 1.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
+  h1{font-size:28px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px}
+  .sub{font-size:14px;color:var(--ink60);margin:0 0 26px;line-height:1.6;max-width:40ch}
+
+  .inputs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .field{}
+  .field label{display:block;font-size:12px;font-weight:700;color:var(--ink60);margin-bottom:8px}
+  .stepper{
+    display:flex;align-items:stretch;border:1px solid var(--ink10);border-radius:14px;overflow:hidden;background:var(--ink06);
+  }
+  .stepper button{
+    width:44px;min-height:44px;border:none;background:transparent;color:var(--ink);
+    font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background .15s var(--ease);
+  }
+  .stepper button:hover{background:rgba(12,12,12,.08)}
+  .stepper input{
+    flex:1;min-width:0;border:none;background:transparent;text-align:center;
+    font-size:16px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;
+    -moz-appearance:textfield;
+  }
+  .stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .stepper input:focus-visible{outline:none;background:rgba(15,163,127,.08)}
+
+  .meter{
+    margin-top:8px;padding:28px 24px;border-radius:20px;
+    background:var(--ink);color:var(--white);
+    text-align:center;
+  }
+  .meter-label{display:flex;align-items:center;justify-content:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px}
+  .meter-n{font-size:clamp(38px,9vw,52px);font-weight:800;letter-spacing:-.03em;color:var(--lime);font-variant-numeric:tabular-nums;line-height:1}
+  .meter-sub{font-size:12px;color:rgba(255,255,255,.55);margin-top:10px}
+  .meter.running .meter-n{color:var(--mint)}
+
+  .actions{display:flex;gap:10px;margin-top:18px}
+  .btn{
+    flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    min-height:48px;border-radius:99px;border:none;cursor:pointer;
+    font-size:13px;font-weight:700;letter-spacing:.01em;
+    transition:background .18s var(--ease), transform .12s var(--ease), color .18s var(--ease);
+  }
+  .btn svg{width:16px;height:16px;flex-shrink:0}
+  .btn:active{transform:scale(.97)}
+  .btn-primary{background:var(--ink);color:var(--white)}
+  .btn-primary:hover{background:var(--coral-text)}
+  .btn-primary.is-running{background:var(--mint)}
+  .btn-secondary{background:var(--ink06);color:var(--ink);border:1px solid var(--ink10)}
+  .btn-secondary:hover{background:var(--ink10)}
+
+  .projection{
+    margin-top:20px;padding:16px 18px;border-radius:14px;background:var(--ink06);
+    display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink60);
+  }
+  .projection strong{color:var(--ink);font-variant-numeric:tabular-nums}
+
+  .foot{margin-top:16px;font-size:12px;color:var(--ink60);text-align:center;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="eyebrow">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    Vibe-coded
+  </div>
+  <h1>Meeting Cost</h1>
+  <p class="sub">What this meeting is actually costing, ticking in real time. Set the room, hit start.</p>
+
+  <div class="inputs">
+    <div class="field">
+      <label for="attendees">Attendees</label>
+      <div class="stepper">
+        <button type="button" id="attMinus" aria-label="Decrease attendees">−</button>
+        <input type="number" id="attendees" value="6" min="1" max="60" inputmode="numeric">
+        <button type="button" id="attPlus" aria-label="Increase attendees">+</button>
+      </div>
+    </div>
+    <div class="field">
+      <label for="rate">Avg $/hr per person</label>
+      <div class="stepper">
+        <button type="button" id="rateMinus" aria-label="Decrease hourly rate">−</button>
+        <input type="number" id="rate" value="75" min="10" max="500" step="5" inputmode="numeric">
+        <button type="button" id="ratePlus" aria-label="Increase hourly rate">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="meter" id="meter">
+    <div class="meter-label" id="meterLabel"><span class="live-dot" aria-hidden="true"></span>Cost so far</div>
+    <div class="meter-n" id="meterN" aria-live="off">$0.00</div>
+    <div class="meter-sub" id="meterSub">Not started</div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" id="toggleBtn" type="button">
+      <svg id="toggleIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <span id="toggleLabel">Start meeting</span>
+    </button>
+    <button class="btn btn-secondary" id="resetBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+      Reset
+    </button>
+  </div>
+
+  <div class="projection">
+    <span>If it runs 30 min</span>
+    <strong id="projOut">$225.00</strong>
+  </div>
+
+  <p class="foot">Cost = attendees × hourly rate ÷ 60 × minutes elapsed. A rough gut-check, not payroll.</p>
+</div>
+
+<script>
+  const attendeesEl = document.getElementById('attendees');
+  const rateEl = document.getElementById('rate');
+  const meterEl = document.getElementById('meter');
+  const meterN = document.getElementById('meterN');
+  const meterSub = document.getElementById('meterSub');
+  const toggleBtn = document.getElementById('toggleBtn');
+  const toggleIcon = document.getElementById('toggleIcon');
+  const toggleLabel = document.getElementById('toggleLabel');
+  const resetBtn = document.getElementById('resetBtn');
+  const projOut = document.getElementById('projOut');
+
+  let running = false;
+  let startTime = null;
+  let elapsedMs = 0;
+  let rafId = null;
+
+  function clampNum(el, min, max){
+    let v = parseFloat(el.value);
+    if (isNaN(v)) v = min;
+    v = Math.min(max, Math.max(min, v));
+    el.value = v;
+    return v;
+  }
+
+  function costPerMs(){
+    const attendees = clampNum(attendeesEl, 1, 60);
+    const rate = clampNum(rateEl, 10, 500);
+    return (attendees * rate) / 3600000; // dollars per millisecond
+  }
+
+  function fmtMoney(n){
+    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function fmtClock(ms){
+    const totalSec = Math.floor(ms / 1000);
+    const m = Math.floor(totalSec / 60), s = totalSec % 60;
+    return m + ':' + String(s).padStart(2, '0');
+  }
+
+  function updateProjection(){
+    const attendees = clampNum(attendeesEl, 1, 60);
+    const rate = clampNum(rateEl, 10, 500);
+    projOut.textContent = fmtMoney(attendees * rate * 0.5);
+  }
+
+  function tick(){
+    const now = performance.now();
+    const currentElapsed = elapsedMs + (running ? now - startTime : 0);
+    meterN.textContent = fmtMoney(currentElapsed * costPerMs());
+    meterSub.textContent = running ? (fmtClock(currentElapsed) + ' elapsed') : (currentElapsed > 0 ? (fmtClock(currentElapsed) + ' elapsed · paused') : 'Not started');
+    if (running) rafId = requestAnimationFrame(tick);
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    running = !running;
+    if (running) {
+      startTime = performance.now();
+      meterEl.classList.add('running');
+      toggleBtn.classList.add('is-running');
+      toggleIcon.innerHTML = '<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>';
+      toggleLabel.textContent = 'Pause';
+      tick();
+    } else {
+      elapsedMs += performance.now() - startTime;
+      meterEl.classList.remove('running');
+      toggleBtn.classList.remove('is-running');
+      toggleIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+      toggleLabel.textContent = 'Resume';
+      cancelAnimationFrame(rafId);
+      meterN.setAttribute('aria-live', 'polite'); // announce the paused total once
+    }
+  });
+
+  resetBtn.addEventListener('click', () => {
+    running = false;
+    elapsedMs = 0;
+    startTime = null;
+    cancelAnimationFrame(rafId);
+    meterEl.classList.remove('running');
+    toggleBtn.classList.remove('is-running');
+    toggleIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+    toggleLabel.textContent = 'Start meeting';
+    meterN.textContent = '$0.00';
+    meterSub.textContent = 'Not started';
+  });
+
+  attendeesEl.addEventListener('input', updateProjection);
+  rateEl.addEventListener('input', updateProjection);
+  document.getElementById('attMinus').addEventListener('click', () => { attendeesEl.value = clampNum(attendeesEl,1,60)-1; updateProjection(); });
+  document.getElementById('attPlus').addEventListener('click', () => { attendeesEl.value = clampNum(attendeesEl,1,60)+1; updateProjection(); });
+  document.getElementById('rateMinus').addEventListener('click', () => { rateEl.value = clampNum(rateEl,10,500)-5; updateProjection(); });
+  document.getElementById('ratePlus').addEventListener('click', () => { rateEl.value = clampNum(rateEl,10,500)+5; updateProjection(); });
+
+  updateProjection();
+</script>
+</body>
+</html>

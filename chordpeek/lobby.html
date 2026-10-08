@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ben Levitsky — the gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root{
+    --wall:#EFEDEA; --wall2:#E4E1DC; --floor:#DAD6CF; --ink:#1B1A18; --ink60:rgba(27,26,24,.6); --ink40:rgba(27,26,24,.4);
+    --card:rgba(255,255,255,.72); --line:rgba(27,26,24,.12); --accent:#C13D2C;
+    --font-display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif; --font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--wall);font-family:var(--font-body);overflow:hidden}
+  #lbCanvas{position:fixed;inset:0;display:block}
+
+  .lb-hud{position:fixed;inset:0;pointer-events:none;z-index:10;display:flex;flex-direction:column}
+  .lb-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:22px 24px 0}
+  .lb-brand{pointer-events:auto;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+  .lb-brand-icon{width:34px;height:34px;border-radius:9px;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .lb-brand-icon svg{width:17px;height:17px;color:#fff}
+  .lb-brand-by{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ink)}
+
+  .lb-info{
+    pointer-events:auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+    backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink60);
+    transition:color .15s,border-color .15s;
+  }
+  .lb-info:hover{color:var(--ink);border-color:var(--ink40)}
+  .lb-info svg{width:16px;height:16px}
+
+  .lb-tooltip{
+    position:fixed;top:66px;right:24px;z-index:11;pointer-events:none;background:var(--ink);color:#F5F4F2;
+    padding:14px 16px;border-radius:12px;font-size:12.5px;line-height:1.55;max-width:230px;opacity:0;
+    transform:translateY(-6px);transition:opacity .2s,transform .2s;box-shadow:0 20px 40px -12px rgba(0,0,0,.35);
+  }
+  .lb-tooltip.open{opacity:1;transform:translateY(0);pointer-events:auto}
+
+  .lb-bottom{display:flex;align-items:flex-end;justify-content:center;padding:0 24px 30px;position:relative;margin-top:auto}
+
+  .lb-search-wrap{pointer-events:auto;position:relative;width:min(560px,86vw)}
+  .lb-search{
+    display:flex;align-items:center;gap:10px;background:var(--card);backdrop-filter:blur(18px);
+    border:1px solid var(--line);border-radius:99px;padding:8px 8px 8px 22px;box-shadow:0 24px 48px -20px rgba(27,26,24,.22);
+  }
+  .lb-search input{
+    flex:1;border:0;background:transparent;outline:0;font-family:var(--font-body);font-size:14.5px;color:var(--ink);
+  }
+  .lb-search input::placeholder{color:var(--ink40)}
+  .lb-search-go{
+    display:flex;align-items:center;gap:7px;border:0;background:var(--ink);color:#fff;font-family:var(--font-body);
+    font-weight:600;font-size:12.5px;padding:11px 18px 11px 14px;border-radius:99px;cursor:pointer;
+    transition:opacity .15s;flex-shrink:0;
+  }
+  .lb-search-go:hover{opacity:.85}
+  .lb-search-go svg{width:15px;height:15px;flex-shrink:0}
+
+  .lb-dropdown{
+    position:absolute;left:0;right:0;bottom:calc(100% + 10px);background:#fff;border:1px solid var(--line);
+    border-radius:16px;box-shadow:0 30px 60px -20px rgba(27,26,24,.3);overflow:hidden;opacity:0;
+    transform:translateY(6px);pointer-events:none;transition:opacity .16s,transform .16s;max-height:320px;overflow-y:auto;
+  }
+  .lb-dropdown.open{opacity:1;transform:translateY(0);pointer-events:auto}
+  .lb-dd-item{display:flex;align-items:center;gap:12px;padding:10px 14px;cursor:pointer;transition:background .12s}
+  .lb-dd-item:hover,.lb-dd-item.active{background:#F4F2EF}
+  .lb-dd-thumb{width:38px;height:38px;border-radius:7px;object-fit:cover;flex-shrink:0;background:var(--wall2)}
+  .lb-dd-title{font-size:13.5px;font-weight:600;color:var(--ink)}
+  .lb-dd-artist{font-size:11.5px;color:var(--ink40);margin-top:1px}
+  .lb-dd-empty{padding:16px;font-size:13px;color:var(--ink40);text-align:center}
+
+  .lb-nav{
+    pointer-events:auto;position:fixed;right:26px;bottom:30px;z-index:11;display:flex;flex-direction:column;align-items:center;gap:10px;
+  }
+  .lb-step{
+    display:flex;align-items:center;gap:6px;background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--line);
+    border-radius:99px;padding:6px;box-shadow:0 14px 28px -14px rgba(27,26,24,.25);
+  }
+  .lb-btn{
+    width:36px;height:36px;border-radius:50%;border:0;background:transparent;color:var(--ink);display:flex;align-items:center;
+    justify-content:center;cursor:pointer;transition:background .15s;flex-shrink:0;
+  }
+  .lb-btn:hover{background:rgba(27,26,24,.08)}
+  .lb-btn:disabled{opacity:.3;cursor:default;background:transparent}
+  .lb-btn svg{width:16px;height:16px}
+  .lb-btn.lb-dot svg{width:9px;height:9px}
+  .lb-zoom{display:flex;flex-direction:column;background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--line);
+    border-radius:99px;padding:6px;box-shadow:0 14px 28px -14px rgba(27,26,24,.25);}
+  .lb-zoom .lb-btn{width:30px;height:30px}
+
+  .lb-progress{position:fixed;left:50%;bottom:98px;transform:translateX(-50%);z-index:11;display:flex;gap:5px;pointer-events:none}
+  .lb-dotmark{width:5px;height:5px;border-radius:50%;background:var(--ink40);transition:background .2s,transform .2s;transform:scale(1)}
+  .lb-dotmark.active{background:var(--ink);transform:scale(1.5)}
+
+  .lb-loading{
+    position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:var(--wall);z-index:20;color:var(--ink);gap:14px;transition:opacity .5s ease;font-family:var(--font-body);
+  }
+  .lb-loading.hide{opacity:0;pointer-events:none}
+  .lb-spin{width:28px;height:28px;border-radius:50%;border:2.5px solid rgba(27,26,24,.15);border-top-color:var(--ink);animation:lbspin .8s linear infinite}
+  @keyframes lbspin{to{transform:rotate(360deg)}}
+  .lb-loading span{font-size:12.5px;color:var(--ink60);font-weight:500}
+
+  .lb-err{display:none}
+  .lb-err a{color:var(--accent);font-weight:600;text-decoration:none}
+
+  .lb-transition{position:fixed;inset:0;background:#0A0A0D;opacity:0;pointer-events:none;z-index:25;transition:opacity .4s ease}
+  .lb-transition.on{opacity:1;pointer-events:auto}
+
+  @media (max-width:640px){
+    .lb-tooltip{max-width:180px;right:16px;top:60px}
+    .lb-top{padding:16px 16px 0}
+    .lb-nav{right:16px;bottom:94px}
+    .lb-bottom{padding:0 16px 20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="lb-loading" id="lbLoading"><div class="lb-spin"></div><span>Opening the gallery…</span></div>
+<div class="lb-err" id="lbErr"></div>
+<div class="lb-transition" id="lbTransition"></div>
+
+<canvas id="lbCanvas"></canvas>
+
+<div class="lb-hud">
+  <div class="lb-top">
+    <a class="lb-brand" href="lobby.html">
+      <span class="lb-brand-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+      <span class="lb-brand-by">Ben Levitsky</span>
+    </a>
+    <button class="lb-info" id="lbInfoBtn" type="button" aria-label="How this works">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01"/></svg>
+    </button>
+  </div>
+
+  <div class="lb-bottom">
+    <div class="lb-search-wrap">
+      <div class="lb-dropdown" id="lbDropdown"></div>
+      <div class="lb-search">
+        <input id="lbSearch" type="text" placeholder="Search for a song…" autocomplete="off">
+        <button class="lb-search-go" id="lbGo" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lb-tooltip" id="lbTooltip">
+  Drag to look around the room. Use the arrows to walk the walls, or click a frame — or search — to step straight into a song's room.
+</div>
+
+<div class="lb-progress" id="lbProgress"></div>
+
+<div class="lb-nav">
+  <div class="lb-zoom">
+    <button class="lb-btn" id="lbZoomIn" type="button" aria-label="Zoom in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <button class="lb-btn" id="lbZoomOut" type="button" aria-label="Zoom out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
+  </div>
+  <div class="lb-step">
+    <button class="lb-btn" id="lbPrev" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button class="lb-btn lb-dot" id="lbHome" type="button" aria-label="Recenter"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg></button>
+    <button class="lb-btn" id="lbNext" type="button" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+  </div>
+</div>
+
+<!-- ───────────────────────────────────────────────────────────
+     Loading safety-net: ES module imports can silently fail
+     (file:// CORS, a missing vendor file), leaving the spinner
+     stuck forever with no sign anything went wrong. -->
+<script>
+(function(){
+  var sceneStarted = false;
+  window.__lbSceneStarted = function(){ sceneStarted = true; };
+  function showLoadError(reason){
+    if (sceneStarted) return;
+    var loading = document.getElementById('lbLoading');
+    if (loading) loading.style.display = 'none';
+    var err = document.getElementById('lbErr');
+    if (!err) return;
+    var isFileProtocol = location.protocol === 'file:';
+    err.style.display = 'flex';
+    err.style.cssText = 'position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#EFEDEA;color:#1B1A18;z-index:30;text-align:center;padding:32px;gap:14px;font-family:ui-sans-serif,system-ui,sans-serif';
+    err.innerHTML =
+      '<div style="font-size:19px;font-weight:700;max-width:420px">Couldn’t open the gallery' + (isFileProtocol ? ' from a local file' : '') + '.</div>' +
+      '<div style="font-size:14.5px;color:rgba(27,26,24,.65);max-width:440px;line-height:1.6">' +
+      (isFileProtocol
+        ? 'This page needs to run from a web server, not be opened by double-clicking the file. From a terminal in this folder, run <code style="background:#e3e0da;padding:2px 7px;border-radius:6px">python3 -m http.server</code> and open <code style="background:#e3e0da;padding:2px 7px;border-radius:6px">localhost:8000</code> &mdash; or just visit the live deployed site.'
+        : 'Something needed for the 3D scene didn’t load (' + (reason || 'unknown error') + '). Check your connection and try again.') +
+      '</div>' +
+      '<a href="prototype.html" style="color:#C13D2C;font-weight:600;font-size:14px">Browse as a list instead</a>';
+  }
+  var timeoutId = setTimeout(function(){ showLoadError('taking too long'); }, 8000);
+  window.addEventListener('error', function(e){
+    clearTimeout(timeoutId);
+    showLoadError(e.message || (e.filename ? 'failed to load ' + e.filename : null));
+  });
+  window.__lbClearLoadTimeout = function(){ clearTimeout(timeoutId); };
+})();
+</script>
+
+<script src="songs-data.js"></script>
+<script type="importmap">
+{ "imports": {
+  "three": "./vendor/three/build/three.module.js",
+  "three/addons/": "./vendor/three/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+/* ───────────────────────────────────────────────────────────
+   Setup
+─────────────────────────────────────────────────────────── */
+const canvas = document.getElementById('lbCanvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xEFEDEA);
+scene.fog = new THREE.Fog(0xEFEDEA, 14, 34);
+
+const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 0.1, 100);
+const EYE_Y = 1.7;
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enablePan = false;
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 3.4;
+controls.maxDistance = 10.5;
+controls.minPolarAngle = Math.PI / 2 - 0.35;
+controls.maxPolarAngle = Math.PI / 2 + 0.22;
+/* no azimuth clamp — with frames wrapped around all four walls now,
+   the viewer needs to be able to turn all the way around, not just
+   look left/right across one flat wall */
+
+/* ───────────────────────────────────────────────────────────
+   Lighting — soft, even, museum-skylight feeling
+─────────────────────────────────────────────────────────── */
+scene.add(new THREE.HemisphereLight(0xffffff, 0xcac4b8, 1.05));
+const sun = new THREE.DirectionalLight(0xffffff, 1.15);
+sun.position.set(-4, 9, 6);
+sun.castShadow = true;
+sun.shadow.mapSize.set(1024, 1024);
+sun.shadow.camera.left = -14; sun.shadow.camera.right = 14;
+sun.shadow.camera.top = 10; sun.shadow.camera.bottom = -6;
+scene.add(sun);
+const fill = new THREE.DirectionalLight(0xffffff, 0.35);
+fill.position.set(6, 4, 8);
+scene.add(fill);
+
+/* ───────────────────────────────────────────────────────────
+   Room shell — a real four-wall room instead of one long gallery
+   wall. Songs are split into four roughly-equal groups, one per
+   wall, walked in a continuous loop (back → right → front → left)
+   so stepping through with the arrows feels like actually walking
+   the room rather than jumping between unrelated surfaces.
+─────────────────────────────────────────────────────────── */
+const SPACING = 4.1;
+const N = SONGS.length;
+
+const WALL_ORDER = ['back', 'right', 'front', 'left'];
+const wallCounts = (() => {
+  const base = Math.floor(N / 4), rem = N % 4;
+  const counts = {};
+  WALL_ORDER.forEach((w, i) => { counts[w] = base + (i < rem ? 1 : 0); });
+  return counts;
+})();
+const PER_WALL_MAX = Math.max(...Object.values(wallCounts));
+const ROOM = PER_WALL_MAX * SPACING + 8;   // full wall length / room side
+const HALF = ROOM / 2;
+
+/* per-wall geometry: where the wall sits, which way it faces into the
+   room, and the Y-rotation that turns a frame built facing +Z (the
+   original single-wall orientation) to face that same way */
+const WALL_DEF = {
+  back:  { rotY: 0,              normal: new THREE.Vector3(0, 0, 1),  center: new THREE.Vector3(0, 0, -HALF) },
+  right: { rotY: -Math.PI / 2,   normal: new THREE.Vector3(-1, 0, 0), center: new THREE.Vector3(HALF, 0, 0) },
+  front: { rotY: Math.PI,        normal: new THREE.Vector3(0, 0, -1), center: new THREE.Vector3(0, 0, HALF) },
+  left:  { rotY: Math.PI / 2,    normal: new THREE.Vector3(1, 0, 0),  center: new THREE.Vector3(-HALF, 0, 0) },
+};
+/* the local "along the wall" axis for each wall, as a unit vector —
+   lets every wall share one "place frame i of n" formula */
+const WALL_AXIS = {
+  back: new THREE.Vector3(1, 0, 0), right: new THREE.Vector3(0, 0, 1),
+  front: new THREE.Vector3(-1, 0, 0), left: new THREE.Vector3(0, 0, -1),
+};
+
+const wallMat = new THREE.MeshStandardMaterial({ color: 0xF2F0EC, roughness: 0.92, metalness: 0 });
+const floorMat = new THREE.MeshStandardMaterial({ color: 0xDAD6CF, roughness: 0.85, metalness: 0 });
+const ceilMat = new THREE.MeshStandardMaterial({ color: 0xF7F6F3, roughness: 0.95, metalness: 0, emissive: 0xffffff, emissiveIntensity: 0.06 });
+const skirtMat = new THREE.MeshStandardMaterial({ color: 0xCFC9BF });
+
+WALL_ORDER.forEach(w => {
+  const def = WALL_DEF[w];
+  const wall = new THREE.Mesh(new THREE.PlaneGeometry(ROOM, 7), wallMat);
+  wall.position.set(def.center.x, EYE_Y + 1.3, def.center.z);
+  wall.rotation.y = def.rotY;
+  wall.receiveShadow = true;
+  scene.add(wall);
+
+  /* baseboard, sitting just inside the wall along the floor */
+  const skirt = new THREE.Mesh(new THREE.PlaneGeometry(ROOM, 0.1), skirtMat);
+  skirt.position.set(def.center.x + def.normal.x * 0.01, 0.03, def.center.z + def.normal.z * 0.01);
+  skirt.rotation.y = def.rotY;
+  scene.add(skirt);
+});
+
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(ROOM, ROOM), floorMat);
+floor.rotation.x = -Math.PI / 2;
+floor.position.set(0, -0.02, 0);
+floor.receiveShadow = true;
+scene.add(floor);
+
+const ceiling = new THREE.Mesh(new THREE.PlaneGeometry(ROOM, ROOM), ceilMat);
+ceiling.rotation.x = Math.PI / 2;
+ceiling.position.set(0, 5.1, 0);
+scene.add(ceiling);
+
+/* a soft warm skylight patch centered over the room for the glow seen
+   in museum photography */
+const skylight = new THREE.Mesh(
+  new THREE.PlaneGeometry(ROOM * 0.55, ROOM * 0.55),
+  new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.45 })
+);
+skylight.rotation.x = Math.PI / 2;
+skylight.position.set(0, 5.05, 0);
+scene.add(skylight);
+
+/* ───────────────────────────────────────────────────────────
+   Frames — one per song, split across the four walls and evenly
+   spaced (and centered) along whichever wall they land on
+─────────────────────────────────────────────────────────── */
+function thumb(id){ return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`; }
+function thumbFallback(id){ return `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }
+
+const loader = new THREE.TextureLoader();
+const frames = [];
+const hitMeshes = [];
+const raycaster = new THREE.Raycaster();
+const pointerNDC = new THREE.Vector2();
+
+const FRAME_W = 1.86, FRAME_H = 1.86;
+/* YouTube thumbnails carry a baked-in logo/watermark in a corner (not
+   something CSS/texture offset alone can fully strip since it's part of
+   the image pixels) — crop in tighter than a plain "cover" fit so the
+   outer margin where that watermark usually sits is trimmed away. */
+const COVER_ZOOM = 1.32;
+const accentColors = SONGS.map(s => new THREE.Color().setHSL(s.mood.hue / 360, 0.65, 0.62));
+
+function applyCoverCrop(tex){
+  const iw = tex.image.width, ih = tex.image.height;
+  if (!iw || !ih) return;
+  const imgAspect = iw / ih, targetAspect = FRAME_W / FRAME_H;
+  let rx = 1, ry = 1;
+  if (imgAspect > targetAspect){ rx = targetAspect / imgAspect; } else { ry = imgAspect / targetAspect; }
+  rx /= COVER_ZOOM; ry /= COVER_ZOOM;
+  tex.repeat.set(rx, ry);
+  tex.offset.set((1 - rx) / 2, (1 - ry) / 2);
+  tex.wrapS = tex.wrapT = THREE.ClampToEdgeWrapping;
+  tex.needsUpdate = true;
+}
+
+/* wait for the display/body webfonts so the canvas-drawn plaques don't
+   render in a fallback font and then never update */
+await document.fonts.ready.catch(() => {});
+
+/* walk the songs onto walls in order: fills 'back' first, then
+   'right', 'front', 'left' — the same order goToIndex steps through */
+let wallCursor = 0, idxOnWall = 0;
+SONGS.forEach((song, i) => {
+  while (idxOnWall >= wallCounts[WALL_ORDER[wallCursor]]){ wallCursor++; idxOnWall = 0; }
+  const wallName = WALL_ORDER[wallCursor];
+  const def = WALL_DEF[wallName];
+  const count = wallCounts[wallName];
+  const u = (idxOnWall - (count - 1) / 2) * SPACING;   // centered position along the wall
+  const axis = WALL_AXIS[wallName];
+  const fx = def.center.x + axis.x * u;
+  const fz = def.center.z + axis.z * u;
+  idxOnWall++;
+
+  const group = new THREE.Group();
+  group.position.set(fx, EYE_Y + 1.25, fz);
+  group.rotation.y = def.rotY;
+  group.userData.index = i;
+  group.userData.song = song;
+  group.userData.wall = wallName;
+  /* precomputed viewing spot: standing a comfortable distance in
+     front of the frame, facing it straight on */
+  const VIEW_DIST = 7.2;
+  group.userData.viewPos = new THREE.Vector3(fx + def.normal.x * VIEW_DIST, EYE_Y, fz + def.normal.z * VIEW_DIST);
+  group.userData.viewTarget = new THREE.Vector3(fx, EYE_Y, fz);
+
+  /* outer frame (thin dark border) */
+  const borderMat = new THREE.MeshStandardMaterial({
+    color: 0x242220, roughness: 0.5, metalness: 0.15, emissive: accentColors[i], emissiveIntensity: 0,
+  });
+  const border = new THREE.Mesh(new THREE.BoxGeometry(FRAME_W + 0.16, FRAME_H + 0.16, 0.08), borderMat);
+  border.castShadow = true;
+  group.add(border);
+  group.userData.borderMat = borderMat;
+
+  /* mat board */
+  const mat = new THREE.Mesh(
+    new THREE.PlaneGeometry(FRAME_W + 0.06, FRAME_H + 0.06),
+    new THREE.MeshStandardMaterial({ color: 0xFAF9F6, roughness: 0.95 })
+  );
+  mat.position.z = 0.042;
+  group.add(mat);
+
+  /* artwork (loaded async; falls back gracefully; cropped tighter than a
+     plain cover-fit to trim the source thumbnail's corner watermark) */
+  const artMat = new THREE.MeshBasicMaterial({ color: 0xE7E3DC });
+  const art = new THREE.Mesh(new THREE.PlaneGeometry(FRAME_W, FRAME_H), artMat);
+  art.position.z = 0.046;
+  group.add(art);
+
+  /* YouTube silently serves a tiny 120×90 grey placeholder — still a
+     valid 200 OK image, so the loader's error callback never fires — for
+     any video that was never uploaded with an HD thumbnail. That's what
+     left "Don't Go Away" blank: maxresdefault "succeeded" with a
+     placeholder instead of actually failing. Catching it by its known
+     fixed size and falling through to hqdefault (which YouTube generates
+     for every video) is the standard fix. */
+  const applyTexture = (url, step) => {
+    loader.load(url, (tex) => {
+      const img = tex.image;
+      if (step === 0 && img && img.width === 120 && img.height === 90){
+        applyTexture(thumbFallback(song.youtubeId), 1);
+        return;
+      }
+      tex.colorSpace = THREE.SRGBColorSpace;
+      applyCoverCrop(tex);
+      artMat.map = tex; artMat.color.set(0xffffff); artMat.needsUpdate = true;
+    }, undefined, () => {
+      if (step === 0) applyTexture(thumbFallback(song.youtubeId), 1);
+    });
+  };
+  applyTexture(thumb(song.youtubeId), 0);
+
+  /* plaque — the single place a song's title/artist appears on the
+     frame; matches the site's own type (Space Grotesk/Inter), not a
+     mismatched serif, and auto-fits long titles instead of overflowing */
+  const PW = 896, PH = 168;
+  const plaqueCanvas = document.createElement('canvas');
+  plaqueCanvas.width = PW; plaqueCanvas.height = PH;
+  const pctx = plaqueCanvas.getContext('2d');
+  pctx.fillStyle = '#F4F2EE'; pctx.fillRect(0, 0, PW, PH);
+  pctx.textAlign = 'center'; pctx.textBaseline = 'alphabetic';
+
+  let titleSize = 46;
+  pctx.font = `600 ${titleSize}px 'Space Grotesk', ui-sans-serif, system-ui, sans-serif`;
+  while (pctx.measureText(song.title).width > PW - 64 && titleSize > 26){
+    titleSize -= 2;
+    pctx.font = `600 ${titleSize}px 'Space Grotesk', ui-sans-serif, system-ui, sans-serif`;
+  }
+  pctx.fillStyle = '#1B1A18';
+  pctx.fillText(song.title, PW / 2, 78);
+
+  pctx.font = `500 30px 'Inter', ui-sans-serif, system-ui, sans-serif`;
+  pctx.fillStyle = '#817B70';
+  pctx.fillText(`${song.artist} · ${song.year}`, PW / 2, 128);
+
+  const plaqueTex = new THREE.CanvasTexture(plaqueCanvas);
+  plaqueTex.colorSpace = THREE.SRGBColorSpace;
+  const plaque = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.15, 1.15 * PH / PW),
+    new THREE.MeshBasicMaterial({ map: plaqueTex, transparent: true })
+  );
+  plaque.position.set(0, -(FRAME_H / 2 + 0.24), 0.045);
+  group.add(plaque);
+
+  /* invisible larger hit target — easier to click than the exact frame edge */
+  const hit = new THREE.Mesh(
+    new THREE.PlaneGeometry(FRAME_W + 0.5, FRAME_H + 0.7),
+    new THREE.MeshBasicMaterial({ visible: false })
+  );
+  hit.position.z = 0.05;
+  hit.userData.index = i;
+  group.add(hit);
+  hitMeshes.push(hit);
+
+  /* a small picture-light above each frame, offset in from the wall
+     along that wall's own inward direction */
+  const spot = new THREE.SpotLight(0xfff3df, 0.9, 6, Math.PI / 7, 0.5, 1.4);
+  spot.position.set(fx + def.normal.x * 1.1, EYE_Y + 2.55, fz + def.normal.z * 1.1);
+  spot.target.position.set(fx, EYE_Y + 1.25, fz);
+  spot.castShadow = false;
+  scene.add(spot, spot.target);
+
+  scene.add(group);
+  frames.push(group);
+});
+
+/* ───────────────────────────────────────────────────────────
+   Step / zoom / recenter navigation — the room is a loop now (four
+   walls, no dead ends), so stepping past the last frame wraps around
+   to the first rather than stopping. Each step tweens the camera's
+   full position AND look target, since different frames face in
+   different directions, not just a different point along one wall.
+─────────────────────────────────────────────────────────── */
+const START_INDEX = Math.floor((wallCounts.back - 1) / 2);
+let currentIndex = START_INDEX;
+let tween = null;
+
+function tweenTo(targetPos, targetLook, duration){
+  if (tween) cancelAnimationFrame(tween.raf);
+  const startPos = camera.position.clone();
+  const startLook = controls.target.clone();
+  const t0 = performance.now();
+  tween = { raf: null };
+  function step(now){
+    const t = Math.min(1, (now - t0) / duration);
+    const e = 1 - Math.pow(1 - t, 3);
+    camera.position.lerpVectors(startPos, targetPos, e);
+    controls.target.lerpVectors(startLook, targetLook, e);
+    controls.update();
+    if (t < 1) tween.raf = requestAnimationFrame(step);
+  }
+  tween.raf = requestAnimationFrame(step);
+}
+
+function goToIndex(i, duration){
+  currentIndex = ((i % N) + N) % N;
+  const f = frames[currentIndex];
+  tweenTo(f.userData.viewPos, f.userData.viewTarget, duration === undefined ? 650 : duration);
+  updateProgress();
+}
+
+document.getElementById('lbPrev').addEventListener('click', () => goToIndex(currentIndex - 1));
+document.getElementById('lbNext').addEventListener('click', () => goToIndex(currentIndex + 1));
+document.getElementById('lbHome').addEventListener('click', () => goToIndex(START_INDEX, 650));
+
+function dolly(delta){
+  const dir = new THREE.Vector3().subVectors(camera.position, controls.target);
+  const dist = THREE.MathUtils.clamp(dir.length() + delta, controls.minDistance, controls.maxDistance);
+  dir.setLength(dist);
+  camera.position.copy(controls.target).add(dir);
+  controls.update();
+}
+document.getElementById('lbZoomIn').addEventListener('click', () => dolly(-1.1));
+document.getElementById('lbZoomOut').addEventListener('click', () => dolly(1.1));
+
+function updateProgress(){
+  const el = document.getElementById('lbProgress');
+  if (!el.children.length){
+    el.innerHTML = SONGS.map(() => '<span class="lb-dotmark"></span>').join('');
+  }
+  [...el.children].forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+}
+
+/* start already looking at the opening frame — no entrance tween, this
+   is just where the "camera" is when the page is first ready */
+camera.position.copy(frames[currentIndex].userData.viewPos);
+controls.target.copy(frames[currentIndex].userData.viewTarget);
+controls.update();
+updateProgress();
+
+/* ───────────────────────────────────────────────────────────
+   Hover + click on frames
+─────────────────────────────────────────────────────────── */
+let hoveredIndex = -1;
+function setPointer(e){
+  const r = renderer.domElement.getBoundingClientRect();
+  pointerNDC.x = ((e.clientX - r.left) / r.width) * 2 - 1;
+  pointerNDC.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+}
+function pickFrame(e){
+  setPointer(e);
+  raycaster.setFromCamera(pointerNDC, camera);
+  const hits = raycaster.intersectObjects(hitMeshes, false);
+  return hits.length ? hits[0].object.userData.index : -1;
+}
+
+renderer.domElement.addEventListener('pointermove', (e) => {
+  const idx = pickFrame(e);
+  if (idx !== hoveredIndex){
+    if (hoveredIndex >= 0){
+      frames[hoveredIndex].userData.borderMat.emissiveIntensity = 0;
+      frames[hoveredIndex].scale.setScalar(1);
+    }
+    hoveredIndex = idx;
+    if (idx >= 0){
+      frames[idx].userData.borderMat.emissiveIntensity = 0.45;
+      frames[idx].scale.setScalar(1.025);
+    }
+    renderer.domElement.style.cursor = idx >= 0 ? 'pointer' : 'grab';
+  }
+});
+
+let downPos = null, dragging = false;
+renderer.domElement.addEventListener('pointerdown', (e) => { downPos = { x: e.clientX, y: e.clientY }; dragging = false; });
+renderer.domElement.addEventListener('pointermove', (e) => {
+  if (downPos && (Math.abs(e.clientX - downPos.x) > 4 || Math.abs(e.clientY - downPos.y) > 4)) dragging = true;
+});
+renderer.domElement.addEventListener('pointerup', (e) => {
+  if (!dragging){
+    const idx = pickFrame(e);
+    if (idx >= 0) enterRoom(SONGS[idx]);
+  }
+  downPos = null;
+});
+
+function enterRoom(song){
+  const hue = song.mood.hue;
+  const overlay = document.getElementById('lbTransition');
+  overlay.style.background = `hsl(${hue} 35% 8%)`;
+  overlay.classList.add('on');
+  setTimeout(() => { location.href = `room.html?song=${encodeURIComponent(song.title)}`; }, 420);
+}
+
+/* ───────────────────────────────────────────────────────────
+   Search / dropdown — same matching logic as the list view
+─────────────────────────────────────────────────────────── */
+const searchEl = document.getElementById('lbSearch');
+const dropdownEl = document.getElementById('lbDropdown');
+let activeMatch = null;
+
+function matchSongs(q){
+  const needle = q.trim().toLowerCase();
+  if (!needle) return [];
+  return SONGS.filter(s => s.title.toLowerCase().includes(needle) || s.artist.toLowerCase().includes(needle)).slice(0, 8);
+}
+function renderDropdown(items){
+  if (!items.length){
+    dropdownEl.innerHTML = `<div class="lb-dd-empty">No match — try the arrows below instead.</div>`;
+  } else {
+    dropdownEl.innerHTML = items.map(s => `
+      <div class="lb-dd-item" data-title="${s.title}">
+        <img class="lb-dd-thumb" src="${thumb(s.youtubeId)}" alt="" onerror="this.onerror=null;this.src='${thumbFallback(s.youtubeId)}'" onload="if(this.naturalWidth===120&&this.naturalHeight===90){this.onload=null;this.src='${thumbFallback(s.youtubeId)}';}">
+        <div><div class="lb-dd-title">${s.title}</div><div class="lb-dd-artist">${s.artist}</div></div>
+      </div>`).join('');
+    dropdownEl.querySelectorAll('.lb-dd-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const s = SONGS.find(x => x.title === el.dataset.title);
+        enterRoom(s);
+      });
+    });
+  }
+  dropdownEl.classList.toggle('open', true);
+}
+searchEl.addEventListener('input', () => {
+  const items = matchSongs(searchEl.value);
+  activeMatch = items.length === 1 ? items[0] : null;
+  if (searchEl.value.trim()) renderDropdown(items); else dropdownEl.classList.remove('open');
+});
+searchEl.addEventListener('focus', () => { if (searchEl.value.trim()) renderDropdown(matchSongs(searchEl.value)); });
+searchEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter'){
+    const items = matchSongs(searchEl.value);
+    if (items.length) enterRoom(items[0]);
+  } else if (e.key === 'Escape'){ dropdownEl.classList.remove('open'); searchEl.blur(); }
+});
+document.getElementById('lbGo').addEventListener('click', () => {
+  const items = matchSongs(searchEl.value);
+  if (items.length) enterRoom(items[0]);
+});
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.lb-search-wrap')) dropdownEl.classList.remove('open');
+});
+
+/* info tooltip toggle */
+const infoBtn = document.getElementById('lbInfoBtn');
+const tooltip = document.getElementById('lbTooltip');
+infoBtn.addEventListener('click', () => tooltip.classList.toggle('open'));
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.lb-info') && !e.target.closest('.lb-tooltip')) tooltip.classList.remove('open');
+});
+
+/* ───────────────────────────────────────────────────────────
+   Resize + render loop
+─────────────────────────────────────────────────────────── */
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+function animate(){
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+if (window.__lbSceneStarted) window.__lbSceneStarted();
+if (window.__lbClearLoadTimeout) window.__lbClearLoadTimeout();
+requestAnimationFrame(() => {
+  document.getElementById('lbLoading').classList.add('hide');
+  animate();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ChordPeek — step into a song</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root{
+    --bg:#0A0A0D; --bg2:#121216; --ink:#F5F4F2; --ink60:rgba(245,244,242,.62); --ink40:rgba(245,244,242,.36);
+    --line:rgba(245,244,242,.1); --card:#141418;
+    --font-display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+    --font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased; min-height:100vh; min-height:100dvh;
+    padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0);
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:40px 24px 100px}
+
+  .head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:56px;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:11px}
+  .logo-mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;background:var(--ink);color:var(--bg)}
+  .logo-mark svg{width:17px;height:17px}
+  .logo-text{font-family:var(--font-display);font-weight:600;font-size:16.5px;letter-spacing:-.01em}
+  .logo-sub{font-size:10.5px;color:var(--ink40);font-weight:500;letter-spacing:.04em;margin-top:1px}
+  .head-note{font-size:12.5px;color:var(--ink40);font-weight:500;max-width:260px;text-align:right;line-height:1.5}
+
+  .hero{max-width:640px;margin-bottom:48px}
+  .h1{font-family:var(--font-display);font-weight:600;font-size:clamp(34px,5.4vw,52px);letter-spacing:-.025em;line-height:1.06;margin:0 0 16px}
+  .sub{color:var(--ink60);font-size:16px;line-height:1.65;max-width:480px;font-weight:400}
+
+  .search-wrap{position:relative;max-width:520px;margin-top:32px}
+  .search{
+    width:100%;background:transparent;border:0;border-bottom:1.5px solid var(--line);
+    padding:14px 36px 14px 2px;font-size:19px;font-weight:500;color:var(--ink);font-family:var(--font-body);
+    transition:border-color .2s;
+  }
+  .search::placeholder{color:var(--ink40);font-weight:400}
+  .search:focus{outline:none;border-color:var(--ink)}
+  .search-icon{position:absolute;right:4px;top:16px;color:var(--ink40);pointer-events:none}
+  .search-icon svg{width:18px;height:18px}
+
+  .dropdown{
+    position:absolute;top:calc(100% + 10px);left:0;right:0;z-index:20;
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    overflow:hidden;box-shadow:0 24px 60px -18px rgba(0,0,0,.6);
+    max-height:340px;overflow-y:auto;
+    opacity:0;transform:translateY(-6px);pointer-events:none;
+    transition:opacity .16s,transform .16s;
+  }
+  .dropdown.open{opacity:1;transform:translateY(0);pointer-events:auto}
+  .dd-item{display:flex;align-items:center;gap:12px;padding:11px 16px;cursor:pointer;border-bottom:1px solid var(--line)}
+  .dd-item:last-child{border-bottom:none}
+  .dd-item:hover,.dd-item.active{background:rgba(255,255,255,.04)}
+  .dd-thumb{width:40px;height:40px;border-radius:7px;object-fit:cover;flex-shrink:0;background:var(--bg2)}
+  .dd-title{font-weight:600;font-size:14px}
+  .dd-artist{font-size:12px;color:var(--ink40);margin-top:1px}
+  .dd-empty{padding:22px 16px;text-align:center;color:var(--ink40);font-size:13.5px}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{font-size:12.5px;font-weight:500;color:var(--ink60);background:transparent;border:1px solid var(--line);border-radius:99px;padding:7px 14px;cursor:pointer;transition:border-color .15s,color .15s}
+  .chip:hover{border-color:var(--ink40);color:var(--ink)}
+  .chip:focus-visible,.search:focus-visible,.dd-item:focus-visible,.song-card:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+  .browse-label{display:flex;align-items:baseline;justify-content:space-between;margin:12px 0 20px;padding-top:40px;border-top:1px solid var(--line)}
+  .browse-title{font-family:var(--font-display);font-weight:600;font-size:15px}
+  .browse-count{font-size:12px;color:var(--ink40);font-weight:500}
+
+  .song-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:3px}
+  .song-card{
+    position:relative;display:block;text-decoration:none;color:var(--ink);
+    aspect-ratio:4/5;overflow:hidden;background:var(--bg2);
+  }
+  .song-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.18);transition:transform .5s var(--ease),filter .4s}
+  .song-card:hover img{transform:scale(1.26);filter:brightness(.7)}
+  .song-card::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.35) 42%,transparent 65%)}
+  .song-card-body{position:absolute;left:0;right:0;bottom:0;padding:16px;z-index:2}
+  .song-card-year{font-size:10.5px;font-weight:600;letter-spacing:.06em;color:rgba(255,255,255,.55)}
+  .song-card-title{font-family:var(--font-display);font-size:16.5px;font-weight:600;line-height:1.22;margin-top:4px;color:#fff}
+  .song-card-artist{font-size:12.5px;color:rgba(255,255,255,.68);font-weight:500;margin-top:3px}
+  .song-card-play{
+    position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;
+    background:rgba(255,255,255,.14);backdrop-filter:blur(8px);display:grid;place-items:center;
+    opacity:0;transform:translateY(-4px);transition:opacity .2s,transform .2s;z-index:2;
+  }
+  .song-card-play svg{width:13px;height:13px;color:#fff;margin-left:1px}
+  .song-card:hover .song-card-play{opacity:1;transform:none}
+
+  .footer{text-align:center;margin-top:64px;color:var(--ink40);font-size:12px;font-weight:500}
+
+  @media(max-width:560px){ .head-note{display:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <div class="logo">
+      <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+      <div>
+        <div class="logo-text">ChordPeek</div>
+        <div class="logo-sub">by Ben Levitsky</div>
+      </div>
+    </div>
+    <div class="head-note">Every song gets its own room — the real recording, the story behind it, walking distance away.</div>
+  </div>
+
+  <div class="hero">
+    <h1 class="h1">Look up a song.<br>Step into it.</h1>
+    <p class="sub">Type any song below and walk into its own little room — the real track playing, and the story behind it.</p>
+
+    <div class="search-wrap">
+      <input type="text" class="search" id="cpSearch" placeholder="Search the room list…" autocomplete="off" aria-label="Search for a song" aria-expanded="false" role="combobox" aria-controls="cpDropdown">
+      <span class="search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+      <div class="dropdown" id="cpDropdown" role="listbox"></div>
+    </div>
+    <div class="chips" id="cpChips"></div>
+    <a href="lobby.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:22px;font-size:12.5px;font-weight:600;color:var(--ink60);text-decoration:none">
+      Or walk through the 3D gallery
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <div class="browse-label">
+    <div class="browse-title">All rooms</div>
+    <div class="browse-count" id="cpCount"></div>
+  </div>
+  <div class="song-grid" id="cpGrid"></div>
+
+  <div class="footer">Real recordings, embedded from YouTube — not uploaded or rehosted.</div>
+</div>
+
+<script src="songs-data.js"></script>
+<script>
+function thumb(id){ return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`; }
+function thumbFallback(id){ return `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }
+/* maxresdefault doesn't exist for every upload (404s silently) — drop to
+   hqdefault on error so a card never shows a broken image. */
+function onThumbErr(img, id){ img.onerror = null; img.src = thumbFallback(id); }
+
+const searchEl = document.getElementById('cpSearch');
+const dropdownEl = document.getElementById('cpDropdown');
+const chipsEl = document.getElementById('cpChips');
+const gridEl = document.getElementById('cpGrid');
+const countEl = document.getElementById('cpCount');
+
+function goToRoom(song){ location.href = `room.html?song=${encodeURIComponent(song.title)}`; }
+
+function renderChips(){
+  const names = ['Blurry','Here Without You','Stairway to Heaven','45'];
+  const byTitle = t => SONGS.find(s=>s.title===t);
+  chipsEl.innerHTML = names.map(t => `<button class="chip" type="button" data-title="${t}">${t}</button>`).join('');
+  chipsEl.querySelectorAll('.chip').forEach(btn => btn.addEventListener('click', () => goToRoom(byTitle(btn.dataset.title))));
+}
+
+function renderGrid(){
+  countEl.textContent = `${SONGS.length} songs`;
+  gridEl.innerHTML = SONGS.map(s => `
+    <a class="song-card" href="room.html?song=${encodeURIComponent(s.title)}">
+      <img src="${thumb(s.youtubeId)}" alt="" loading="lazy" onerror="onThumbErr(this,'${s.youtubeId}')">
+      <span class="song-card-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+      <div class="song-card-body">
+        <div class="song-card-year">${s.year} · ${s.genre}</div>
+        <div class="song-card-title">${s.title}</div>
+        <div class="song-card-artist">${s.artist}</div>
+      </div>
+    </a>`).join('');
+}
+
+function matchSongs(q){
+  const needle = q.trim().toLowerCase();
+  if (!needle) return [];
+  return SONGS.filter(s => s.title.toLowerCase().includes(needle) || s.artist.toLowerCase().includes(needle)).slice(0,8);
+}
+
+function openDropdown(items){
+  if (!items.length){
+    dropdownEl.innerHTML = `<div class="dd-empty">No match — try one of the rooms below.</div>`;
+  } else {
+    dropdownEl.innerHTML = items.map(s => `
+      <div class="dd-item" role="option" data-title="${s.title}">
+        <img class="dd-thumb" src="${thumb(s.youtubeId)}" alt="" onerror="onThumbErr(this,'${s.youtubeId}')">
+        <div><div class="dd-title">${s.title}</div><div class="dd-artist">${s.artist}</div></div>
+      </div>`).join('');
+    dropdownEl.querySelectorAll('.dd-item').forEach(el => {
+      el.addEventListener('click', () => goToRoom(SONGS.find(s=>s.title===el.dataset.title)));
+    });
+  }
+  dropdownEl.classList.add('open');
+  searchEl.setAttribute('aria-expanded','true');
+}
+function closeDropdown(){ dropdownEl.classList.remove('open'); searchEl.setAttribute('aria-expanded','false'); }
+
+searchEl.addEventListener('input', () => {
+  const items = matchSongs(searchEl.value);
+  if (searchEl.value.trim()) openDropdown(items); else closeDropdown();
+});
+searchEl.addEventListener('focus', () => { if (searchEl.value.trim()) openDropdown(matchSongs(searchEl.value)); });
+searchEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { const m = matchSongs(searchEl.value); if (m.length) goToRoom(m[0]); }
+});
+document.addEventListener('click', (e) => { if (!e.target.closest('.search-wrap')) closeDropdown(); });
+
+renderChips();
+renderGrid();
+</script>
+</body>
+</html>

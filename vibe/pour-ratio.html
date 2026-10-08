@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour Ratio — vibe-coded by Ben Levitsky</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0C0C0C; --ink60:#6B6B6B; --ink10:rgba(12,12,12,.1); --ink06:rgba(12,12,12,.06);
+    --coral:#0FA37F; --coral-text:#0C7E62; --lime:#DFFF24; --bg:#F0F0EE; --white:#FFFFFF;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(15,163,127,.08), transparent 55%),
+      radial-gradient(circle at 100% 100%, rgba(223,255,36,.10), transparent 50%),
+      var(--bg);
+    font:16px/1.5 'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink);
+    padding:32px 20px;
+  }
+  @media(prefers-reduced-motion: reduce){ *{transition-duration:0.01ms !important; animation-duration:0.01ms !important} }
+  :focus-visible{outline:2.5px solid var(--coral);outline-offset:2px;border-radius:6px}
+
+  .card{
+    width:100%;max-width:440px;
+    background:var(--white);
+    border-radius:28px;
+    border:1px solid var(--ink10);
+    padding:36px 32px 32px;
+    box-shadow:0 30px 80px rgba(12,12,12,.12);
+  }
+  .eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--coral-text);margin-bottom:16px}
+  .eyebrow svg{width:14px;height:14px}
+  .eyebrow .steam{transform-origin:bottom center}
+  @keyframes steam1{0%,100%{transform:translateY(0) scaleY(1);opacity:.7}50%{transform:translateY(-2px) scaleY(1.15);opacity:1}}
+  @keyframes steam2{0%,100%{transform:translateY(0) scaleY(1);opacity:.5}50%{transform:translateY(-2.5px) scaleY(1.2);opacity:.9}}
+  .steam-a{animation:steam1 2.4s ease-in-out infinite}
+  .steam-b{animation:steam2 2.4s ease-in-out .5s infinite}
+  h1{font-size:28px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px}
+  .sub{font-size:14px;color:var(--ink60);margin:0 0 28px;line-height:1.6;max-width:36ch}
+
+  fieldset{border:none;padding:0;margin:0 0 24px}
+  .field-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+  label{font-size:13px;font-weight:700;color:var(--ink60)}
+  .field-val{font-size:16px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+
+  input[type=range]{
+    width:100%;height:44px;margin:0;
+    -webkit-appearance:none;appearance:none;background:transparent;cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:99px;background:var(--ink10)}
+  input[type=range]::-moz-range-track{height:6px;border-radius:99px;background:var(--ink10)}
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;margin-top:-11px;
+    width:28px;height:28px;border-radius:50%;
+    background:var(--white);border:3px solid var(--coral);
+    box-shadow:0 2px 8px rgba(12,12,12,.2);
+    transition:transform .15s var(--ease);
+  }
+  input[type=range]:active::-webkit-slider-thumb{transform:scale(1.1)}
+  input[type=range]::-moz-range-thumb{
+    width:28px;height:28px;border-radius:50%;border:3px solid var(--coral);
+    background:var(--white);box-shadow:0 2px 8px rgba(12,12,12,.2);
+  }
+
+  .seg{display:flex;gap:8px;border:1px solid var(--ink10);border-radius:14px;padding:4px;background:var(--ink06)}
+  .seg button{
+    flex:1;min-height:44px;padding:0 8px;border-radius:10px;border:none;
+    background:transparent;font-size:13px;font-weight:700;color:var(--ink60);
+    cursor:pointer;transition:background .18s var(--ease),color .18s var(--ease);
+  }
+  .seg button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+  .seg button:hover:not([aria-pressed="true"]){background:rgba(12,12,12,.08)}
+
+  .unit-toggle{display:flex;align-items:center;gap:10px}
+  .unit-toggle button{
+    min-width:44px;min-height:36px;padding:0 14px;border-radius:99px;
+    border:1.5px solid var(--ink10);background:var(--white);
+    font-size:12px;font-weight:700;color:var(--ink60);cursor:pointer;
+    transition:all .18s var(--ease);
+  }
+  .unit-toggle button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--white)}
+
+  .result{
+    margin-top:8px;padding:24px 22px;border-radius:20px;
+    background:var(--ink);color:var(--white);
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;
+  }
+  .result-item .n{font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--lime);font-variant-numeric:tabular-nums}
+  .result-item .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-top:4px}
+
+  .actions{display:flex;gap:10px;margin-top:18px}
+  .btn{
+    flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    min-height:48px;border-radius:99px;border:none;cursor:pointer;
+    font-size:13px;font-weight:700;letter-spacing:.01em;
+    transition:background .18s var(--ease), transform .12s var(--ease);
+  }
+  .btn svg{width:16px;height:16px;flex-shrink:0}
+  .btn:active{transform:scale(.97)}
+  .btn-primary{background:var(--ink);color:var(--white)}
+  .btn-primary:hover{background:var(--coral-text)}
+  .btn-primary.copied{background:var(--coral-text)}
+
+  .foot{margin-top:18px;font-size:12px;color:var(--ink60);text-align:center;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="eyebrow">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><line class="steam steam-a" x1="6" y1="1" x2="6" y2="4"/><line class="steam steam-b" x1="10" y1="1" x2="10" y2="4"/><line class="steam steam-a" x1="14" y1="1" x2="14" y2="4"/></svg>
+    Vibe-coded
+  </div>
+  <h1>Pour Ratio</h1>
+  <p class="sub">Pour-over coffee calculator. Set your cup count and strength, get exact grams and timing — copy it straight to your notes.</p>
+
+  <fieldset>
+    <div class="field-head">
+      <label for="cups">Cups</label>
+      <span class="field-val" id="cupsVal" aria-live="polite">2</span>
+    </div>
+    <input type="range" id="cups" min="1" max="8" value="2" step="1" aria-describedby="cupsVal">
+  </fieldset>
+
+  <fieldset>
+    <div class="field-head"><label id="strengthLabel">Strength</label></div>
+    <div class="seg" role="group" aria-labelledby="strengthLabel" id="strengthRow">
+      <button data-ratio="17" aria-pressed="false">Light</button>
+      <button data-ratio="15" aria-pressed="true">Standard</button>
+      <button data-ratio="13" aria-pressed="false">Strong</button>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="field-head"><label id="unitLabel">Units</label></div>
+    <div class="unit-toggle" role="group" aria-labelledby="unitLabel" id="unitRow">
+      <button data-unit="g" aria-pressed="true">Grams</button>
+      <button data-unit="oz" aria-pressed="false">Ounces</button>
+    </div>
+  </fieldset>
+
+  <div class="result" aria-live="polite">
+    <div class="result-item"><div class="n" id="coffeeOut">17g</div><div class="l">Coffee</div></div>
+    <div class="result-item"><div class="n" id="waterOut">255g</div><div class="l">Water</div></div>
+    <div class="result-item"><div class="n" id="timeOut">2:45</div><div class="l">Bloom + pour</div></div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" id="copyBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      <span id="copyLabel">Copy recipe</span>
+    </button>
+  </div>
+
+  <p class="foot">Ratio ≈ 1g coffee per <span id="ratioOut">15</span>g water · 1 cup = 227g water</p>
+</div>
+
+<script>
+  const cupsEl = document.getElementById('cups');
+  const cupsVal = document.getElementById('cupsVal');
+  const strengthRow = document.getElementById('strengthRow');
+  const unitRow = document.getElementById('unitRow');
+  const coffeeOut = document.getElementById('coffeeOut');
+  const waterOut = document.getElementById('waterOut');
+  const timeOut = document.getElementById('timeOut');
+  const ratioOut = document.getElementById('ratioOut');
+  const copyBtn = document.getElementById('copyBtn');
+  const copyLabel = document.getElementById('copyLabel');
+
+  let ratio = 15;
+  let unit = 'g';
+  const G_PER_OZ = 28.3495;
+
+  function fmt(grams){
+    if (unit === 'oz') return (grams / G_PER_OZ).toFixed(1) + 'oz';
+    return Math.round(grams) + 'g';
+  }
+
+  function update(){
+    const cups = parseInt(cupsEl.value, 10);
+    cupsVal.textContent = cups;
+    const water = cups * 227;
+    const coffee = water / ratio;
+    coffeeOut.textContent = fmt(coffee);
+    waterOut.textContent = fmt(water);
+    ratioOut.textContent = ratio;
+    const seconds = 60 + cups * 25;
+    const m = Math.floor(seconds / 60), s = seconds % 60;
+    timeOut.textContent = m + ':' + String(s).padStart(2, '0');
+  }
+
+  cupsEl.addEventListener('input', update);
+
+  strengthRow.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      strengthRow.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      ratio = parseInt(btn.dataset.ratio, 10);
+      update();
+    });
+  });
+
+  unitRow.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      unitRow.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      unit = btn.dataset.unit;
+      update();
+    });
+  });
+
+  copyBtn.addEventListener('click', async () => {
+    const cups = cupsEl.value;
+    const text = `Pour Ratio recipe\n${cups} cup(s) · ratio 1:${ratio}\nCoffee: ${coffeeOut.textContent}\nWater: ${waterOut.textContent}\nBloom + pour: ${timeOut.textContent}`;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (e) {
+      // clipboard API unavailable in this context — button still gives visual confirmation
+    }
+    copyBtn.classList.add('copied');
+    copyLabel.textContent = 'Copied!';
+    setTimeout(() => {
+      copyBtn.classList.remove('copied');
+      copyLabel.textContent = 'Copy recipe';
+    }, 1600);
+  });
+
+  update();
+</script>
+</body>
+</html>
