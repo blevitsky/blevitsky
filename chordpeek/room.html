@@ -260,7 +260,9 @@ document.getElementById('rmSheetClose').addEventListener('click', toggleSheet);
    Narrative crawl — the full story, broken into beats that fade in,
    hold long enough to read, and fade out before the next one arrives,
    like opening text in a game rather than a wall of paragraph text.
-   Runs once, automatically, once the camera has settled into the seat.
+   Starts automatically once the camera has settled into the seat and
+   loops for as long as the viewer stays, so there are words on screen
+   through the whole song rather than just its first thirty seconds.
 ─────────────────────────────────────────────────────────── */
 function splitIntoBeats(text){
   const sentences = text.match(/[^.!?]+[.!?]+(?:["'’”]*\s*)?/g);
@@ -283,14 +285,31 @@ function beatHoldMs(beat){
   const words = beat.split(/\s+/).length;
   return Math.max(2800, Math.round(words * 300)); // ~200wpm reading pace, floored
 }
+/* Runs on a loop rather than stopping once the story's told — the
+   room is occupied for the length of a whole song (several minutes),
+   so a crawl that finishes after thirty seconds and then goes silent
+   would leave most of the song with nothing on screen. Wrapping back
+   to beat 0 (with a longer pause at the seam, so the loop reads as a
+   deliberate repeat rather than a stutter) keeps words on screen for
+   as long as the viewer is actually sitting there. It only stops if
+   the page is navigated away from (stopNarrative, wired to the back
+   button below). */
+let narrativeRunning = true;
 function runNarrative(i){
-  if (i >= storyBeats.length) return;
-  narrativeLineEl.textContent = storyBeats[i];
+  if (!narrativeRunning) return;
+  const wrapping = i >= storyBeats.length;
+  const idx = i % storyBeats.length;
+  narrativeLineEl.textContent = storyBeats[idx];
   requestAnimationFrame(() => narrativeLineEl.classList.add('show'));
   narrativeTimer = setTimeout(() => {
+    if (!narrativeRunning) return;
     narrativeLineEl.classList.remove('show');
-    narrativeTimer = setTimeout(() => runNarrative(i + 1), 1300);
-  }, beatHoldMs(storyBeats[i]) + 1300);
+    narrativeTimer = setTimeout(() => runNarrative(i + 1), wrapping ? 2600 : 1300);
+  }, beatHoldMs(storyBeats[idx]) + 1300);
+}
+function stopNarrative(){
+  narrativeRunning = false;
+  clearTimeout(narrativeTimer);
 }
 
 /* ───────────────────────────────────────────────────────────
@@ -329,12 +348,18 @@ const SCREEN_W = 7.6, SCREEN_H = SCREEN_W * 9 / 16;
 const SCREEN_Y = 2.5, SCREEN_Z = -9.2;
 
 const iframeEl = document.createElement('iframe');
+iframeEl.id = 'cpScreenFrame';
 iframeEl.style.width = '1280px';
 iframeEl.style.height = '720px';
 iframeEl.style.border = '0';
 iframeEl.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
 iframeEl.setAttribute('allowfullscreen', '');
-iframeEl.src = `https://www.youtube.com/embed/${song.youtubeId}?rel=0&playsinline=1&modestbranding=1&color=white&autoplay=1&mute=0`;
+/* enablejsapi + origin let the YouTube IFrame API attach to this exact
+   iframe so the room can read the video's *real* playback position —
+   that's what keeps the light show locked to the actual video clock
+   instead of just a timer started when the page loaded (which would
+   drift the moment someone pauses, seeks, or the video buffers). */
+iframeEl.src = `https://www.youtube.com/embed/${song.youtubeId}?rel=0&playsinline=1&modestbranding=1&color=white&autoplay=1&mute=0&enablejsapi=1&origin=${encodeURIComponent(location.origin)}`;
 
 const screenObject = new CSS3DObject(iframeEl);
 screenObject.position.set(0, SCREEN_Y, SCREEN_Z);
@@ -365,15 +390,31 @@ frameBar(SCREEN_W + fm * 2, fm, 0, SCREEN_Y - SCREEN_H / 2 - fm / 2);
 frameBar(fm, SCREEN_H + fm * 2, -SCREEN_W / 2 - fm / 2, SCREEN_Y);
 frameBar(fm, SCREEN_H + fm * 2, SCREEN_W / 2 + fm / 2, SCREEN_Y);
 
-/* screen glow washing onto the room */
+/* screen glow washing onto the room — not registered in houseLights:
+   it brightens against the house-light dip instead of ducking with
+   it, like a screen reading brighter the moment a theater's house
+   lights go down for the feature. */
 const screenGlow = new THREE.PointLight(accent3D, 9, 22, 1.6);
+const screenGlowBase = screenGlow.intensity;
 screenGlow.position.set(0, SCREEN_Y, SCREEN_Z + 1.8);
 glScene.add(screenGlow);
 
 /* ───────────────────────────────────────────────────────────
+   House lights registry — every fixture that should duck on the
+   beat and blackout-then-flash on a drop gets pushed in here with
+   its own resting intensity, so the per-frame pulse (further down,
+   near the render loop) just walks this list rather than needing to
+   know about seats/coves/aisles individually. The screen glow is
+   handled separately since it brightens *against* the dip instead
+   of ducking with it, like a spotlight snapping into focus as the
+   house lights go down. */
+const houseLights = [];
+function trackLight(light){ houseLights.push({ light, base: light.intensity }); return light; }
+
+/* ───────────────────────────────────────────────────────────
    Theater shell — near-black room, raked floor, back wall
 ─────────────────────────────────────────────────────────── */
-glScene.add(new THREE.AmbientLight(0x1a1620, 1));
+glScene.add(trackLight(new THREE.AmbientLight(0x1a1620, 1)));
 
 const wallMat = new THREE.MeshStandardMaterial({ color: 0x0a0a0c, roughness: 0.95 });
 const floorMat = new THREE.MeshStandardMaterial({ color: 0x07070a, roughness: 0.9 });
@@ -404,7 +445,7 @@ const coveMat = new THREE.MeshBasicMaterial({ color: accent3D });
   for (let i = -1; i <= 1; i++){
     const cl = new THREE.PointLight(accent3D, 0.6, 7, 2);
     cl.position.set(x - (x > 0 ? 1 : -1) * 0.5, 7.9, i * 8);
-    glScene.add(cl);
+    glScene.add(trackLight(cl));
   }
 });
 
@@ -450,7 +491,7 @@ function seat(x, z, lift){
   g.add(strip);
   const stripLight = new THREE.PointLight(accent3D, 0.5, 1.4, 2.2);
   stripLight.position.set(0, 0.1, 0.24);
-  g.add(stripLight);
+  g.add(trackLight(stripLight));
 
   /* lit cupholder in the right armrest — a shaded emissive ring, not a
      flat unlit dot, so it reads as a small backlit fixture set into the
@@ -511,7 +552,7 @@ ROW_Z.forEach((z, ri) => {
     const z = 4 - t * 9;
     const pl = new THREE.PointLight(aisleColor, 0.3, 2, 2);
     pl.position.set(side, 0.1, z);
-    glScene.add(pl);
+    glScene.add(trackLight(pl));
   }
 });
 
@@ -588,6 +629,94 @@ const yawQuat = new THREE.Quaternion();
 const pitchQuat = new THREE.Quaternion();
 
 /* ───────────────────────────────────────────────────────────
+   Beat-synced lighting — the house lights (cove, aisle, seat-strip
+   LEDs, ambient) duck a little on every beat and blackout-then-flash
+   a few times across the song, like a real house going dark for a
+   drop. Timing is pulled from the video's REAL playback position via
+   the YouTube IFrame API, not just elapsed time since the page
+   loaded, so the show stays locked through pausing, seeking, and
+   buffering. If the API can't load (offline, blocked, embedded
+   player restrictions) it falls back to a simple clock that starts
+   counting the moment the viewer sits down, which keeps the effect
+   running — just without seek/pause awareness.
+─────────────────────────────────────────────────────────── */
+let ytPlayer = null;
+let fallbackStartedAt = null;
+(function loadYouTubeAPI(){
+  if (window.YT && window.YT.Player){ attachPlayer(); return; }
+  const prevReady = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = function(){
+    if (typeof prevReady === 'function') prevReady();
+    attachPlayer();
+  };
+  if (!document.querySelector('script[src*="youtube.com/iframe_api"]')){
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  }
+})();
+function attachPlayer(){
+  try { ytPlayer = new YT.Player(iframeEl, { events: { onError: () => { ytPlayer = null; } } }); }
+  catch (e){ ytPlayer = null; }
+}
+function getPlaybackSeconds(){
+  if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function'){
+    try {
+      const t = ytPlayer.getCurrentTime();
+      if (typeof t === 'number' && !isNaN(t)) return t;
+    } catch (e){}
+  }
+  if (fallbackStartedAt === null) fallbackStartedAt = performance.now();
+  return (performance.now() - fallbackStartedAt) / 1000;
+}
+function getDurationSeconds(){
+  if (ytPlayer && typeof ytPlayer.getDuration === 'function'){
+    try {
+      const d = ytPlayer.getDuration();
+      if (typeof d === 'number' && d > 0) return d;
+    } catch (e){}
+  }
+  return 210; // typical single length — used only until the real duration loads
+}
+
+const BEAT_SEC = 60 / (song.bpm || 120);
+/* three "drop" moments at fixed, typical verse/chorus/bridge fractions
+   of the track's real duration — see the long comment in songs-data.js
+   for why these are duration fractions rather than hand-timed chorus
+   hits (there's no way to pull the real beat out of a cross-origin
+   YouTube embed's audio). */
+const DROP_FRACTIONS = [0.24, 0.52, 0.78];
+function dropTimestamps(){
+  const d = getDurationSeconds();
+  return DROP_FRACTIONS.map(f => f * d);
+}
+function beatDuck(tSec){
+  // a short, percussive dip right on each beat — quick to fall, a
+  // little slower to recover, so it reads as a kick-drum duck rather
+  // than a smooth, obviously-synthetic sine wave
+  const phase = (((tSec % BEAT_SEC) + BEAT_SEC) % BEAT_SEC) / BEAT_SEC;
+  return Math.pow(Math.max(0, 1 - phase / 0.4), 1.7) * 0.24;
+}
+function dropMultiplier(tSec, drops){
+  let mult = 1;
+  for (const d of drops){
+    const dt = tSec - d;
+    if (dt < -0.5 || dt > 1.4) continue;
+    if (dt < 0) mult *= 1 - (1 + dt / 0.5) * 0.88;       // fade down into the hit
+    else if (dt < 0.14) mult *= 0.08;                     // blackout right at the hit
+    else mult *= Math.max(0.08, 1 + (1 - (dt - 0.14) / 1.26) * 0.85); // snap-back flash, settling to 1
+  }
+  return mult;
+}
+function applyLightPulse(tSec){
+  const mult = Math.max(0.05, (1 - beatDuck(tSec)) * dropMultiplier(tSec, dropTimestamps()));
+  houseLights.forEach(({ light, base }) => { light.intensity = base * mult; });
+  // the screen reads brighter exactly when the house lights go down —
+  // a complement to the dip, not a strobe of its own
+  screenGlow.intensity = screenGlowBase * (1 + (1 - mult) * 0.7);
+}
+
+/* ───────────────────────────────────────────────────────────
    Resize + render loop
 ─────────────────────────────────────────────────────────── */
 addEventListener('resize', () => {
@@ -614,6 +743,7 @@ function animate(now){
     lookDir.applyQuaternion(pitchQuat);
     lookTarget.copy(camera.position).addScaledVector(lookDir, 10);
     camera.lookAt(lookTarget);
+    applyLightPulse(getPlaybackSeconds());
   }
   glRenderer.render(glScene, camera);
   cssRenderer.render(cssScene, camera);
