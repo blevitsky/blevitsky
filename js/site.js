@@ -373,31 +373,6 @@ const PROJ = {
         ]
       },
       {
-        type: 'stats',
-        items: [
-          { n: '4', l: 'Competitor museum apps evaluated against Nielsen heuristics' },
-          { n: '40+', l: 'Wireframe screens across all flows' },
-          { n: '5', l: 'User personas mapped and designed against' },
-        ]
-      },
-      {
-        type: 'chapter',
-        label: 'Prototype',
-        headline: 'Built and deployed',
-        body: 'Built in HTML, CSS, and vanilla JavaScript on GitHub Pages. Every tab works, every transition is real. I wrote the routing, the decade selector, the event cards, and the map from scratch.',
-      },
-      {
-        type: 'prototype',
-        url: 'https://blevitsky.github.io/DanmarkTekniskeMuseum/#home',
-        title: 'Danmarks Tekniske Museum App Prototype',
-        tech: [
-          { name: 'HTML5', icon: 'html' },
-          { name: 'CSS3', icon: 'css' },
-          { name: 'JavaScript', icon: 'js' },
-          { name: 'GitHub Pages', icon: 'github' },
-        ],
-      },
-      {
         type: 'chapter',
         label: 'The problem',
         headline: 'A century of machines, and no way to find your way through them.',
@@ -546,6 +521,31 @@ const PROJ = {
       },
 
       {
+        type: 'stats',
+        items: [
+          { n: '4', l: 'Competitor museum apps evaluated against Nielsen heuristics' },
+          { n: '40+', l: 'Wireframe screens across all flows' },
+          { n: '5', l: 'User personas mapped and designed against' },
+        ]
+      },
+      {
+        type: 'chapter',
+        label: 'Prototype',
+        headline: 'Built and deployed',
+        body: 'Built in HTML, CSS, and vanilla JavaScript on GitHub Pages. Every tab works, every transition is real. I wrote the routing, the decade selector, the event cards, and the map from scratch.',
+      },
+      {
+        type: 'prototype',
+        url: 'https://blevitsky.github.io/DanmarkTekniskeMuseum/#home',
+        title: 'Danmarks Tekniske Museum App Prototype',
+        tech: [
+          { name: 'HTML5', icon: 'html' },
+          { name: 'CSS3', icon: 'css' },
+          { name: 'JavaScript', icon: 'js' },
+          { name: 'GitHub Pages', icon: 'github' },
+        ],
+      },
+      {
         type: 'reflection',
         body: '40 screens before I got external feedback on the nav. If I\'d done that card sort review at week 3 instead of week 6, I would have caught a nav overlap between History and Exhibits much earlier. The map is also where I\'d spend more time: hardest to build, and the thing visitors cared about most.',
       },
@@ -583,20 +583,6 @@ const PROJ = {
           { label: 'Tools', value: 'Figma, watchOS HIG, YouTube Design System' },
           { label: 'Duration', value: '3 weeks' },
           { label: 'Type', value: 'Conceptual wearable UI' },
-        ]
-      },
-      {
-        type: 'chapter',
-        label: 'Screens',
-        headline: 'Three states',
-        body: 'Three screens: playback with Digital Crown scrub, a browse and queue screen, and a full UI overview. Playback took the most rounds to get right. Scrub control at 41mm is harder than it sounds.',
-      },
-      {
-        type: 'watches',
-        imgs: [
-          { src: 'https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/292e3adf-ec52-4d19-8b5d-5fdcf9f2841a/Screenshot+2025-12-07+at+8.54.24%E2%80%AFPM.png', cap: 'Playback state' },
-          { src: 'https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/3c424d8a-cb9c-47a1-907f-a37ebd73e251/Screenshot+2025-12-07+at+4.42.25%E2%80%AFPM.png', cap: 'Browse and controls' },
-          { src: 'https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/1f250e6f-8c49-4986-8540-be3ee4f8efed/Screenshot+2025-12-07+at+4.40.34%E2%80%AFPM.png', cap: 'Full UI overview' },
         ]
       },
       {
@@ -644,6 +630,20 @@ const PROJ = {
             ann: 'This state was added later in the process. <strong>The two-button layout</strong>, dismiss or add to queue, is intentionally minimal, but the interaction deserved more development.',
             svg: '<svg width="124" height="152" viewBox="0 0 124 152" fill="none"><rect width="124" height="152" fill="#111"/><circle cx="62" cy="38" r="22" fill="#1E1E1E" stroke="#2E2E2E" stroke-width="1"/><rect x="50" y="28" width="24" height="24" rx="4" fill="#2A2A2A"/><rect x="56" y="34" width="12" height="12" rx="2" fill="#383838"/><rect x="16" y="70" width="92" height="9" rx="2" fill="#2A2A2A"/><rect x="24" y="83" width="76" height="7" rx="2" fill="#222"/><rect x="30" y="94" width="64" height="7" rx="2" fill="#1E1E1E"/><rect x="14" y="112" width="44" height="24" rx="5" fill="#1E1E1E" stroke="#2E2E2E" stroke-width="1"/><rect x="66" y="112" width="44" height="24" rx="5" fill="#2A2A2A"/><rect x="22" y="120" width="28" height="6" rx="2" fill="#333"/><rect x="74" y="120" width="28" height="6" rx="2" fill="#383838"/><text x="62" y="148" text-anchor="middle" font-family="system-ui" font-size="6" fill="#444" font-style="italic">dismiss / add to queue</text></svg>',
           },
+        ]
+      },
+      {
+        type: 'chapter',
+        label: 'Screens',
+        headline: 'Three states',
+        body: 'Three screens: playback with Digital Crown scrub, a browse and queue screen, and a full UI overview. Playback took the most rounds to get right. Scrub control at 41mm is harder than it sounds.',
+      },
+      {
+        type: 'watches',
+        imgs: [
+          { src: 'https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/292e3adf-ec52-4d19-8b5d-5fdcf9f2841a/Screenshot+2025-12-07+at+8.54.24%E2%80%AFPM.png', cap: 'Playback state' },
+          { src: 'https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/3c424d8a-cb9c-47a1-907f-a37ebd73e251/Screenshot+2025-12-07+at+4.42.25%E2%80%AFPM.png', cap: 'Browse and controls' },
+          { src: 'https://images.squarespace-cdn.com/content/v1/6890fe5fcdfa763cd6af76bc/1f250e6f-8c49-4986-8540-be3ee4f8efed/Screenshot+2025-12-07+at+4.40.34%E2%80%AFPM.png', cap: 'Full UI overview' },
         ]
       },
 
