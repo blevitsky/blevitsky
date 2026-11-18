@@ -175,60 +175,6 @@ const PROJ = {
         ]
       },
       {
-        type: 'stats',
-        items: [
-          { n: '12', l: 'Parents interviewed in structured 45-min sessions' },
-          { n: '78%', l: 'Named trust as their single biggest concern' },
-          { n: '22', l: 'Linked screens in the final Figma prototype' },
-        ]
-      },
-      {
-        type: 'sp-screens',
-        steps: [
-          {
-            screenIndex: 0,
-            label: 'Screen 1, Home',
-            title: 'Trust signals before anything else.',
-            desc: '"Find a Family," not "Get Started": a specific action, backed by a live verified-family count.',
-            finding: '<strong>Finding:</strong> a visible user count before the CTA tripled proceed rate over copy alone.',
-          },
-          {
-            screenIndex: 1,
-            label: 'Screen 2, Trust Profile',
-            title: 'One trust score, not five badges.',
-            desc: 'School, background check, reviews, and mutual connections collapsed into one number, readable in under two seconds.',
-            finding: '<strong>V1 finding:</strong> "I felt like I was handing my kid to a stranger." This screen resolves that before any CTA.',
-          },
-          {
-            screenIndex: 2,
-            label: 'Screen 3, Map',
-            title: 'Location, then date. Never both at once.',
-            desc: 'A bottom sheet slides up for date and time only after a location is chosen. Two decisions, sequenced instead of stacked.',
-            finding: '<strong>Task completion:</strong> 67% → 100% after separating the two decisions.',
-          },
-          {
-            screenIndex: 3,
-            label: 'Screen 4, Send Request',
-            title: 'One clear moment to review.',
-            desc: 'Phone numbers stay private until both sides confirm, a privacy note pulled straight from research.',
-            finding: '<strong>Post-send anxiety:</strong> 5 of 6 participants → 1 of 6 after adding this step.',
-          },
-          {
-            screenIndex: 4,
-            label: 'Screen 5, Confirmation',
-            title: 'A confirmation that shows the full picture.',
-            desc: 'Full booking detail, a pending status, and real color instead of three flat words on a blank screen.',
-            finding: '<strong>Tone:</strong> 3 of 6 participants called it "warm," unprompted.',
-          },
-        ]
-      },
-      {
-        type: 'chapter',
-        label: 'Testing',
-        headline: '6 parents, one task',
-        body: 'Find a playground, check a family profile, send a request. All 6 finished. 87 seconds average. Zero critical errors. Three used the word "warm" unprompted.',
-      },
-      {
         type: 'chapter',
         label: 'Problem',
         headline: 'Every existing tool solved scheduling. None of them solved trust.',
@@ -335,6 +281,60 @@ const PROJ = {
       {
         type: 'reflection',
         body: 'I built the Trust Score from research but didn\'t prototype it until week 4. I should have gotten that in front of people sooner. The bigger gap is that there\'s nothing designed for what happens after the first playdate. A review system that feeds back into the Trust Score would make the whole thing better over time.',
+      },
+      {
+        type: 'stats',
+        items: [
+          { n: '12', l: 'Parents interviewed in structured 45-min sessions' },
+          { n: '78%', l: 'Named trust as their single biggest concern' },
+          { n: '22', l: 'Linked screens in the final Figma prototype' },
+        ]
+      },
+      {
+        type: 'sp-screens',
+        steps: [
+          {
+            screenIndex: 0,
+            label: 'Screen 1, Home',
+            title: 'Trust signals before anything else.',
+            desc: '"Find a Family," not "Get Started": a specific action, backed by a live verified-family count.',
+            finding: '<strong>Finding:</strong> a visible user count before the CTA tripled proceed rate over copy alone.',
+          },
+          {
+            screenIndex: 1,
+            label: 'Screen 2, Trust Profile',
+            title: 'One trust score, not five badges.',
+            desc: 'School, background check, reviews, and mutual connections collapsed into one number, readable in under two seconds.',
+            finding: '<strong>V1 finding:</strong> "I felt like I was handing my kid to a stranger." This screen resolves that before any CTA.',
+          },
+          {
+            screenIndex: 2,
+            label: 'Screen 3, Map',
+            title: 'Location, then date. Never both at once.',
+            desc: 'A bottom sheet slides up for date and time only after a location is chosen. Two decisions, sequenced instead of stacked.',
+            finding: '<strong>Task completion:</strong> 67% → 100% after separating the two decisions.',
+          },
+          {
+            screenIndex: 3,
+            label: 'Screen 4, Send Request',
+            title: 'One clear moment to review.',
+            desc: 'Phone numbers stay private until both sides confirm, a privacy note pulled straight from research.',
+            finding: '<strong>Post-send anxiety:</strong> 5 of 6 participants → 1 of 6 after adding this step.',
+          },
+          {
+            screenIndex: 4,
+            label: 'Screen 5, Confirmation',
+            title: 'A confirmation that shows the full picture.',
+            desc: 'Full booking detail, a pending status, and real color instead of three flat words on a blank screen.',
+            finding: '<strong>Tone:</strong> 3 of 6 participants called it "warm," unprompted.',
+          },
+        ]
+      },
+      {
+        type: 'chapter',
+        label: 'Testing',
+        headline: '6 parents, one task',
+        body: 'Find a playground, check a family profile, send a request. All 6 finished. 87 seconds average. Zero critical errors. Three used the word "warm" unprompted.',
       },
       {
         type: 'outcome',
