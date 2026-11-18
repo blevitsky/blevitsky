@@ -1394,6 +1394,7 @@ function openCS(id) {
     document.getElementById('csInner').innerHTML = buildCS(id);
   }
   layer.classList.add('open');
+  layer.classList.add('expanded');
   if (backdrop) backdrop.classList.add('open');
   layer.style.setProperty('--cs-accent', p.accentColor || 'var(--coral)');
   layer.style.setProperty('--cs-accent-dark', p.accentColorDark || p.accentColor || 'var(--coral-text)');
@@ -1457,16 +1458,7 @@ function closeCS() {
   layer.classList.remove('open');
   layer.classList.remove('expanded');
   if (backdrop) backdrop.classList.remove('open');
-  const btn = document.getElementById('csExpandBtn');
-  if (btn) btn.setAttribute('aria-label', 'Expand to full screen');
   document.body.style.overflow = '';
-}
-
-function toggleCSExpand() {
-  const layer = document.getElementById('csLayer');
-  const btn = document.getElementById('csExpandBtn');
-  const expanded = layer.classList.toggle('expanded');
-  if (btn) btn.setAttribute('aria-label', expanded ? 'Collapse' : 'Expand to full screen');
 }
 
 /* ─── Lightbox ─── */

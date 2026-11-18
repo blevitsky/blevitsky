@@ -10,7 +10,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   --mint:#FF5A36;
   --bg:#F0F0EE;
   --ink:#0C0C0C;
-  --ink60:#6B6B6B;
+  --ink60:#595959; /* darkened from #6B6B6B — was 4.67:1 on --bg, now 6.1:1 */
   --ink10:rgba(12,12,12,.10);
   --ink06:rgba(12,12,12,.06);
   --white:#FFFFFF;
@@ -745,6 +745,10 @@ body.ui-mode .h-badge{background:var(--mint)}
   flex-wrap:wrap;gap:16px;
   padding-top:28px;border-top:1px solid rgba(255,255,255,.1);
 }
+/* Contact page's footer drops the "Got a project in mind?" headline —
+   it's redundant with the whole page above it — so .f-row is the
+   first thing in the footer here and doesn't need the divider. */
+.footer-contact .f-row{border-top:none;padding-top:0}
 .f-logo{font-family:var(--f-head);font-size:13px;letter-spacing:.02em;color:rgba(255,255,255,.5)}
 .f-links{display:flex;gap:26px;flex-wrap:wrap}
 .f-links a{
@@ -779,7 +783,7 @@ body.ui-mode .h-badge{background:var(--mint)}
 /* ═══════════════════════════════════════
    CASE STUDY — full-page layer
 ═══════════════════════════════════════ */
-/* ── Backdrop behind the floating case-study card ── */
+/* ── Backdrop behind the case-study layer ── */
 .cs-backdrop{
   position:fixed;inset:0;z-index:399;
   background:rgba(12,12,12,0);
@@ -793,7 +797,12 @@ body.ui-mode .h-badge{background:var(--mint)}
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
 }
 
-/* ── Floating case-study card ── */
+/* ── Case-study layer. Always opens full screen now (JS adds
+   .expanded alongside .open the moment it's triggered) — it starts
+   as a small centered card mid-scale-up and grows into the full
+   viewport in one motion, so the open feels like a zoom rather than
+   a hard cut. There's no separate "expand" step for the visitor to
+   find or need. ── */
 .cs-layer{
   --cs-accent: var(--coral);
   position:fixed;
@@ -842,10 +851,10 @@ body.ui-mode .h-badge{background:var(--mint)}
   .cs-layer.open{transform:none}
 }
 
-/* ── Corner controls (expand / close) ── */
+/* ── Corner control (close) ── */
 .cs-back{
   position:absolute;top:32px;left:24px;right:24px;z-index:10;
-  display:flex;align-items:center;justify-content:space-between;
+  display:flex;align-items:center;justify-content:flex-end;
   height:0;
   pointer-events:none;
 }
