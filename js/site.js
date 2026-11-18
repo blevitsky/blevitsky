@@ -289,7 +289,7 @@ const PROJ = {
       },
       {
         type: 'chapter',
-        label: 'Who I Designed For',
+        label: 'Who I designed for',
         headline: 'Primary Persona',
         body: 'The person I kept designing for: a parent who wants their kid to have more social time, but slows down every time something feels unknown. Not overprotective. Just missing information.',
       },
@@ -601,7 +601,7 @@ const PROJ = {
       },
       {
         type: 'chapter',
-        label: 'The Constraint',
+        label: 'The constraint',
         headline: 'Platform Constraints',
         body: 'A 41mm screen isn\'t a small phone. No keyboard, no swipe-heavy navigation, sessions that last a few seconds. I started with those constraints instead of trying to shrink phone patterns down.',
       },
@@ -616,7 +616,7 @@ const PROJ = {
       },
       {
         type: 'chapter',
-        label: 'Design Decisions',
+        label: 'Design decisions',
         headline: 'Design Principles',
         body: 'Three rules before I designed anything: <strong>one action per glance</strong>, no hunting; <strong>crown for scrolling</strong>, not swipes which fight the system; <strong>haptic confirmation</strong> on anything you can\'t undo.',
       },
@@ -712,8 +712,7 @@ function buildCS(id) {
       html += `
         <div class="cs-block cs-block--first cs-split">
           <div class="cs-split-l">
-            <div class="cs-ch cs-ch--plain">The Brief</div>
-            <h2 class="cs-intro-h">${s.headline}</h2>
+            <h2 class="cs-intro-h"><span class="cs-ch-lead">The brief.</span> ${s.headline}</h2>
           </div>
           <div class="cs-split-r">${paras}</div>
         </div>`;
@@ -734,8 +733,7 @@ function buildCS(id) {
       html += `
         <div class="cs-block cs-split">
           <div class="cs-split-l">
-            <div class="cs-ch">${s.label}</div>
-            <h2 class="cs-ch-h">${s.headline}</h2>
+            <h2 class="cs-ch-h"><span class="cs-ch-lead">${s.label}.</span> ${s.headline}</h2>
           </div>
           <div class="cs-split-r">
             ${paras}
@@ -781,8 +779,7 @@ function buildCS(id) {
         </div>`).join('');
       html += `
         <div class="cs-block">
-          <div class="cs-ch">${s.label}</div>
-          <h2 class="cs-ch-h">${s.headline}</h2>
+          <h2 class="cs-ch-h"><span class="cs-ch-lead">${s.label}.</span> ${s.headline}</h2>
           <div class="cs-timeline">${stepsH}</div>
         </div>`;
     }

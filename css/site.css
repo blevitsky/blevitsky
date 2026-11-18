@@ -986,11 +986,11 @@ body.ui-mode .h-badge{background:var(--mint)}
   box-sizing:border-box;
 }
 
-/* ── Chapter eyebrow — plain, no ornament, quiet ── */
-.cs-ch{
-  font-size:11px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink60);margin-bottom:18px;
+/* ── Chapter lead-in — run-in phrase at the start of the heading,
+   not a separate uppercase eyebrow line ── */
+.cs-ch-lead{
+  color:var(--cs-accent-dark, var(--cs-accent, var(--coral-text)));
+  font-weight:700;
 }
 
 /* ── Headings — soft weight, reads as a caption for the
