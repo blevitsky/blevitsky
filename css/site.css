@@ -1578,10 +1578,9 @@ body.ui-mode .h-badge{background:var(--mint)}
   right:-100px;bottom:-120px;
   pointer-events:none;
 }
-.cs-ob-label{
-  font-size:9px;font-weight:700;letter-spacing:.32em;
-  text-transform:uppercase;color:#9a9a9a;
-  margin-bottom:18px;position:relative;
+.cs-ob-lead{
+  color:var(--cs-accent, #1DE9B6);
+  font-weight:700;
 }
 .cs-ob-text{
   font-family:var(--f-head);

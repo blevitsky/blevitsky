@@ -23,7 +23,7 @@ const PROJ = {
       {
         type: 'intro',
         headline: 'Full website redesign for a national general contractor.',
-        body: 'PREMIER Design + Build Group has 850+ completed projects, 89M+ square feet built, 8 offices, and 150+ employee owners. When I started as their Web Development Intern, I got to own a full redesign and rebrand from wireframe to launch. It shifted the site from an employee-first presentation to one that leads with the work itself. Three months, start to finish. Every page in the nav shipped. I\'d never built inside a CMS or Wix Studio before this project.',
+        body: 'PREMIER Design + Build Group has 850+ completed projects, 89M+ square feet built, 8 offices, and 150+ employee owners. When I started as their Web Development Intern, I got to own a full redesign and rebrand from wireframe to launch. The old site led with the employees. I made it lead with the work. Three months, start to finish. Every page in the nav shipped. I\'d never built inside a CMS or Wix Studio before this project.',
       },
       {
         type: 'role-bar',
@@ -114,7 +114,7 @@ const PROJ = {
         type: 'chapter',
         label: 'The pages',
         headline: 'Home leads with scale, Projects proves it.',
-        body: 'Homepage puts 850+ projects and 89M+ sq ft in front of a visitor before they scroll an inch. Projects carries the proof, filterable by sector. About, Careers, Blog, Contact, and Team all ship on the same system. Copy was written per section, then revised line by line with the creative director, and that reshaped layout as much as word choice.',
+        body: 'Homepage puts 850+ projects and 89M+ sq ft in front of a visitor before they scroll an inch. Projects carries the proof, filterable by sector. About, Careers, Blog, Contact, and Team all ship on the same system. I wrote the copy per section, then went line by line with the creative director. Half those edits changed the layout, not just the words.',
       },
       {
         type: 'premier-home-split',
@@ -136,7 +136,7 @@ const PROJ = {
       },
       {
         type: 'outcome',
-        headline: 'Live. All of it.',
+        headline: 'It\'s live. All of it.',
         body: 'Every page in that nav is real and shipped, not a mockup. The marketing team can update content without touching code, the design system holds from a 390px phone to a 3300px monitor, and the projects filter actually works. Somewhere right now, a prospective client for a multi-million-dollar build is scrolling through something I built.',
         link: { label: 'View live site →', url: 'https://pdbmarketing.wixstudio.com/sandboxsite' },
         img: 'premier-internship-selfie.jpg',
@@ -236,7 +236,7 @@ const PROJ = {
       {
         type: 'chapter',
         label: 'Who I designed for',
-        headline: 'Primary Persona',
+        headline: 'The parent who hesitates, not the one who doesn\'t care.',
         body: 'The person I kept designing for: a parent who wants their kid to have more social time, but slows down every time something feels unknown. Not overprotective. Just missing information.',
       },
       {
@@ -338,8 +338,8 @@ const PROJ = {
       },
       {
         type: 'outcome',
-        headline: 'Results',
-        body: '6 of 6 parents finished the core task in usability testing. 87 seconds average. Zero critical errors. Three called it warm without being asked, and that wasn\'t in any brief. It came from the copy, the colours, and the confirmation screen.',
+        headline: '6 for 6, 87 seconds average.',
+        body: 'Every parent finished the core task in usability testing. Zero critical errors. Three called it warm without being asked, and that wasn\'t in any brief. It came from the copy, the colours, and the confirmation screen.',
       },
     ]
   },
@@ -551,8 +551,8 @@ const PROJ = {
       },
       {
         type: 'outcome',
-        headline: 'Results',
-        body: 'The decade timeline was the piece that got called out in review. It\'s not a pattern borrowed from anywhere, it was made for this museum. Every screen was annotated and delivered as a Figma handoff.',
+        headline: 'The decade timeline was the piece that got called out in review.',
+        body: 'It\'s not a pattern borrowed from anywhere, it was made for this museum. Every screen was annotated and delivered as a Figma handoff.',
       },
     ]
   },
@@ -604,7 +604,7 @@ const PROJ = {
         type: 'chapter',
         label: 'Design decisions',
         headline: 'Design Principles',
-        body: 'Three rules before I designed anything: <strong>one action per glance</strong>, no hunting; <strong>crown for scrolling</strong>, not swipes which fight the system; <strong>haptic confirmation</strong> on anything you can\'t undo.',
+        body: 'Three rules before I designed anything. <strong>One action per glance</strong>, no hunting around. Scroll with the <strong>crown</strong>, not swipes, since swipes fight the watch\'s own system gestures. And <strong>haptic confirmation</strong> on anything you can\'t undo.',
       },
       {
         type: 'artifacts',
@@ -657,8 +657,8 @@ const PROJ = {
         body: 'The notification state is probably the strongest use case here. Two taps to queue a video without touching your phone. I kept it minimal to stay in scope, which was the wrong call.',      },
       {
         type: 'outcome',
-        headline: 'Results',
-        body: 'Every screen within the HIG. Crown navigation throughout, haptic feedback on anything that matters, information density kept low enough to read in a glance.',
+        headline: 'Every screen stayed inside the HIG.',
+        body: 'Crown navigation throughout, haptic feedback on anything that matters, information density kept low enough to read in a glance.',
       },
     ]
   },
@@ -1298,8 +1298,7 @@ function buildCS(id) {
         html += `
         <div class="cs-block cs-outcome-banner" style="display:flex;align-items:center;gap:56px;flex-wrap:wrap">
           <div style="flex:1;min-width:280px">
-            <div class="cs-ob-label">Outcome</div>
-            <p class="cs-ob-text">${s.headline}</p>
+            <p class="cs-ob-text"><span class="cs-ob-lead">Outcome.</span> ${s.headline}</p>
             <p class="cs-ob-sub">${s.body}</p>
           </div>
           <div style="position:relative;text-align:center;flex:none;width:220px">
@@ -1316,8 +1315,7 @@ function buildCS(id) {
       } else {
         html += `
         <div class="cs-block cs-outcome-banner">
-          <div class="cs-ob-label">Outcome</div>
-          <p class="cs-ob-text">${s.headline}</p>
+          <p class="cs-ob-text"><span class="cs-ob-lead">Outcome.</span> ${s.headline}</p>
           <p class="cs-ob-sub">${s.body}</p>
         </div>`;
       }
