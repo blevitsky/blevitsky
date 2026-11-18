@@ -1470,7 +1470,7 @@ function zoomImg(img) {
 }
 function closeLb() {
   document.getElementById('imgLb').classList.remove('open');
-  const back = document.querySelector('.cs-back');
+  const back = document.querySelector('.cs-nav');
   if (back) back.style.zIndex = '';
 }
 
@@ -1565,7 +1565,7 @@ function openImg(el) {
   const lb    = document.getElementById('imgLb');
   const lbImg = document.getElementById('imgLbImg');
   const lbCap = document.getElementById('imgLbCap');
-  const back  = document.querySelector('.cs-back');
+  const back  = document.querySelector('.cs-nav');
   const desc  = el.dataset.desc || img.alt || '';
   lbImg.src = img.src;
   lbImg.alt = img.alt;

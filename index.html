@@ -266,11 +266,22 @@
 <!-- ──────── CASE STUDY LAYER ──────── -->
 <div class="cs-backdrop" id="csBackdrop" onclick="closeCS()"></div>
 <div class="cs-layer" id="csLayer" role="dialog" aria-modal="true" aria-label="Case study">
-  <div class="cs-back">
-    <button class="cs-corner-btn cs-close-btn" onclick="closeCS()" aria-label="Close">
+  <nav class="cs-nav">
+    <a class="cs-nav-logo" href="index.html" aria-label="Ben Levitsky — home" onclick="event.stopPropagation()">
+      <svg class="nav-logo-mark" width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">
+        <text x="2" y="21">bl</text>
+        <rect class="nav-logo-cursor" x="18" y="9" width="5" height="14"/>
+      </svg>
+    </a>
+    <ul class="cs-nav-mid">
+      <li><a href="index.html" onclick="event.stopPropagation()">Work</a></li>
+      <li><a href="about.html" onclick="event.stopPropagation()">About</a></li>
+      <li><a href="contact.html" onclick="event.stopPropagation()">Contact</a></li>
+    </ul>
+    <button class="cs-corner-btn cs-close-btn" onclick="closeCS()" aria-label="Close case study">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
-  </div>
+  </nav>
   <div id="csInner"></div>
 </div>
 

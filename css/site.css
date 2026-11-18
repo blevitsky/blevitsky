@@ -836,6 +836,7 @@ body.ui-mode .h-badge{background:var(--mint)}
   background:var(--bg);
   border-radius:32px;
   z-index:400;
+  display:flex;flex-direction:column;
   overflow-y:auto;
   overflow-x:hidden;
   opacity:0;
@@ -857,7 +858,7 @@ body.ui-mode .h-badge{background:var(--mint)}
 /* ── Embedded case study (Still) — an iframe fills the same
    floating shell every other case study uses, instead of
    buildCS-generated HTML. Keeps its own styles fully isolated. ── */
-#csInner{height:100%}
+#csInner{flex:1 1 auto;min-height:0}
 .cs-embed-frame{
   width:100%;height:100%;min-height:100%;
   border:0;display:block;
@@ -874,16 +875,36 @@ body.ui-mode .h-badge{background:var(--mint)}
   .cs-layer.open{transform:none}
 }
 
-/* ── Corner control (close) ── */
-.cs-back{
-  position:absolute;top:32px;left:24px;right:24px;z-index:10;
-  display:flex;align-items:center;justify-content:flex-end;
-  height:0;
-  pointer-events:none;
+/* ── Case-study nav — sticky inside the modal's own scroll
+   container, so it stays on screen through every section of every
+   case study instead of scrolling away with the content. Mirrors
+   the site nav (logo, Work/About/Contact) plus the close control. ── */
+.cs-nav{
+  position:sticky;top:0;z-index:20;flex-shrink:0;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  height:var(--nav-h);
+  padding:0 20px 0 24px;
+  background:rgba(243,243,241,.94);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--ink10);
 }
+.cs-nav-logo{justify-self:start;display:flex;align-items:center}
+.cs-nav-mid{justify-self:center;display:flex;gap:26px;list-style:none}
+.cs-nav-mid a{
+  font-size:13px;font-weight:500;letter-spacing:.01em;
+  color:var(--ink);opacity:.65;transition:opacity .18s;
+}
+.cs-nav-mid a:hover{opacity:1}
+@media(max-width:600px){
+  .cs-nav{padding:0 14px 0 18px}
+  .cs-nav-mid{display:none}
+}
+
+/* ── Corner control (close) ── */
 .cs-corner-btn{
   display:flex;align-items:center;justify-content:center;
   width:36px;height:36px;border-radius:50%;
+  justify-self:end;
   background:rgba(255,255,255,.85);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   border:1px solid var(--ink10);
@@ -933,7 +954,7 @@ body.ui-mode .h-badge{background:var(--mint)}
 .cs-layer.open .cs-hero-img{transform:scale(1)}
 .cs-hero-text{
   max-width:1040px;margin:0 auto;
-  padding:64px 5% 28px;
+  padding:40px 5% 28px;
   background:var(--bg);
 }
 .cs-hero-logo{
@@ -1668,8 +1689,7 @@ body.ui-mode .h-badge{background:var(--mint)}
 }
 
 @media(max-width:900px){
-  .cs-back{padding:0 24px}
-  .cs-hero-text{padding:52px 28px 20px}
+  .cs-hero-text{padding:32px 28px 20px}
   .cs-content{padding:0 28px 72px}
   .cs-img-full{margin:40px -28px}
   .cs-img-full img{min-height:360px;max-height:500px}
