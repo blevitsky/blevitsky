@@ -289,22 +289,22 @@
       id: 'hiring',
       test: /\b(hir|recruit|job|intern|review|manager|resume|résumé|candidate|position|role|screen)/i,
       chip: "Hiring, or reviewing my work",
-      html: `That means a lot — thank you for taking the time. <a href="${workHref}">PREMIER</a> is the fullest picture of how I actually work, start to finish. If you want the short version first, my <a href="${contactHref}">resume's right here</a> too.`,
+      html: `That means a lot, thank you for taking the time. <a href="${workHref}">PREMIER</a> is the fullest picture of how I actually work, start to finish. If you want the short version first, my <a href="${contactHref}">resume's right here</a> too.`,
     },
     {
       id: 'design',
       test: /\b(design|ux|ui|portfolio|student|craft|product|figma)/i,
       chip: "Fellow designer, comparing notes",
-      html: `Love that — always good to meet someone in it. The <a href="${dsHref}">design system page</a> is probably the most "me" thing on here, and the <a href="${workHref}">case studies</a> go deep on process if you want the full story.`,
+      html: `Love that, always good to meet someone in it. The <a href="${dsHref}">design system page</a> is probably the most "me" thing on here, and the <a href="${workHref}">case studies</a> go deep on process if you want the full story.`,
     },
     {
       id: 'explore',
       test: /\b(friend|bored|random|curious|explor|nothing|idk|dunno|just|around|here)/i,
       chip: "Just exploring",
-      html: `That's honestly my favorite reason. No agenda — just poke around. There's an easter egg or two if you look closely (try the corner, or Game Mode up top).`,
+      html: `That's my favorite reason, honestly. No agenda, just poke around. There's an easter egg or two if you look closely (try the corner, or Game Mode up top).`,
     },
   ];
-  const FALLBACK = `Glad you're here either way — hope you find something worth sticking around for. Feel free to look around and reach out if anything stands out.`;
+  const FALLBACK = `Glad you're here either way, hope you find something worth sticking around for. Feel free to look around and reach out if anything stands out.`;
 
   function pickReply(text){
     const hit = REPLIES.find(r => r.test.test(text));

@@ -23,7 +23,7 @@ const PROJ = {
       {
         type: 'intro',
         headline: 'Full website redesign for a national general contractor.',
-        body: 'PREMIER Design + Build Group has 850+ completed projects, 89M+ square feet built, 8 offices, and 150+ employee owners. When I started as their Web Development Intern, I got to own a full redesign and rebrand from wireframe to launch — shifting the site from an employee-first presentation to one that leads with the work itself. Three months, start to finish. Every page in the nav shipped. I\'d never built inside a CMS or Wix Studio before this project.',
+        body: 'PREMIER Design + Build Group has 850+ completed projects, 89M+ square feet built, 8 offices, and 150+ employee owners. When I started as their Web Development Intern, I got to own a full redesign and rebrand from wireframe to launch. It shifted the site from an employee-first presentation to one that leads with the work itself. Three months, start to finish. Every page in the nav shipped. I\'d never built inside a CMS or Wix Studio before this project.',
       },
       {
         type: 'role-bar',
@@ -50,13 +50,13 @@ const PROJ = {
         afterSrc: 'premier-team-redesign.jpg',
         beforeLabel: 'Before',
         afterLabel: 'After',
-        caption: 'The National Leadership team page — the muted, stock-photo blue treatment was the old site. Drag to reveal the current redesign.',
+        caption: 'The National Leadership team page. That muted, stock-photo blue treatment was the old site. Drag to reveal the current redesign.',
       },
       {
         type: 'chapter',
         label: 'The problem',
         headline: 'The old site was costing PREMIER business, and nobody could prove it.',
-        body: 'A hundreds-of-millions-a-year contractor with 850+ completed projects had a static, employee-first homepage that buried the portfolio three clicks deep — zero evidence of scale for a company whose whole pitch is "we\'ve built this before." Worse, the site had no structure for it: eight market sectors, no way to filter, no path from "I\'m a hospital developer" to PREMIER\'s healthcare work.',
+        body: 'A hundreds-of-millions-a-year contractor with 850+ completed projects had a static, employee-first homepage that buried the portfolio three clicks deep. Zero evidence of scale, for a company whose whole pitch is "we\'ve built this before." Worse, the site had no structure for it: eight market sectors, no way to filter, no path from "I\'m a hospital developer" to PREMIER\'s healthcare work.',
       },
 
       {
@@ -69,20 +69,20 @@ const PROJ = {
         type: 'chapter',
         label: 'Building the system',
         headline: 'I didn\'t know what a design system was for until I had to defend one.',
-        body: 'I mapped the IA in Figma first, then built the system — type, color, spacing, radius — meant to hold across every page. Three weeks in, a stakeholder asked why the Careers button looked different from Projects. I didn\'t have a good answer, because I hadn\'t actually decided. I audited every value on the live site and turned the inconsistencies into rules I could defend — which mattered later, when the creative director questioned a radius and I could show exactly how it scaled across every breakpoint.',
+        body: 'I mapped the IA in Figma first, then built the system: type, color, spacing, radius, meant to hold across every page. Three weeks in, a stakeholder asked why the Careers button looked different from Projects. I didn\'t have a good answer, because I hadn\'t actually decided. So I audited every value on the live site and turned the inconsistencies into rules I could defend. That mattered later, when the creative director questioned a radius and I could show exactly how it scaled across every breakpoint.',
         cta: { label: 'See my own design system →', url: 'design-system.html' },
       },
       {
         type: 'premier-images',
         images: [
-          { src: 'premier-careers.jpg', caption: 'Careers page — the system applied: 30px containers, 8px padding, full-bleed hero', frame: true },
+          { src: 'premier-careers.jpg', caption: 'Careers page, with the system applied: 30px containers, 8px padding, full-bleed hero', frame: true },
         ],
       },
       {
         type: 'chapter',
         label: 'CMS and motion',
         headline: 'Breaking the schema once, then trusting only one animation.',
-        body: 'My first CMS schema had one "photos" field per project — it broke on a project with eleven photos, a headshot, and a logo. I split it into separate fields and redesigned the overlay text for the worst photo in the set, not my favorite one. For motion, restraint: Wix\'s built-in scroll reveals everywhere, and exactly one custom Velo script — a number counter Wix doesn\'t support natively.',
+        body: 'My first CMS schema had one "photos" field per project. It broke on a project with eleven photos, a headshot, and a logo. I split it into separate fields and redesigned the overlay text for the worst photo in the set, not my favorite one. For motion, I stayed restrained: Wix\'s built-in scroll reveals everywhere, and exactly one custom Velo script, a number counter Wix doesn\'t support natively.',
       },
       {
         type: 'cms-map',
@@ -100,7 +100,7 @@ const PROJ = {
         type: 'premier-video',
         src: 'premier-animation.webm',
         label: 'Animation',
-        caption: 'Number counter — the one place custom Velo code was actually necessary',
+        caption: 'Number counter: the one place custom Velo code was actually necessary',
       },
       {
         type: 'premier-code-images',
@@ -108,13 +108,13 @@ const PROJ = {
           { src: 'premier-code-1.jpg', caption: 'Lines 1–45' },
           { src: 'premier-code-2.jpg', caption: 'Lines 46–66' },
         ],
-        label: 'Number counter — Velo / JavaScript',
+        label: 'Number counter: Velo / JavaScript',
       },
       {
         type: 'chapter',
         label: 'The pages',
         headline: 'Home leads with scale, Projects proves it.',
-        body: 'Homepage puts 850+ projects and 89M+ sq ft in front of a visitor before they scroll an inch. Projects carries the proof, filterable by sector. About, Careers, Blog, Contact, and Team all ship on the same system — copy written per section, then revised line by line with the creative director, which reshaped layout as much as word choice.',
+        body: 'Homepage puts 850+ projects and 89M+ sq ft in front of a visitor before they scroll an inch. Projects carries the proof, filterable by sector. About, Careers, Blog, Contact, and Team all ship on the same system. Copy was written per section, then revised line by line with the creative director, and that reshaped layout as much as word choice.',
       },
       {
         type: 'premier-home-split',
@@ -132,7 +132,7 @@ const PROJ = {
       {
         type: 'reflection',
         headline: 'What I\'d do differently',
-        body: 'I\'d lock the CMS structure before touching visual design — I built the style guide first and had to rework field types once real content arrived. I\'d get the creative director in the room earlier for copy, not just at the end. And I underestimated how long mobile nav takes to feel right.',
+        body: 'I\'d lock the CMS structure before touching visual design. I built the style guide first and had to rework field types once real content arrived. I\'d get the creative director in the room earlier for copy, not just at the end. And I underestimated how long mobile nav takes to feel right.',
       },
       {
         type: 'outcome',
@@ -189,7 +189,7 @@ const PROJ = {
             screenIndex: 0,
             label: 'Screen 1, Home',
             title: 'Trust signals before anything else.',
-            desc: '"Find a Family," not "Get Started" — a specific action, backed by a live verified-family count.',
+            desc: '"Find a Family," not "Get Started": a specific action, backed by a live verified-family count.',
             finding: '<strong>Finding:</strong> a visible user count before the CTA tripled proceed rate over copy alone.',
           },
           {
@@ -203,14 +203,14 @@ const PROJ = {
             screenIndex: 2,
             label: 'Screen 3, Map',
             title: 'Location, then date. Never both at once.',
-            desc: 'A bottom sheet slides up for date and time only after a location is chosen — two decisions, sequenced instead of stacked.',
+            desc: 'A bottom sheet slides up for date and time only after a location is chosen. Two decisions, sequenced instead of stacked.',
             finding: '<strong>Task completion:</strong> 67% → 100% after separating the two decisions.',
           },
           {
             screenIndex: 3,
             label: 'Screen 4, Send Request',
             title: 'One clear moment to review.',
-            desc: 'Phone numbers stay private until both sides confirm — a privacy note pulled straight from research.',
+            desc: 'Phone numbers stay private until both sides confirm, a privacy note pulled straight from research.',
             finding: '<strong>Post-send anxiety:</strong> 5 of 6 participants → 1 of 6 after adding this step.',
           },
           {
@@ -232,7 +232,7 @@ const PROJ = {
         type: 'chapter',
         label: 'Problem',
         headline: 'Every existing tool solved scheduling. None of them solved trust.',
-        body: 'A text, a shared map pin, whatever the school app showed — parents locked in a time and place while knowing almost nothing real about who they were sending their kid to. In 12 interviews, 78% named trust, not convenience, as their single biggest concern. That reframed the whole project: not a scheduling tool with a trust feature bolted on, but a trust tool that happened to need scheduling built in.',
+        body: 'A text, a shared map pin, whatever the school app showed. Parents locked in a time and place while knowing almost nothing real about who they were sending their kid to. In 12 interviews, 78% named trust, not convenience, as their single biggest concern. That reframed the whole project. It\'s not a scheduling tool with a trust feature bolted on, it\'s a trust tool that happened to need scheduling built in.',
       },
       {
         type: 'insights',
@@ -291,7 +291,7 @@ const PROJ = {
         type: 'chapter',
         label: 'Who I Designed For',
         headline: 'Primary Persona',
-        body: 'The person I kept designing for: a parent who wants their kid to have more social time, but slows down every time something feels unknown. Not overprotective — just missing information.',
+        body: 'The person I kept designing for: a parent who wants their kid to have more social time, but slows down every time something feels unknown. Not overprotective. Just missing information.',
       },
       {
         type: 'persona',
@@ -320,26 +320,26 @@ const PROJ = {
         headline: 'Key design decisions',
         steps: [
           { n: '01', title: 'Trust Score over a badge list', desc: 'Five separate badges (school linked, ID checked, background clear) got skipped past. Collapsed into one number, easier to process at a glance.' },
-          { n: '02', title: 'Adding the Trust Profile screen', desc: 'The original flow jumped straight from map to confirmation. Parents felt rushed — this screen is the moment to actually look at who they\'re contacting.' },
-          { n: '03', title: 'Calendar off the map', desc: 'V1 overlaid a calendar directly on the map — two decisions at once, and testing failed immediately. Moved the calendar into a bottom sheet, triggered after a location is chosen.' },
+          { n: '02', title: 'Adding the Trust Profile screen', desc: 'The original flow jumped straight from map to confirmation. Parents felt rushed, so this screen became the moment to actually look at who they\'re contacting.' },
+          { n: '03', title: 'Calendar off the map', desc: 'V1 overlaid a calendar directly on the map, two decisions at once, and testing failed immediately. Moved the calendar into a bottom sheet, triggered after a location is chosen.' },
           { n: '04', title: 'The explicit send step', desc: 'Parents landed on confirmation without consciously triggering it. Adding a review-and-send step dropped post-submission anxiety.' },
-          { n: '05', title: 'Confirmation rebuilt from scratch', desc: 'V1 showed three words on a dark screen — "it felt like nothing happened." Rebuilt with real color, full booking detail, and a pending state.' },
+          { n: '05', title: 'Confirmation rebuilt from scratch', desc: 'V1 showed three words on a dark screen. Testers said it felt like nothing had happened. Rebuilt with real color, full booking detail, and a pending state.' },
         ]
       },
       {
         type: 'decision',
-        before: 'Full calendar grid overlaid directly on top of the map — two decisions at once, users froze.',
+        before: 'Full calendar grid overlaid directly on top of the map. Two decisions at once, users froze.',
         after: 'Location first, then a bottom sheet slides up for date and time. Task completion: 3.4 minutes → 90 seconds.',
       },
 
       {
         type: 'reflection',
-        body: 'I built the Trust Score from research but didn\'t prototype it until week 4 — I should have gotten that in front of people sooner. The bigger gap is that there\'s nothing designed for what happens after the first playdate. A review system that feeds back into the Trust Score would make the whole thing better over time.',
+        body: 'I built the Trust Score from research but didn\'t prototype it until week 4. I should have gotten that in front of people sooner. The bigger gap is that there\'s nothing designed for what happens after the first playdate. A review system that feeds back into the Trust Score would make the whole thing better over time.',
       },
       {
         type: 'outcome',
         headline: 'Results',
-        body: '6 of 6 parents finished the core task in usability testing. 87 seconds average. Zero critical errors. Three called it warm without being asked — that wasn\'t in any brief. It came from the copy, the colours, and the confirmation screen.',
+        body: '6 of 6 parents finished the core task in usability testing. 87 seconds average. Zero critical errors. Three called it warm without being asked, and that wasn\'t in any brief. It came from the copy, the colours, and the confirmation screen.',
       },
     ]
   },
@@ -401,13 +401,13 @@ const PROJ = {
         type: 'chapter',
         label: 'The problem',
         headline: 'A century of machines, and no way to find your way through them.',
-        body: 'A static desktop website, printed room labels, and whichever staff member happened to be nearby — that was the whole guide. Front-desk staff fielded the same questions on repeat instead of doing the parts of their job that needed a person, and there was no data on what visitors were missing or why.',
+        body: 'A static desktop website, printed room labels, and whichever staff member happened to be nearby. That was the whole guide. Front-desk staff fielded the same questions on repeat instead of doing the parts of their job that needed a person, and there was no data on what visitors were missing or why.',
       },
       {
         type: 'chapter',
         label: 'Research',
         headline: 'Learning from four museums before building anything.',
-        body: 'Heuristic evaluation against four comparable apps — MoMA, The Met, Natural History Museum London, Designmuseum Danmark — scored on wayfinding, content depth, discoverability, and family use. Then 12 interviews and 20 on-site surveys to check the gaps I found actually matched what our visitors were struggling with.',
+        body: 'Heuristic evaluation against four comparable apps (MoMA, The Met, Natural History Museum London, Designmuseum Danmark), scored on wayfinding, content depth, discoverability, and family use. Then 12 interviews and 20 on-site surveys to check the gaps I found actually matched what our visitors were struggling with.',
       },
       {
         type: 'insights',
@@ -466,7 +466,7 @@ const PROJ = {
         type: 'chapter',
         label: 'IA',
         headline: 'Card sort to four tabs.',
-        body: 'Card sort with 48 items and 8 people. Four clusters came out cleanly: Home, History, Events, Map. The decade timeline — 1900 through 1970, each era showing one hero machine — came out of the IA work and ended up being the thing that made the app feel different.',
+        body: 'Card sort with 48 items and 8 people. Four clusters came out cleanly: Home, History, Events, Map. The decade timeline (1900 through 1970, each era showing one hero machine) came out of the IA work and ended up being the thing that made the app feel different.',
       },
       {
         type: 'artifacts',
@@ -508,13 +508,13 @@ const PROJ = {
         type: 'chapter',
         label: 'Design',
         headline: 'A blueprint, not a brochure.',
-        body: 'Technical grid lines, monospaced type, cobalt blue on off-white — everything referencing the engineering precision of the collection itself. The decade timeline was the signature interaction, prototyped across 3 rounds: tap a decade, one hero object, no scrolling required.',
+        body: 'Technical grid lines, monospaced type, cobalt blue on off-white. Everything references the engineering precision of the collection itself. The decade timeline was the signature interaction, prototyped across 3 rounds: tap a decade, one hero object, no scrolling required.',
       },
       {
         type: 'chapter',
         label: 'The four tabs',
-        headline: 'Home, History, Events, Map — one job each.',
-        body: 'History: four decade tabs, tap one for a hero machine and a link into the collection. Events: current exhibitions with a one-tap path to booking. Exhibits: era, category, and plain-language description — everything a wall label has no room for. Map: floor plan with exhibit pins, plus a one-tap family route through the collection, something none of the four competitor apps had solved.',
+        headline: 'Home, History, Events, Map. One job each.',
+        body: 'History: four decade tabs, tap one for a hero machine and a link into the collection. Events: current exhibitions with a one-tap path to booking. Exhibits: era, category, and plain-language description, everything a wall label has no room for. Map: floor plan with exhibit pins, plus a one-tap family route through the collection, something none of the four competitor apps had solved.',
       },
       {
         type: 'phones',
@@ -547,7 +547,7 @@ const PROJ = {
 
       {
         type: 'reflection',
-        body: '40 screens before I got external feedback on the nav. If I\'d done that card sort review at week 3 instead of week 6, I would have caught a nav overlap between History and Exhibits much earlier. The map is also where I\'d spend more time — hardest to build, and the thing visitors cared about most.',
+        body: '40 screens before I got external feedback on the nav. If I\'d done that card sort review at week 3 instead of week 6, I would have caught a nav overlap between History and Exhibits much earlier. The map is also where I\'d spend more time: hardest to build, and the thing visitors cared about most.',
       },
       {
         type: 'outcome',
@@ -589,7 +589,7 @@ const PROJ = {
         type: 'chapter',
         label: 'Screens',
         headline: 'Three states',
-        body: 'Three screens: playback with Digital Crown scrub, a browse and queue screen, and a full UI overview. Playback took the most rounds to get right — scrub control at 41mm is harder than it sounds.',
+        body: 'Three screens: playback with Digital Crown scrub, a browse and queue screen, and a full UI overview. Playback took the most rounds to get right. Scrub control at 41mm is harder than it sounds.',
       },
       {
         type: 'watches',
@@ -649,8 +649,8 @@ const PROJ = {
 
       {
         type: 'decision',
-        before: 'Horizontal swipe navigation between videos — a natural phone pattern that conflicts with the watch\'s system-level swipe-to-dismiss.',
-        after: 'Digital Crown as the primary content axis — queue, scrub, and volume all on the crown. Swipes reserved for confirmations and back navigation only.',
+        before: 'Horizontal swipe navigation between videos. A natural phone pattern, but it conflicts with the watch\'s system-level swipe-to-dismiss.',
+        after: 'Digital Crown as the primary content axis: queue, scrub, and volume all on the crown. Swipes reserved for confirmations and back navigation only.',
       },
       {
         type: 'reflection',
@@ -1200,19 +1200,19 @@ function buildCS(id) {
       const WF_ANNS = [
         {
           ctx: 'First thing the participant sees. No explanation, no onboarding. Just the number of verified families and one button. That number is doing a lot of work.',
-          tap: '<strong>Tap "Find a Family"</strong> — the single CTA. The screen was designed so this is the only decision. No sign-up form, no feature list.',
+          tap: '<strong>Tap "Find a Family"</strong>, the single CTA. The screen is built so this is the only decision on it. No sign-up form, no feature list.',
         },
         {
           ctx: 'V1 didn\'t have this screen. Participants would stall before sending because they had no way to evaluate the other family. The Trust Score, shared connections, background check, all visible before you commit to anything.',
-          tap: '<strong>Tap "Send Playdate Request"</strong> — the CTA at the bottom. The participant can read the Trust Score (94/100), see 3 mutual families, and see the background check status before tapping.',
+          tap: '<strong>Tap "Send Playdate Request"</strong>, the CTA at the bottom. The participant can read the Trust Score (94/100), see 3 mutual families, and see the background check status before tapping.',
         },
         {
           ctx: 'V1 had the calendar sitting on top of the map. Two decisions at once. Participants froze. Now you pick the location first, then the date slides up.',
-          tap: '<strong>Tap a location pin</strong> on the map — the active pin is highlighted with a pulse ring. The bottom sheet with date and time only appears after a pin is selected.',
+          tap: '<strong>Tap a location pin</strong> on the map. The active pin gets a pulse ring. The bottom sheet with date and time only shows up after a pin is picked.',
         },
         {
           ctx: 'In V1 the flow jumped from the map to a confirmation screen without this step. Participants had sent a request without consciously choosing to. This screen gives one moment to review everything.',
-          tap: '<strong>Tap "Send Request"</strong> — after reviewing the location, date, recipient, and privacy note. This is the explicit commitment moment the original flow skipped.',
+          tap: '<strong>Tap "Send Request"</strong>, after reviewing the location, date, recipient, and privacy note. This is the explicit commitment moment the original flow skipped.',
         },
         {
           ctx: 'Task done. Original confirmation was three words. People said it felt like nothing happened. This version shows the full booking and a pending status so you know the other family hasn\'t replied yet.',
