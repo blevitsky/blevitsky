@@ -2750,6 +2750,10 @@ body.ui-mode .h-badge{background:var(--mint)}
 .cs-reflection-text strong{color:#fff}
 
 /* Process artifact pill row */
+.cs-artifacts-label{
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink60);margin-bottom:12px;
+}
 .cs-artifacts{
   display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 32px;
 }

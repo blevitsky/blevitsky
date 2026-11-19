@@ -60,6 +60,7 @@ function buildCS(id) {
         <div class="cs-role-item"><div class="cs-role-label">Year</div><div class="cs-role-value">${p.year}</div></div>
         ${typeLabel ? `<div class="cs-role-item"><div class="cs-role-label">Type</div><div class="cs-role-value">${typeLabel}</div></div>` : ''}
         <div class="cs-role-item"><div class="cs-role-label">Client</div><div class="cs-role-value">${p.client}</div></div>
+        ${p.team ? `<div class="cs-role-item"><div class="cs-role-label">Team</div><div class="cs-role-value">${p.team.join(', ')}</div></div>` : ''}
         <div class="cs-role-item"><div class="cs-role-label">Tools</div><div class="cs-role-value">${p.tags.slice(0,3).join(', ')}</div></div>
       </div>
       ${p.downloadUrl ? `<a class="cs-hero-download" href="${p.downloadUrl}" download onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download case study (PDF)</a>` : ''}
@@ -376,7 +377,7 @@ function buildCS(id) {
           <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg>
           ${item}
         </span>`).join('');
-      html += `<div class="cs-artifacts cs-block">${pills}</div>`;
+      html += `<div class="cs-block">${s.heading ? `<div class="cs-artifacts-label">${s.heading}</div>` : ''}<div class="cs-artifacts">${pills}</div></div>`;
     }
     else if (s.type === 'reflection') {
       html += `

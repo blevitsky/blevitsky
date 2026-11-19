@@ -16,14 +16,25 @@
     "HTML/CSS/JS Prototype",
     "Service Design"
   ],
-  "cover": "soothe-video-poster.jpg",
-  "hero": "soothe-video-poster.jpg",
+  "cover": "soothe-hero-desktop.jpg",
+  "hero": "soothe-hero-desktop.jpg",
   "nextId": "safeplay",
   "sections": [
     {
       "type": "intro",
       "headline": "Four in ten students who need support never go looking for it.",
       "body": "Soothe came out of Michigan's Business + Tech Innovation Jam, pitched to judges after one weekend. I led UX for a five-person team. Before any of us sketched a screen, we surveyed 34 students and sat down with 5 of them for longer interviews. The thing that reframed the whole project: this isn't a supply problem. Most campuses already fund some kind of peer support. The gap is that nobody makes it to the front door."
+    },
+    {
+      "type": "artifacts",
+      "items": [
+        "Benjamin Levitsky — UX Design Lead, Senior, Design",
+        "Julian Liao — Project Manager, Senior, UX Design",
+        "Amy Rodriguez — Generalist, Masters, UX Design",
+        "Swathi Seshadri — Technician, Sophomore, Computer Science",
+        "Lucy Wang — Analyst, Freshman, Biochemistry & Economics"
+      ],
+      "heading": "The team"
     },
     {
       "type": "role-bar",
@@ -55,16 +66,6 @@
       "label": "The assignment",
       "headline": "The Jam doesn't grade a mockup. It grades whether the idea survives a judge asking \"so what?\"",
       "body": "The Business + Tech Innovation Jam is Michigan's weekend-long pitch competition, open across business, engineering, and design programs. The brief is broader than a UX project: find a real problem, back it with actual research instead of a hunch, design and build something that demonstrates the solution, and then defend the whole thing, business model included, in front of judges who are explicitly there to find the hole in your pitch. Design, technical build, and business case all had to hold up in the same ten minutes. That's why this case study has a pricing slide in it and not just screens."
-    },
-    {
-      "type": "artifacts",
-      "items": [
-        "Benjamin Levitsky — UX Design Lead, Senior, Design",
-        "Julian Liao — Project Manager, Senior, UX Design",
-        "Amy Rodriguez — Generalist, Masters, UX Design",
-        "Swathi Seshadri — Technician, Sophomore, Computer Science",
-        "Lucy Wang — Analyst, Freshman, Biochemistry & Economics"
-      ]
     },
     {
       "type": "chapter",
@@ -338,5 +339,12 @@
       "headline": "We're the one product in this category whose success looks like churn.",
       "body": "Soothe's mission note says it plainly: we offer accessible support, and users stay because they find a circle worth staying in, not because we've engineered them to need us. A healthy user eventually needs the product less. Most products in this space optimize against that. We wrote it into the pitch on purpose. The prototype above is the actual build, not a recording, you can walk through the exact onboarding and matching flow the judges saw."
     }
+  ],
+  "team": [
+    "Ben (me)",
+    "Julian",
+    "Amy",
+    "Swathi",
+    "Lucy"
   ]
 }
