@@ -712,7 +712,7 @@ function buildCS(id) {
       html += `
         <div class="cs-block cs-block--first cs-split">
           <div class="cs-split-l">
-            <h2 class="cs-intro-h"><span class="cs-ch-lead">The brief.</span> ${s.headline}</h2>
+            <h2 class="cs-intro-h">${s.headline}</h2>
           </div>
           <div class="cs-split-r">${paras}</div>
         </div>`;
@@ -733,7 +733,7 @@ function buildCS(id) {
       html += `
         <div class="cs-block cs-split">
           <div class="cs-split-l">
-            <h2 class="cs-ch-h"><span class="cs-ch-lead">${s.label}.</span> ${s.headline}</h2>
+            <h2 class="cs-ch-h">${s.headline}</h2>
           </div>
           <div class="cs-split-r">
             ${paras}
@@ -779,7 +779,7 @@ function buildCS(id) {
         </div>`).join('');
       html += `
         <div class="cs-block">
-          <h2 class="cs-ch-h"><span class="cs-ch-lead">${s.label}.</span> ${s.headline}</h2>
+          <h2 class="cs-ch-h">${s.headline}</h2>
           <div class="cs-timeline">${stepsH}</div>
         </div>`;
     }
@@ -1298,7 +1298,7 @@ function buildCS(id) {
         html += `
         <div class="cs-block cs-outcome-banner" style="display:flex;align-items:center;gap:56px;flex-wrap:wrap">
           <div style="flex:1;min-width:280px">
-            <p class="cs-ob-text"><span class="cs-ob-lead">Outcome.</span> ${s.headline}</p>
+            <p class="cs-ob-text">${s.headline}</p>
             <p class="cs-ob-sub">${s.body}</p>
           </div>
           <div style="position:relative;text-align:center;flex:none;width:220px">
@@ -1315,7 +1315,7 @@ function buildCS(id) {
       } else {
         html += `
         <div class="cs-block cs-outcome-banner">
-          <p class="cs-ob-text"><span class="cs-ob-lead">Outcome.</span> ${s.headline}</p>
+          <p class="cs-ob-text">${s.headline}</p>
           <p class="cs-ob-sub">${s.body}</p>
         </div>`;
       }

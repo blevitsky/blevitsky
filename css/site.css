@@ -1007,13 +1007,6 @@ body.ui-mode .h-badge{background:var(--mint)}
   box-sizing:border-box;
 }
 
-/* ── Chapter lead-in — run-in phrase at the start of the heading,
-   not a separate uppercase eyebrow line ── */
-.cs-ch-lead{
-  color:var(--cs-accent-dark, var(--cs-accent, var(--coral-text)));
-  font-weight:700;
-}
-
 /* ── Headings — soft weight, reads as a caption for the
    prose beside it rather than a competing display line ── */
 .cs-ch-h{
@@ -1577,10 +1570,6 @@ body.ui-mode .h-badge{background:var(--mint)}
   background:radial-gradient(circle,rgba(29,233,182,.12),transparent 70%);
   right:-100px;bottom:-120px;
   pointer-events:none;
-}
-.cs-ob-lead{
-  color:var(--cs-accent, #1DE9B6);
-  font-weight:700;
 }
 .cs-ob-text{
   font-family:var(--f-head);
