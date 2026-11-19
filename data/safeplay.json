@@ -1,0 +1,273 @@
+{
+  "title": "Safeplay",
+  "sub": "Mobile App Design, iOS",
+  "client": "Conceptual Project",
+  "year": "2025",
+  "provenance": {
+    "type": "school",
+    "label": "School Project — University of Michigan (UX coursework)"
+  },
+  "logo": "logo-umich.png",
+  "accentColor": "#C13D2C",
+  "accentColorDark": "#DB6D5F",
+  "tags": [
+    "Mobile UX",
+    "iOS Design",
+    "User Research"
+  ],
+  "cover": "safeplay.png",
+  "externalLink": "",
+  "nextId": "denmark",
+  "sections": [
+    {
+      "type": "intro",
+      "headline": "What parents actually needed wasn't another scheduling app.",
+      "body": "Parents text back and forth, share Google Maps links, check school apps. By the time a playdate is set, nobody has actually learned anything about the other family."
+    },
+    {
+      "type": "role-bar",
+      "items": [
+        {
+          "label": "My Role",
+          "value": "Solo UX Designer, end to end"
+        },
+        {
+          "label": "Methods",
+          "value": "Interviews, affinity mapping, JTBD, paper prototyping, usability testing"
+        },
+        {
+          "label": "Tools",
+          "value": "Figma, FigJam, Maze"
+        },
+        {
+          "label": "Duration",
+          "value": "6 weeks"
+        },
+        {
+          "label": "Type",
+          "value": "Conceptual iOS app"
+        }
+      ]
+    },
+    {
+      "type": "chapter",
+      "label": "Problem",
+      "headline": "Every existing tool solved scheduling. None of them solved trust.",
+      "body": "A text, a shared map pin, whatever the school app showed. Parents locked in a time and place while knowing almost nothing real about who they were sending their kid to. In 12 interviews, 78% named trust, not convenience, as their single biggest concern. That reframed the whole project. It's not a scheduling tool with a trust feature bolted on, it's a trust tool that happened to need scheduling built in."
+    },
+    {
+      "type": "insights",
+      "items": [
+        {
+          "n": "78%",
+          "text": "Named <strong>trust and identity</strong> as their primary barrier, not scheduling, not logistics"
+        },
+        {
+          "n": "67%",
+          "text": "Said they'd used <strong>3 or more apps</strong> to coordinate a single playdate"
+        },
+        {
+          "n": "91%",
+          "text": "Wanted the ability to <strong>cancel without an awkward conversation</strong>"
+        },
+        {
+          "n": "4",
+          "text": "Distinct clusters from affinity mapping: <strong>trust, communication, logistics, safety</strong>"
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "I just need to know who these people are before I say yes. Everything else is easy.",
+      "attr": "Parent, Chicago North Shore, research interview"
+    },
+    {
+      "type": "affinity-map",
+      "title": "Affinity Map, 140 observations clustered from 12 interviews",
+      "sub": "Raw quotes and behaviours grouped into 4 themes. Every design decision traces back to one of these clusters.",
+      "clusters": [
+        {
+          "label": "Trust and Identity",
+          "notes": [
+            "\"How do I know they're who they say they are?\"",
+            "School connection makes a stranger feel less strange",
+            "Background check would make me much more comfortable"
+          ]
+        },
+        {
+          "label": "Communication Friction",
+          "notes": [
+            "Hate giving my personal number to someone I don't know",
+            "\"Just tell me what app to use and I'll use it\"",
+            "Coordination takes longer than the actual playdate"
+          ]
+        },
+        {
+          "label": "Logistics and Planning",
+          "notes": [
+            "Location decision is always the hardest part",
+            "Playgrounds near school feel safer than random spots",
+            "\"Who's responsible if something goes wrong?\""
+          ]
+        },
+        {
+          "label": "Safety and Exit",
+          "notes": [
+            "I need to be able to cancel without a weird conversation",
+            "Safety concern is number 1, scheduling is number 10",
+            "Supervision expectations are never clearly discussed"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "chapter",
+      "label": "Who I designed for",
+      "headline": "The parent who hesitates, not the one who doesn't care.",
+      "body": "The person I kept designing for: a parent who wants their kid to have more social time, but slows down every time something feels unknown. Not overprotective. Just missing information."
+    },
+    {
+      "type": "persona",
+      "initial": "JM",
+      "name": "Jamie M., 34",
+      "role": "Parent of two kids, Lincoln Park, Chicago",
+      "traits": [
+        "Works full-time",
+        "Organises most playdates herself",
+        "Uses 3 school apps",
+        "High trust threshold"
+      ],
+      "quote": "I want Emma to have more friends but I'm not going to hand my number to a stranger just because their kid is in the same class. I need to know something about them first."
+    },
+    {
+      "type": "artifacts",
+      "items": [
+        "Jobs-to-be-done statements",
+        "Affinity map (140 observations)",
+        "User flow map",
+        "Competitive audit (4 apps)",
+        "Paper prototypes (3 flows)",
+        "22-screen Figma prototype",
+        "6-session usability test"
+      ]
+    },
+    {
+      "type": "wireframe-proto"
+    },
+    {
+      "type": "chapter",
+      "label": "Process",
+      "headline": "How the design came together",
+      "body": "Two things from research drove the whole design: <strong>\"I need to know who this family is\"</strong> and <strong>\"I need to be able to cancel without it being awkward.\"</strong> I sketched three flows, tested two of them with 4 parents. Same problem every time: nobody could tell if a request was pending or confirmed. I'd rather find that out on paper in week two than in a dev handoff in week six, so I test sketches before anything gets polished."
+    },
+    {
+      "type": "timeline",
+      "label": "How the design evolved",
+      "headline": "Key design decisions",
+      "steps": [
+        {
+          "n": "01",
+          "title": "Trust Score over a badge list",
+          "desc": "Five separate badges (school linked, ID checked, background clear) got skipped past. Collapsed into one number, easier to process at a glance."
+        },
+        {
+          "n": "02",
+          "title": "Adding the Trust Profile screen",
+          "desc": "The original flow jumped straight from map to confirmation. Parents felt rushed, so this screen became the moment to actually look at who they're contacting."
+        },
+        {
+          "n": "03",
+          "title": "Calendar off the map",
+          "desc": "V1 overlaid a calendar directly on the map, two decisions at once, and testing failed immediately. Moved the calendar into a bottom sheet, triggered after a location is chosen."
+        },
+        {
+          "n": "04",
+          "title": "The explicit send step",
+          "desc": "Parents landed on confirmation without consciously triggering it. Adding a review-and-send step dropped post-submission anxiety."
+        },
+        {
+          "n": "05",
+          "title": "Confirmation rebuilt from scratch",
+          "desc": "V1 showed three words on a dark screen. Testers said it felt like nothing had happened. Rebuilt with real color, full booking detail, and a pending state."
+        }
+      ]
+    },
+    {
+      "type": "decision",
+      "before": "Full calendar grid overlaid directly on top of the map. Two decisions at once, users froze.",
+      "after": "Location first, then a bottom sheet slides up for date and time. Task completion: 3.4 minutes → 90 seconds."
+    },
+    {
+      "type": "reflection",
+      "body": "I built the Trust Score from research but didn't prototype it until week 4. I should have gotten that in front of people sooner. The bigger gap is that there's nothing designed for what happens after the first playdate. A review system that feeds back into the Trust Score would make the whole thing better over time."
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "n": "12",
+          "l": "Parents interviewed in structured 45-min sessions"
+        },
+        {
+          "n": "78%",
+          "l": "Named trust as their single biggest concern"
+        },
+        {
+          "n": "22",
+          "l": "Linked screens in the final Figma prototype"
+        }
+      ]
+    },
+    {
+      "type": "sp-screens",
+      "steps": [
+        {
+          "screenIndex": 0,
+          "label": "Screen 1, Home",
+          "title": "Trust signals before anything else.",
+          "desc": "\"Find a Family,\" not \"Get Started\": a specific action, backed by a live verified-family count.",
+          "finding": "<strong>Finding:</strong> a visible user count before the CTA tripled proceed rate over copy alone."
+        },
+        {
+          "screenIndex": 1,
+          "label": "Screen 2, Trust Profile",
+          "title": "One trust score, not five badges.",
+          "desc": "School, background check, reviews, and mutual connections collapsed into one number, readable in under two seconds.",
+          "finding": "<strong>V1 finding:</strong> \"I felt like I was handing my kid to a stranger.\" This screen resolves that before any CTA."
+        },
+        {
+          "screenIndex": 2,
+          "label": "Screen 3, Map",
+          "title": "Location, then date. Never both at once.",
+          "desc": "A bottom sheet slides up for date and time only after a location is chosen. Two decisions, sequenced instead of stacked.",
+          "finding": "<strong>Task completion:</strong> 67% → 100% after separating the two decisions."
+        },
+        {
+          "screenIndex": 3,
+          "label": "Screen 4, Send Request",
+          "title": "One clear moment to review.",
+          "desc": "Phone numbers stay private until both sides confirm, a privacy note pulled straight from research.",
+          "finding": "<strong>Post-send anxiety:</strong> 5 of 6 participants → 1 of 6 after adding this step."
+        },
+        {
+          "screenIndex": 4,
+          "label": "Screen 5, Confirmation",
+          "title": "A confirmation that shows the full picture.",
+          "desc": "Full booking detail, a pending status, and real color instead of three flat words on a blank screen.",
+          "finding": "<strong>Tone:</strong> 3 of 6 participants called it \"warm,\" unprompted."
+        }
+      ]
+    },
+    {
+      "type": "chapter",
+      "label": "Testing",
+      "headline": "6 parents, one task",
+      "body": "Find a playground, check a family profile, send a request. All 6 finished. 87 seconds average. Zero critical errors. Three used the word \"warm\" unprompted."
+    },
+    {
+      "type": "outcome",
+      "headline": "6 for 6, 87 seconds average.",
+      "body": "Every parent finished the core task in usability testing. Zero critical errors. Three called it warm without being asked, and that wasn't in any brief. It came from the copy, the colours, and the confirmation screen."
+    }
+  ]
+}

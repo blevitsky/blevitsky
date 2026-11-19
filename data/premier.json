@@ -1,0 +1,199 @@
+{
+  "id": "premier",
+  "title": "PREMIER Design + Build Group",
+  "logo": "logo-premier.png",
+  "name": "PREMIER Design + Build Group",
+  "client": "PREMIER Design + Build Group",
+  "sub": "Full website redesign & rebrand, end to end · 3 months",
+  "provenance": {
+    "type": "internship",
+    "label": "Internship — PREMIER Design + Build Group"
+  },
+  "accentColor": "#174D7B",
+  "accentColorDark": "#3C92DB",
+  "year": "2026",
+  "tags": [
+    "Web Design",
+    "Wix Studio / Velo",
+    "CMS",
+    "Responsive",
+    "Brand"
+  ],
+  "externalLink": "https://pdbmarketing.wixstudio.com/sandboxsite",
+  "downloadUrl": "premier-case-study.pdf",
+  "cover": "premier-mockup.jpg",
+  "hero": "premier-mockup.jpg",
+  "nextId": "soothe",
+  "sections": [
+    {
+      "type": "intro",
+      "headline": "Full website redesign for a national general contractor.",
+      "body": "PREMIER Design + Build Group has 850+ completed projects, 89M+ square feet built, 8 offices, and 150+ employee owners. When I started as their Web Development Intern, I got to own a full redesign and rebrand from wireframe to launch. The old site led with the employees. I made it lead with the work. Three months, start to finish. Every page in the nav shipped. I'd never built inside a CMS or Wix Studio before this project."
+    },
+    {
+      "type": "role-bar",
+      "items": [
+        {
+          "label": "My Role",
+          "value": "Web Development Intern"
+        },
+        {
+          "label": "Tools",
+          "value": "Wix Studio, Velo (JavaScript), Figma, CMS"
+        },
+        {
+          "label": "Timeline",
+          "value": "3 months, full-time internship"
+        },
+        {
+          "label": "Type",
+          "value": "Live professional website"
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "centerpiece": true,
+      "items": [
+        {
+          "n": "3300px → 390px",
+          "l": "One responsive system, one build"
+        },
+        {
+          "n": "3 months",
+          "l": "Wireframe to launch, full-time"
+        },
+        {
+          "n": "80+",
+          "l": "Projects restructured into the new CMS"
+        },
+        {
+          "n": "7",
+          "l": "Pages designed and shipped, one system"
+        }
+      ]
+    },
+    {
+      "type": "before-after",
+      "beforeSrc": "premier-team-legacy.jpg",
+      "afterSrc": "premier-team-redesign.jpg",
+      "beforeLabel": "Before",
+      "afterLabel": "After",
+      "caption": "The National Leadership team page. That muted, stock-photo blue treatment was the old site. Drag to reveal the current redesign."
+    },
+    {
+      "type": "chapter",
+      "label": "The problem",
+      "headline": "The old site was costing PREMIER business, and nobody could prove it.",
+      "body": "A hundreds-of-millions-a-year contractor with 850+ completed projects had a static, employee-first homepage that buried the portfolio three clicks deep. Zero evidence of scale, for a company whose whole pitch is \"we've built this before.\" Worse, the site had no structure for it: eight market sectors, no way to filter, no path from \"I'm a hospital developer\" to PREMIER's healthcare work."
+    },
+    {
+      "type": "premier-video",
+      "src": "premier-walkthrough.webm",
+      "label": "Site walkthrough",
+      "caption": "Homepage → market sector → project page"
+    },
+    {
+      "type": "chapter",
+      "label": "Building the system",
+      "headline": "I didn't know what a design system was for until I had to defend one.",
+      "body": "I mapped the IA in Figma first, then built the system: type, color, spacing, radius, meant to hold across every page. Three weeks in, a stakeholder asked why the Careers button looked different from Projects. I didn't have a good answer, because I hadn't actually decided. So I audited every value on the live site and turned the inconsistencies into rules I could defend. That mattered later, when the creative director questioned a radius and I could show exactly how it scaled across every breakpoint. That's generally how I work now: lock the boring rules early, so I'm not re-litigating the same decision on page six.",
+      "cta": {
+        "label": "See my own design system →",
+        "url": "design-system.html"
+      }
+    },
+    {
+      "type": "premier-images",
+      "images": [
+        {
+          "src": "premier-careers.jpg",
+          "caption": "Careers page, with the system applied: 30px containers, 8px padding, full-bleed hero",
+          "frame": true
+        }
+      ]
+    },
+    {
+      "type": "chapter",
+      "label": "CMS and motion",
+      "headline": "Breaking the schema once, then trusting only one animation.",
+      "body": "My first CMS schema had one \"photos\" field per project. It broke on a project with eleven photos, a headshot, and a logo. I split it into separate fields and redesigned the overlay text for the worst photo in the set, not my favorite one. For motion, I stayed restrained: Wix's built-in scroll reveals everywhere, and exactly one custom Velo script, a number counter Wix doesn't support natively."
+    },
+    {
+      "type": "cms-map",
+      "beforeImg": "premier-cms-backend.jpg",
+      "afterImg": "premier-projects-grid.jpg",
+      "beforeLabel": "CMS backend",
+      "afterLabel": "Live result",
+      "rows": [
+        {
+          "field": "Title field",
+          "result": "Card headline"
+        },
+        {
+          "field": "Photo gallery field",
+          "result": "Background image"
+        },
+        {
+          "field": "Description field",
+          "result": "Overlay caption"
+        }
+      ]
+    },
+    {
+      "type": "premier-video",
+      "src": "premier-animation.webm",
+      "label": "Animation",
+      "caption": "Number counter: the one place custom Velo code was actually necessary"
+    },
+    {
+      "type": "premier-code-images",
+      "images": [
+        {
+          "src": "premier-code-1.jpg",
+          "caption": "Lines 1–45"
+        },
+        {
+          "src": "premier-code-2.jpg",
+          "caption": "Lines 46–66"
+        }
+      ],
+      "label": "Number counter: Velo / JavaScript"
+    },
+    {
+      "type": "chapter",
+      "label": "The pages",
+      "headline": "Home leads with scale, Projects proves it.",
+      "body": "Homepage puts 850+ projects and 89M+ sq ft in front of a visitor before they scroll an inch. Projects carries the proof, filterable by sector. About, Careers, Blog, Contact, and Team all ship on the same system. I wrote the copy per section, then went line by line with the creative director. Half those edits changed the layout, not just the words."
+    },
+    {
+      "type": "premier-home-split",
+      "img": "premier-home.jpg",
+      "thumbCaption": "Home page, full length",
+      "video": "premier-home.webm"
+    },
+    {
+      "type": "premier-home-split",
+      "img": "premier-projects-page.png",
+      "thumbCaption": "Projects page, full length",
+      "video": "premier-projects.webm",
+      "mirror": true
+    },
+    {
+      "type": "reflection",
+      "headline": "What I'd do differently",
+      "body": "I'd lock the CMS structure before touching visual design. I built the style guide first and had to rework field types once real content arrived. I'd get the creative director in the room earlier for copy, not just at the end. And I underestimated how long mobile nav takes to feel right."
+    },
+    {
+      "type": "outcome",
+      "headline": "It's live. All of it.",
+      "body": "Every page in that nav is real and shipped, not a mockup. The marketing team can update content without touching code, the design system holds from a 390px phone to a 3300px monitor, and the projects filter actually works. Somewhere right now, a prospective client for a multi-million-dollar build is scrolling through something I built.",
+      "link": {
+        "label": "View live site →",
+        "url": "https://pdbmarketing.wixstudio.com/sandboxsite"
+      },
+      "img": "premier-internship-selfie.jpg",
+      "imgCaption": "Outside the office on my last day of the internship"
+    }
+  ]
+}

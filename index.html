@@ -306,22 +306,11 @@ window.IMG_BASE = 'images/';
 </script>
 <script src="js/site.js?v=20260930h"></script>
 <script>
-// Re-root PROJ image fields to the images/ folder without editing every path by hand.
-(function(){
-  function rootImg(v){ return (typeof v === 'string' && v && !v.startsWith('http') && !v.startsWith('images/')) ? ('images/' + v) : v; }
-  Object.values(PROJ).forEach(p => {
-    ['cover','hero','downloadUrl','logo'].forEach(k => { if (p[k]) p[k] = rootImg(p[k]); });
-    (p.sections||[]).forEach(s => {
-      ['_img','img','video','src','beforeSrc','afterSrc','beforeImg','afterImg'].forEach(k => { if (s[k]) s[k] = rootImg(s[k]); });
-      if (s.desktop) s.desktop.src = rootImg(s.desktop.src);
-      if (s.mobile)  s.mobile.src  = rootImg(s.mobile.src);
-      if (s.images)  s.images.forEach(im => { if (im.src) im.src = rootImg(im.src); });
-      if (s.imgs)    s.imgs.forEach(im => { if (im.src) im.src = rootImg(im.src); });
-    });
-  });
-})();
-// Deep link: index.html?case=premier opens that case study on load
-(function(){
+// Deep link: index.html?case=premier opens that case study on load.
+// Image re-rooting now happens inside site.js itself, right as each
+// project's data/*.json loads, so it's safe to just wait on it here.
+(async function(){
+  await PROJ_READY;
   const id = new URLSearchParams(location.search).get('case');
   if (id && PROJ[id]) openProj(id);
 })();
