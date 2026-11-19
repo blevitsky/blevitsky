@@ -140,6 +140,11 @@
       "quote": "I know help exists. I just don't have the energy to go find it."
     },
     {
+      "type": "quote",
+      "text": "Current companies remove the price or the waitlist. Soothe removes both, along with the judgment.",
+      "attr": "Our value proposition, from the pitch"
+    },
+    {
       "type": "chapter",
       "label": "Three features",
       "headline": "Every feature had to answer one question before it earned a screen.",
@@ -221,6 +226,79 @@
       "label": "Why not just use what already exists",
       "headline": "Self-guided apps, one big peer forum, or a waitlist. We didn't think any of the three was the actual gap.",
       "body": "Headspace, Calm, and Finch are self-guided, which is exactly why 41% of our survey falls back on them, they're low-effort, but they're also solo, and solo was the thing half our respondents said didn't work for them. TogetherAll runs real peer support, but it's one large undifferentiated community with no experience matching, so the 32% who couldn't find anyone relatable still can't find anyone relatable. Campus counseling is free and already paid for, and also waitlisted, which is the whole reason the other 41% never reach it in the first place. Soothe's pitch to the judges was narrow on purpose: we're the only one putting you with a person who has your specific experience, anonymously, from the first screen."
+    },
+    {
+      "type": "compare-table",
+      "cols": [
+        "Soothe",
+        "Togetherall",
+        "Finch",
+        "Headspace",
+        "Calm"
+      ],
+      "rows": [
+        {
+          "feature": "Mood tracker",
+          "vals": [
+            true,
+            false,
+            true,
+            true,
+            false
+          ]
+        },
+        {
+          "feature": "Information modules",
+          "vals": [
+            true,
+            false,
+            false,
+            true,
+            true
+          ]
+        },
+        {
+          "feature": "Peer support",
+          "vals": [
+            true,
+            true,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "feature": "AI chatbot",
+          "vals": [
+            true,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "feature": "Mental health exercises",
+          "vals": [
+            true,
+            false,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "feature": "Journaling",
+          "vals": [
+            true,
+            false,
+            true,
+            false,
+            false
+          ]
+        }
+      ],
+      "note": "Pulled straight from the competitor slide we pitched with. Soothe is the only one with an AI guide, and the only one pairing peer support with structured matching instead of one undifferentiated forum."
     },
     {
       "type": "chapter",

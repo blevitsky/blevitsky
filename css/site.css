@@ -3609,6 +3609,43 @@ body.ui-mode .h-badge{background:var(--mint)}
   .cs-cmsmap-result{grid-column:2;font-size:12px}
 }
 
+/* ── Competitor comparison table (Soothe) — a real feature
+   matrix instead of a prose list of competitors. ── */
+.cs-cmp-grid{
+  display:grid;align-items:center;
+  border-radius:16px;overflow:hidden;background:var(--ink06);
+  row-gap:1px;column-gap:1px;
+}
+.cs-cmp-feature,.cs-cmp-col-h,.cs-cmp-cell{
+  background:#fff;padding:12px 14px;
+}
+.cs-cmp-feature-h{background:transparent}
+.cs-cmp-col-h{
+  font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink60);text-align:center;
+}
+.cs-cmp-feature{font-size:13px;font-weight:600;color:var(--ink)}
+.cs-cmp-cell{display:flex;align-items:center;justify-content:center}
+.cs-cmp-check{width:18px;height:18px;color:var(--cs-accent,var(--coral))}
+.cs-cmp-dash{color:#ccc;font-size:14px}
+.cs-cmp-hero.cs-cmp-col-h{color:var(--cs-accent,var(--coral))}
+.cs-cmp-hero.cs-cmp-cell{background:color-mix(in srgb, var(--cs-accent,var(--coral)) 10%, #fff)}
+@media(max-width:640px){
+  .cs-cmp-scroll{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    margin:0 -4px;padding:0 4px 4px;
+  }
+  .cs-cmp-scroll::-webkit-scrollbar{height:0}
+  .cs-cmp-grid{font-size:12px;min-width:560px}
+  .cs-cmp-feature,.cs-cmp-col-h,.cs-cmp-cell{padding:9px 6px}
+  .cs-cmp-col-h{font-size:9.5px}
+  .cs-cmp-hint{
+    font-size:10.5px;color:var(--ink60);margin-bottom:8px;
+    display:flex;align-items:center;gap:5px;
+  }
+}
+.cs-cmp-hint{display:none}
+
 .cs-heur-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:28px 40px;
 }

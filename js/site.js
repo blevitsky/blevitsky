@@ -130,6 +130,26 @@ function buildCS(id) {
           <p class="cs-quote-attr">${s.attr}</p>
         </div>`;
     }
+    else if (s.type === 'compare-table') {
+      const checkSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="cs-cmp-check"><path d="M20 6 9 17l-5-5"/></svg>`;
+      const dashSvg = `<span class="cs-cmp-dash">—</span>`;
+      const headH = s.cols.map((c, ci) => `<div class="cs-cmp-col-h${ci===0 ? ' cs-cmp-hero' : ''}">${c}</div>`).join('');
+      const rowsH = s.rows.map(r => `
+        <div class="cs-cmp-feature">${r.feature}</div>
+        ${r.vals.map((v, ci) => `<div class="cs-cmp-cell${ci===0 ? ' cs-cmp-hero' : ''}">${v ? checkSvg : dashSvg}</div>`).join('')}`).join('');
+      html += `
+        <div class="cs-block cs-cmp">
+          <p class="cs-cmp-hint">Scroll to see every competitor →</p>
+          <div class="cs-cmp-scroll">
+            <div class="cs-cmp-grid" style="grid-template-columns:1.6fr repeat(${s.cols.length},1fr)">
+              <div class="cs-cmp-feature cs-cmp-feature-h"></div>
+              ${headH}
+              ${rowsH}
+            </div>
+          </div>
+          ${s.note ? `<p class="ba-caption">${s.note}</p>` : ''}
+        </div>`;
+    }
     else if (s.type === 'timeline') {
       const stepsH = s.steps.map(st => `
         <div class="cs-tl-step">
