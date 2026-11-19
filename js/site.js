@@ -18,7 +18,7 @@ const PROJ = {
     downloadUrl: 'premier-case-study.pdf',
     cover: 'premier-mockup.jpg',
     hero: 'premier-mockup.jpg',
-    nextId: 'safeplay',
+    nextId: 'soothe',
     sections: [
       {
         type: 'intro',
@@ -141,6 +141,106 @@ const PROJ = {
         link: { label: 'View live site →', url: 'https://pdbmarketing.wixstudio.com/sandboxsite' },
         img: 'premier-internship-selfie.jpg',
         imgCaption: 'Outside the office on my last day of the internship',
+      },
+    ],
+  },
+
+  /* ─── 0.5 SOOTHE ──────────────────────────────── */
+  soothe: {
+    id: 'soothe',
+    title: 'Soothe',
+    sub: 'Peer mental-health support app · Business + Tech Innovation Jam',
+    client: 'Business + Tech Innovation Jam',
+    provenance: { type: 'team', label: 'Team Project — Business + Tech Innovation Jam' },
+    accentColor: '#4B4268',
+    accentColorDark: '#C9BCEB',
+    year: '2026',
+    tags: ['Product Strategy', 'UX Research', 'HTML/CSS/JS Prototype', 'Service Design'],
+    cover: 'soothe-video-poster.jpg',
+    hero: 'soothe-video-poster.jpg',
+    nextId: 'safeplay',
+    sections: [
+      {
+        type: 'intro',
+        headline: 'Four in ten students who need support never go looking for it.',
+        body: 'Soothe came out of a Business + Tech Innovation Jam at Michigan, pitched to judges after one weekend. I led UX for a five-person team: a PM, a generalist designer, a CS student, and an economics/biochem double major. Before any of us sketched a screen, we surveyed 34 students and sat down with 5 of them for longer interviews. The thing that reframed the whole project: this isn\'t a supply problem. Most campuses already fund some kind of peer support. The gap is that nobody makes it to the front door.',
+      },
+      {
+        type: 'role-bar',
+        items: [
+          { label: 'My Role', value: 'UX Design Lead, 5-person team' },
+          { label: 'Research', value: '34-person survey, 5 in-depth interviews' },
+          { label: 'Build', value: 'Coded the interactive prototype, HTML/CSS/JS' },
+          { label: 'Timeline', value: 'Business + Tech Innovation Jam' },
+          { label: 'Type', value: 'Team project, pitched to judges' },
+        ]
+      },
+      {
+        type: 'chapter',
+        label: 'The problem',
+        headline: '71% already have access to support. 41% use none of it.',
+        body: 'Those two numbers from our own survey are what reframed the project in the first week. This isn\'t a resources-don\'t-exist problem, and it isn\'t really a cost problem either, only 21% named cost as the barrier. Half said shame or fear of judgment. Another quarter said the tools that do exist are confusing enough that they gave up looking. The people with the least to lose from a bad fit were the ones avoiding it hardest.',
+      },
+      {
+        type: 'stats',
+        centerpiece: true,
+        items: [
+          { n: '34', l: 'Students surveyed, 5 interviewed in depth' },
+          { n: '71%', l: 'Already have some kind of access to support' },
+          { n: '41%', l: 'Use none of it' },
+          { n: '50%', l: 'Cite shame or fear of judgment as the reason' },
+        ]
+      },
+      {
+        type: 'quote',
+        text: 'The stigma around seeking professional help is what has prohibited me from seeking it out. When you tell people you\'re in therapy, people assume one thing about you.',
+        attr: 'Jackson, research interview',
+      },
+      {
+        type: 'chapter',
+        label: 'Who we designed for',
+        headline: 'Richard doesn\'t want a clinician. He wants someone who\'s been there.',
+        body: 'Richard was our primary persona: a grad student working through a loss, uninsured, who knows help exists and doesn\'t have the energy left to go find it. Our two secondary personas, Tommy and Sophie, came from different situations entirely, one burning out, one who could afford therapy outright, but all three said close to the same thing in their interviews. None of them were looking for a clinician. All three were looking for a person who\'d been there.',
+      },
+      {
+        type: 'persona',
+        initial: 'R',
+        name: 'Richard, 27',
+        role: 'Grad student, Engineering, working through a loss',
+        traits: ['Uninsured', 'No energy left to search for help', 'Wants a peer, not a clinician', 'Knows resources exist in theory'],
+        quote: 'I know help exists. I just don\'t have the energy to go find it.',
+      },
+      {
+        type: 'chapter',
+        label: 'Three features',
+        headline: 'Every feature had to answer one question before it earned a screen.',
+        body: 'What barrier does this remove. If nobody on the team could answer that in one sentence, it didn\'t ship. <strong>Anonymous circles</strong>, small moderated groups with no name attached, for the 50% who said shame was the barrier. <strong>Experience matching</strong>, two survey questions instead of a profile to write, for the 32% who couldn\'t find anyone relatable. <strong>Guide</strong>, an AI companion that points you toward circles and small steps, for the 24% who found existing tools confusing. We deliberately didn\'t build an AI therapist. Research on unmoderated peer groups shows they can do real harm, so every circle stays small and has a moderator attached from day one.',
+      },
+      {
+        type: 'still-live',
+        appSrc: 'soothe/app.html',
+      },
+      {
+        type: 'chapter',
+        label: 'Designing around the risk',
+        headline: 'The riskiest part of Soothe isn\'t the tech. It\'s being mistaken for therapy.',
+        body: 'Three of our five interviewees rejected AI for mental health outright, the strongest pushback came from a psychology student, and that tracks with the wider data: Pew found 49% of 18-to-29-year-olds think chatbots do more harm than good for loneliness. So Guide never calls itself a therapist, "Need help" sits on every single screen, and anything serious routes straight to campus counseling or 988. Moderators can see an account only when a safety flag trips, never by default, because anonymity only works if people trust it, and trust only works if someone\'s actually watching for the moment it matters.',
+      },
+      {
+        type: 'chapter',
+        label: 'Why a university pays for it',
+        headline: 'We\'re not pitching a new budget line. We\'re pitching a better use of the one that already exists.',
+        body: 'UNLV charges students a $66-per-semester mental health fee starting FY27. WashU signed a $500,000 one-year telehealth contract back in 2021. Campuses are already paying for this category, our 41% figure says most of that spend never reaches the student it\'s for. Soothe\'s pitch to a university is a license per enrolled student, students pay nothing out of pocket, and the university gets aggregate usage data, never names, never transcripts.',
+      },
+      {
+        type: 'reflection',
+        headline: 'What I\'d do differently',
+        body: 'We tested the matching flow on each other, not on strangers, before the pitch. The next real step, already scheduled, is usability testing the matching flow with 8 students we\'ve never met, followed by writing the actual moderation playbook. A weekend is enough time to prove a concept. It\'s not enough time to prove a moderation system can hold up under real use, and I\'d rather say that plainly than pretend otherwise.',
+      },
+      {
+        type: 'outcome',
+        headline: 'We\'re the one product in this category whose success looks like churn.',
+        body: 'Soothe\'s mission note says it plainly: we offer accessible support, and users stay because they find a circle worth staying in, not because we\'ve engineered them to need us. A healthy user eventually needs the product less. Most products in this space optimize against that. We wrote it into the pitch on purpose. The prototype above is the actual build, not a recording, you can walk through the exact onboarding and matching flow the judges saw.',
       },
     ],
   },
@@ -688,7 +788,7 @@ function buildCS(id) {
   let html = '';
   pendingBAInit = [];
 
-  const typeLabel = p.provenance ? ({internship:'Internship', school:'School', vibe:'Personal'}[p.provenance.type] || p.provenance.type) : '';
+  const typeLabel = p.provenance ? ({internship:'Internship', school:'School', team:'Team Project', vibe:'Personal'}[p.provenance.type] || p.provenance.type) : '';
 
   html += `
     <div class="cs-hero-text">
