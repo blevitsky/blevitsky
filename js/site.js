@@ -30,7 +30,7 @@ function rootProjectImages(p) {
 
 const PROJ_READY = Promise.all(
   PROJECT_IDS.map(id =>
-    fetch(`data/${id}.json?v=1`)
+    fetch(`data/${id}.json?v=2`)
       .then(r => { if (!r.ok) throw new Error('Failed to load data/' + id + '.json'); return r.json(); })
       .then(data => { PROJ[id] = rootProjectImages(data); })
       .catch(err => console.error(err))
