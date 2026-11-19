@@ -1068,10 +1068,10 @@ body.ui-mode .h-badge{background:var(--mint)}
 
 /* ── Section block — separated by air, not a rule line ── */
 .cs-block{
-  padding-top:64px;
+  padding-top:48px;
   margin-top:0;
 }
-.cs-block--first{margin-top:40px;padding-top:0}
+.cs-block--first{margin-top:28px;padding-top:0}
 
 /* ── Stats ── */
 .cs-stats{
@@ -1101,7 +1101,7 @@ body.ui-mode .h-badge{background:var(--mint)}
 
 /* ── Pull quote ── */
 .cs-quote{
-  margin:64px 0 44px;
+  margin:48px 0 36px;
   padding-right:44px;padding-bottom:36px;padding-left:44px;padding-top:36px;
   background:var(--ink);border-radius:24px;
   position:relative;overflow:hidden;
@@ -1566,8 +1566,8 @@ body.ui-mode .h-badge{background:var(--mint)}
 .cs-outcome-banner{
   background:var(--ink);
   border-radius:28px;
-  margin-top:64px;
-  padding-right:44px;padding-bottom:44px;padding-left:44px;padding-top:44px;
+  margin-top:48px;
+  padding-right:40px;padding-bottom:40px;padding-left:40px;padding-top:40px;
   position:relative;overflow:hidden;
 }
 .cs-outcome-banner::before{
@@ -1882,8 +1882,8 @@ body.ui-mode .h-badge{background:var(--mint)}
   grid-template-columns:1fr 1fr;
   gap:56px;
   align-items:center;
-  margin-top:64px;
-  padding:40px 0;
+  margin-top:48px;
+  padding:32px 0;
   border-top:1px solid var(--ink10);
 }
 .sp-step:first-child{border-top:none;padding-top:0;margin-top:0}
@@ -2625,8 +2625,8 @@ body.ui-mode .h-badge{background:var(--mint)}
   padding:40px 0 40px;
   border-top:1px solid var(--ink06);
   border-bottom:1px solid var(--ink06);
-  margin-top:64px;
-  margin-bottom:48px;
+  margin-top:48px;
+  margin-bottom:36px;
 }
 .cs-role-item{}
 .cs-role-label{font-size:13px;font-weight:400;color:var(--ink60);margin-bottom:10px}
@@ -2723,8 +2723,8 @@ body.ui-mode .h-badge{background:var(--mint)}
 .cs-reflection{
   background:linear-gradient(135deg,var(--ink) 0%,#1a1a2e 100%);
   border-radius:24px;
-  margin-top:64px;
-  padding-right:36px;padding-bottom:36px;padding-left:36px;padding-top:36px;
+  margin-top:48px;
+  padding-right:32px;padding-bottom:32px;padding-left:32px;padding-top:32px;
   position:relative;overflow:hidden;
 }
 .cs-reflection::before{
@@ -2751,7 +2751,7 @@ body.ui-mode .h-badge{background:var(--mint)}
 
 /* ═══ AFFINITY MAP (post-it notes) ═══ */
 .cs-affinity{
-  margin:64px -5% 32px;
+  margin:48px -5% 24px;
   background:#F0EDEA;
   border-radius:0;
   padding:40px 44px 44px;
@@ -2845,7 +2845,7 @@ body.ui-mode .h-badge{background:var(--mint)}
 
 /* ══ WIREFRAME PROTOTYPE ══════════════════════════════ */
 .cs-wf-wrap{
-  margin:64px -5% 32px;
+  margin:48px -5% 24px;
   background:#1A1A1A;
   padding:36px 5% 40px;
 }
@@ -3021,8 +3021,8 @@ body.ui-mode .h-badge{background:var(--mint)}
 
 /* ══ DANMARK WIREFRAME GALLERY ══════════════════════════════ */
 .cs-dk-wf{
-  margin:64px -5% 32px;
-  padding:32px 5% 40px;
+  margin:48px -5% 24px;
+  padding:28px 5% 32px;
   background:#F7F5F0;
   position:relative;
 }
@@ -3155,8 +3155,8 @@ body.ui-mode .h-badge{background:var(--mint)}
 
 /* ══ WATCH WIREFRAME GALLERY ════════════════════════════════ */
 .cs-watch-wf{
-  margin:64px -5% 32px;
-  padding:32px 5% 40px;
+  margin:48px -5% 24px;
+  padding:28px 5% 32px;
   background:#1C1C1E;
   position:relative;
 }
