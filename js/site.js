@@ -163,7 +163,7 @@ const PROJ = {
       {
         type: 'intro',
         headline: 'Four in ten students who need support never go looking for it.',
-        body: 'Soothe came out of a Business + Tech Innovation Jam at Michigan, pitched to judges after one weekend. I led UX for a five-person team: a PM, a generalist designer, a CS student, and an economics/biochem double major. Before any of us sketched a screen, we surveyed 34 students and sat down with 5 of them for longer interviews. The thing that reframed the whole project: this isn\'t a supply problem. Most campuses already fund some kind of peer support. The gap is that nobody makes it to the front door.',
+        body: 'Soothe came out of Michigan\'s Business + Tech Innovation Jam, pitched to judges after one weekend. I led UX for a five-person team. Before any of us sketched a screen, we surveyed 34 students and sat down with 5 of them for longer interviews. The thing that reframed the whole project: this isn\'t a supply problem. Most campuses already fund some kind of peer support. The gap is that nobody makes it to the front door.',
       },
       {
         type: 'role-bar',
@@ -171,15 +171,31 @@ const PROJ = {
           { label: 'My Role', value: 'UX Design Lead, 5-person team' },
           { label: 'Research', value: '34-person survey, 5 in-depth interviews' },
           { label: 'Build', value: 'Coded the interactive prototype, HTML/CSS/JS' },
-          { label: 'Timeline', value: 'Business + Tech Innovation Jam' },
+          { label: 'Timeline', value: 'Business + Tech Innovation Jam, one weekend sprint' },
           { label: 'Type', value: 'Team project, pitched to judges' },
         ]
       },
       {
         type: 'chapter',
+        label: 'The assignment',
+        headline: 'The Jam doesn\'t grade a mockup. It grades whether the idea survives a judge asking "so what?"',
+        body: 'The Business + Tech Innovation Jam is Michigan\'s weekend-long pitch competition, open across business, engineering, and design programs. The brief is broader than a UX project: find a real problem, back it with actual research instead of a hunch, design and build something that demonstrates the solution, and then defend the whole thing, business model included, in front of judges who are explicitly there to find the hole in your pitch. Design, technical build, and business case all had to hold up in the same ten minutes. That\'s why this case study has a pricing slide in it and not just screens.',
+      },
+      {
+        type: 'artifacts',
+        items: [
+          'Benjamin Levitsky — UX Design Lead, Senior, Design',
+          'Julian Liao — Project Manager, Senior, UX Design',
+          'Amy Rodriguez — Generalist, Masters, UX Design',
+          'Swathi Seshadri — Technician, Sophomore, Computer Science',
+          'Lucy Wang — Analyst, Freshman, Biochemistry & Economics',
+        ],
+      },
+      {
+        type: 'chapter',
         label: 'The problem',
         headline: '71% already have access to support. 41% use none of it.',
-        body: 'Those two numbers from our own survey are what reframed the project in the first week. This isn\'t a resources-don\'t-exist problem, and it isn\'t really a cost problem either, only 21% named cost as the barrier. Half said shame or fear of judgment. Another quarter said the tools that do exist are confusing enough that they gave up looking. The people with the least to lose from a bad fit were the ones avoiding it hardest.',
+        body: 'Those two numbers from our own survey are what reframed the project in the first week. This isn\'t a resources-don\'t-exist problem, and it isn\'t really a cost problem either, only 21% named cost as the barrier. Half said shame or fear of judgment. Another quarter said the tools that do exist are confusing enough that they gave up looking. The people with the least to lose from a bad fit were the ones avoiding it hardest. It lines up with the national data too: KFF and CNN found 47% of adults under 30 needed mental health support in the past year and didn\'t get it, and 37% said they wouldn\'t even know where to look.',
       },
       {
         type: 'stats',
@@ -192,6 +208,15 @@ const PROJ = {
         ]
       },
       {
+        type: 'insights',
+        items: [
+          { n: '13/34', text: 'Named only <strong>relational</strong> barriers, shame, or not finding anyone relatable, nothing about access or cost' },
+          { n: '4/5', text: 'Interviewees said <strong>anonymity</strong> decides whether they\'d post at all, not price, not convenience' },
+          { n: '24/34', text: 'Said support is already available somewhere in their life, 10 of those 14 who use nothing are inside an institution with a program' },
+          { n: '47%', text: 'Of adults under 30 needed help in the past year and didn\'t get it, per KFF/CNN' },
+        ]
+      },
+      {
         type: 'quote',
         text: 'The stigma around seeking professional help is what has prohibited me from seeking it out. When you tell people you\'re in therapy, people assume one thing about you.',
         attr: 'Jackson, research interview',
@@ -200,7 +225,7 @@ const PROJ = {
         type: 'chapter',
         label: 'Who we designed for',
         headline: 'Richard doesn\'t want a clinician. He wants someone who\'s been there.',
-        body: 'Richard was our primary persona: a grad student working through a loss, uninsured, who knows help exists and doesn\'t have the energy left to go find it. Our two secondary personas, Tommy and Sophie, came from different situations entirely, one burning out, one who could afford therapy outright, but all three said close to the same thing in their interviews. None of them were looking for a clinician. All three were looking for a person who\'d been there.',
+        body: 'Richard was our primary persona: a grad student working through a loss, uninsured, who knows help exists and doesn\'t have the energy left to go find it. Our two secondary personas came from different situations entirely. Tommy, 23, is burning out and wants support that comes to him, not another thing to schedule. Sophie, 21, is a medical student who could afford therapy outright and still doesn\'t want it, she wants connection, not something clinical. Three different financial situations, three different reasons to avoid the obvious option, and all three said close to the same thing in their interviews: not a clinician, a person who\'d been there.',
       },
       {
         type: 'persona',
@@ -217,25 +242,72 @@ const PROJ = {
         body: 'What barrier does this remove. If nobody on the team could answer that in one sentence, it didn\'t ship. <strong>Anonymous circles</strong>, small moderated groups with no name attached, for the 50% who said shame was the barrier. <strong>Experience matching</strong>, two survey questions instead of a profile to write, for the 32% who couldn\'t find anyone relatable. <strong>Guide</strong>, an AI companion that points you toward circles and small steps, for the 24% who found existing tools confusing. We deliberately didn\'t build an AI therapist. Research on unmoderated peer groups shows they can do real harm, so every circle stays small and has a moderator attached from day one.',
       },
       {
+        type: 'phones',
+        imgs: [
+          { src: 'soothe-s-welcome.jpg', cap: 'Welcome. The pitch in one screen, before you\'ve given up anything.' },
+          { src: 'soothe-s-onboarding.jpg', cap: 'Two questions, not a profile. "People who get it" is the option 24% of our survey would have picked.' },
+          { src: 'soothe-s-matches.jpg', cap: 'Every match carries a reason line. "Peek in" costs nothing, nobody is notified until you join.' },
+        ]
+      },
+      {
+        type: 'chapter',
+        label: 'Building it myself',
+        headline: 'I didn\'t want to pitch a Figma file and call it a product.',
+        body: 'Everything below is a real build: vanilla HTML, CSS, and JavaScript, no framework, no backend, state saved to the browser the person is actually using. I wanted something judges could hold and click through themselves instead of watching me narrate a prototype, so I wrote the onboarding flow, the matching logic, the circle feed, the Guide plan, and the privacy settings myself, end to end. It\'s not a recording. The interactive build is embedded below, it\'s the exact thing the judges saw.',
+      },
+      {
+        type: 'phones',
+        imgs: [
+          { src: 'soothe-s-today.jpg', cap: 'Today. Small, optional steps, never a streak to lose, "no streak to lose, next week starts fresh" is in the copy on purpose.' },
+          { src: 'soothe-s-explore.jpg', cap: 'Explore. Circles browsable by what you\'re carrying, not by diagnosis category.' },
+          { src: 'soothe-s-guide.jpg', cap: 'Guide\'s weekly plan. Rule-based on your onboarding answers, the copy says so: "Guide uses simple rules, not a chatbot."' },
+        ]
+      },
+      {
         type: 'still-live',
         appSrc: 'soothe/app.html',
+      },
+      {
+        type: 'phones',
+        imgs: [
+          { src: 'soothe-s-circle.jpg', cap: 'Peeking into a circle. "You\'re peeking. Nobody can see you\'re here." No cost to look before you join.' },
+          { src: 'soothe-s-privacy.jpg', cap: 'Privacy settings, spelled out in plain language: who sees your name, when a moderator can see your account, and that the worry jar is never shared.' },
+          { src: 'soothe-s-mentor.jpg', cap: 'A peer mentor profile, with the boundary stated twice: "a mentor isn\'t a therapist, or someone to reach in an emergency."' },
+          { src: 'soothe-s-jar.jpg', cap: 'The worry jar. Private by default, "nothing in the jar, that\'s allowed too" instead of guilting an empty state.' },
+        ]
       },
       {
         type: 'chapter',
         label: 'Designing around the risk',
         headline: 'The riskiest part of Soothe isn\'t the tech. It\'s being mistaken for therapy.',
-        body: 'Three of our five interviewees rejected AI for mental health outright, the strongest pushback came from a psychology student, and that tracks with the wider data: Pew found 49% of 18-to-29-year-olds think chatbots do more harm than good for loneliness. So Guide never calls itself a therapist, "Need help" sits on every single screen, and anything serious routes straight to campus counseling or 988. Moderators can see an account only when a safety flag trips, never by default, because anonymity only works if people trust it, and trust only works if someone\'s actually watching for the moment it matters.',
+        body: 'Three of our five interviewees rejected AI for mental health outright, the strongest pushback came from a psychology student, and that tracks with the wider data: Pew found 49% of 18-to-29-year-olds think chatbots do more harm than good for loneliness. So Guide never calls itself a therapist, "Need help now" sits on every single screen, and anything serious routes straight to campus counseling or 988. Moderators can see an account only when a safety flag trips, never by default, because anonymity only works if people trust it, and trust only works if someone\'s actually watching for the moment it matters. On the stack side, that meant a responsive web app from day one, matching that runs over structured survey answers instead of free text, and moderation as automated triage plus human review, not either one alone.',
+      },
+      {
+        type: 'chapter',
+        label: 'Why not just use what already exists',
+        headline: 'Self-guided apps, one big peer forum, or a waitlist. We didn\'t think any of the three was the actual gap.',
+        body: 'Headspace, Calm, and Finch are self-guided, which is exactly why 41% of our survey falls back on them, they\'re low-effort, but they\'re also solo, and solo was the thing half our respondents said didn\'t work for them. TogetherAll runs real peer support, but it\'s one large undifferentiated community with no experience matching, so the 32% who couldn\'t find anyone relatable still can\'t find anyone relatable. Campus counseling is free and already paid for, and also waitlisted, which is the whole reason the other 41% never reach it in the first place. Soothe\'s pitch to the judges was narrow on purpose: we\'re the only one putting you with a person who has your specific experience, anonymously, from the first screen.',
       },
       {
         type: 'chapter',
         label: 'Why a university pays for it',
         headline: 'We\'re not pitching a new budget line. We\'re pitching a better use of the one that already exists.',
-        body: 'UNLV charges students a $66-per-semester mental health fee starting FY27. WashU signed a $500,000 one-year telehealth contract back in 2021. Campuses are already paying for this category, our 41% figure says most of that spend never reaches the student it\'s for. Soothe\'s pitch to a university is a license per enrolled student, students pay nothing out of pocket, and the university gets aggregate usage data, never names, never transcripts.',
+        body: 'UNLV charges students a $66-per-semester mental health fee starting FY27. WashU signed a $500,000 one-year telehealth contract back in 2021, that\'s not our pricing, it\'s there to show the scale campuses already spend at. Campuses are already paying for this category, our 41% figure says most of that spend never reaches the student it\'s for. Soothe\'s pitch to a university is a license per enrolled student, students pay nothing out of pocket, and the university gets aggregate usage data, never names, never transcripts. The beachhead in the pitch was one Big Ten campus, then peer institutions once the moderation model is proven.',
+      },
+      {
+        type: 'timeline',
+        label: 'What comes after the pitch',
+        headline: 'The roadmap we actually committed to, not a someday list.',
+        steps: [
+          { n: '01', title: 'Nov 17 – Dec 18, 2026', desc: 'Usability-test the matching flow with 8 students we\'ve never met, not each other.' },
+          { n: '02', title: 'Jan 11 – Feb 26, 2027', desc: 'Write the real moderation playbook and the crisis-escalation path, the part a weekend sprint can\'t prove.' },
+          { n: '03', title: 'Mar 1 – 31, 2027', desc: 'One free pilot term with a campus counseling partner, so the first real data comes from a partner who can also catch what we miss.' },
+        ]
       },
       {
         type: 'reflection',
         headline: 'What I\'d do differently',
-        body: 'We tested the matching flow on each other, not on strangers, before the pitch. The next real step, already scheduled, is usability testing the matching flow with 8 students we\'ve never met, followed by writing the actual moderation playbook. A weekend is enough time to prove a concept. It\'s not enough time to prove a moderation system can hold up under real use, and I\'d rather say that plainly than pretend otherwise.',
+        body: 'We tested the matching flow on each other, not on strangers, before the pitch. A weekend is enough time to prove a concept. It\'s not enough time to prove a moderation system can hold up under real use, and I\'d rather say that plainly than pretend otherwise, which is exactly why the roadmap above exists instead of ending at the pitch deck.',
       },
       {
         type: 'outcome',
