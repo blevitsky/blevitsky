@@ -69,7 +69,7 @@ const PROJ = {
         type: 'chapter',
         label: 'Building the system',
         headline: 'I didn\'t know what a design system was for until I had to defend one.',
-        body: 'I mapped the IA in Figma first, then built the system: type, color, spacing, radius, meant to hold across every page. Three weeks in, a stakeholder asked why the Careers button looked different from Projects. I didn\'t have a good answer, because I hadn\'t actually decided. So I audited every value on the live site and turned the inconsistencies into rules I could defend. That mattered later, when the creative director questioned a radius and I could show exactly how it scaled across every breakpoint.',
+        body: 'I mapped the IA in Figma first, then built the system: type, color, spacing, radius, meant to hold across every page. Three weeks in, a stakeholder asked why the Careers button looked different from Projects. I didn\'t have a good answer, because I hadn\'t actually decided. So I audited every value on the live site and turned the inconsistencies into rules I could defend. That mattered later, when the creative director questioned a radius and I could show exactly how it scaled across every breakpoint. That\'s generally how I work now: lock the boring rules early, so I\'m not re-litigating the same decision on page six.',
         cta: { label: 'See my own design system →', url: 'design-system.html' },
       },
       {
@@ -258,7 +258,7 @@ const PROJ = {
         type: 'chapter',
         label: 'Process',
         headline: 'How the design came together',
-        body: 'Two things from research drove the whole design: <strong>"I need to know who this family is"</strong> and <strong>"I need to be able to cancel without it being awkward."</strong> I sketched three flows, tested two of them with 4 parents. Same problem every time: nobody could tell if a request was pending or confirmed.',
+        body: 'Two things from research drove the whole design: <strong>"I need to know who this family is"</strong> and <strong>"I need to be able to cancel without it being awkward."</strong> I sketched three flows, tested two of them with 4 parents. Same problem every time: nobody could tell if a request was pending or confirmed. I\'d rather find that out on paper in week two than in a dev handoff in week six, so I test sketches before anything gets polished.',
       },
       {
         type: 'timeline',
@@ -483,7 +483,7 @@ const PROJ = {
         type: 'chapter',
         label: 'Design',
         headline: 'A blueprint, not a brochure.',
-        body: 'Technical grid lines, monospaced type, cobalt blue on off-white. Everything references the engineering precision of the collection itself. The decade timeline was the signature interaction, prototyped across 3 rounds: tap a decade, one hero object, no scrolling required.',
+        body: 'Technical grid lines, monospaced type, cobalt blue on off-white. Everything references the engineering precision of the collection itself. The decade timeline was the signature interaction, prototyped across 3 rounds: tap a decade, one hero object, no scrolling required. I don\'t start from a mood board, I start from what the thing actually is. A museum of machines should read like engineering, not like every other museum app with a hamburger menu and rounded cards.',
       },
       {
         type: 'chapter',
@@ -604,7 +604,7 @@ const PROJ = {
         type: 'chapter',
         label: 'Design decisions',
         headline: 'Design Principles',
-        body: 'Three rules before I designed anything. <strong>One action per glance</strong>, no hunting around. Scroll with the <strong>crown</strong>, not swipes, since swipes fight the watch\'s own system gestures. And <strong>haptic confirmation</strong> on anything you can\'t undo.',
+        body: 'Three rules before I designed anything. <strong>One action per glance</strong>, no hunting around. Scroll with the <strong>crown</strong>, not swipes, since swipes fight the watch\'s own system gestures. And <strong>haptic confirmation</strong> on anything you can\'t undo. I write rules like these before I open Figma on any project, not just this one. Constraints first, decoration never.',
       },
       {
         type: 'artifacts',
