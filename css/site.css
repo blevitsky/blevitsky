@@ -1490,21 +1490,39 @@ body.ui-mode .h-badge{background:var(--mint)}
   font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
   color:var(--ink60);margin-bottom:20px;
 }
+.cs-still-live-devices{
+  display:flex;gap:6px;background:var(--ink06);border-radius:999px;padding:4px;margin-bottom:20px;
+}
+.cs-device-btn{
+  border:0;background:transparent;padding:7px 16px;border-radius:999px;
+  font-size:12.5px;font-weight:700;color:var(--ink60);cursor:pointer;
+  transition:background .15s,color .15s;
+}
+.cs-device-btn.active{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
 .cs-still-live-frame{
   width:100%;max-width:460px;height:min(820px,70vh);
   border-radius:28px;
   overflow:hidden;
   box-shadow:0 24px 56px rgba(0,0,0,.16);
   border:1px solid var(--ink10);
+  transition:max-width .35s cubic-bezier(.22,1,.36,1),height .35s cubic-bezier(.22,1,.36,1),border-radius .35s;
+}
+.cs-still-live-frame[data-device="tablet"]{
+  max-width:760px;height:min(740px,66vh);border-radius:20px;
+}
+.cs-still-live-frame[data-device="desktop"]{
+  max-width:1040px;height:min(680px,62vh);border-radius:14px;
 }
 .cs-still-live-frame iframe{
   width:100%;height:100%;border:0;display:block;
 }
 .cs-still-live-hint{
-  margin-top:18px;font-size:12.5px;color:var(--ink60);text-align:center;max-width:360px;
+  margin-top:18px;font-size:12.5px;color:var(--ink60);text-align:center;max-width:420px;
 }
 @media(max-width:640px){
   .cs-still-live-frame{max-width:300px;height:min(620px,58vh)}
+  .cs-still-live-frame[data-device="tablet"]{max-width:100%;height:min(560px,56vh)}
+  .cs-still-live-frame[data-device="desktop"]{max-width:100%;height:min(520px,52vh)}
 }
 
 /* ── Watch screen gallery ── */

@@ -182,13 +182,19 @@ function buildCS(id) {
         <p style="text-align:center;font-size:9.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink60);margin-top:20px">${s.cap}</p>`;
     }
     else if (s.type === 'still-live') {
+      const frameId = `stillLive_${Math.random().toString(36).slice(2, 9)}`;
       html += `
         <div class="cs-block cs-still-live">
           <div class="cs-still-live-label">Try it — this is the actual build</div>
-          <div class="cs-still-live-frame">
-            <iframe src="${s.appSrc}" title="Still — interactive prototype" loading="lazy"></iframe>
+          <div class="cs-still-live-devices" role="group" aria-label="Preview size">
+            <button type="button" class="cs-device-btn active" data-device="phone" onclick="setStillDevice('${frameId}','phone',this)">Phone</button>
+            <button type="button" class="cs-device-btn" data-device="tablet" onclick="setStillDevice('${frameId}','tablet',this)">Tablet</button>
+            <button type="button" class="cs-device-btn" data-device="desktop" onclick="setStillDevice('${frameId}','desktop',this)">Desktop</button>
           </div>
-          <p class="cs-still-live-hint">Fully interactive, not a recording — check in, breathe, then look at Progress.</p>
+          <div class="cs-still-live-frame" id="${frameId}" data-device="phone">
+            <iframe src="${s.appSrc}" title="Soothe — interactive prototype" loading="lazy"></iframe>
+          </div>
+          <p class="cs-still-live-hint">Fully interactive, not a recording — check in, breathe, then look at Progress. The size toggle shows the same build's tablet and desktop layouts, not just a stretched phone screen.</p>
         </div>`;
     }
     else if (s.type === 'flow-steps') {
@@ -838,6 +844,17 @@ function closeCS() {
   layer.classList.remove('expanded');
   if (backdrop) backdrop.classList.remove('open');
   document.body.style.overflow = '';
+}
+
+/* ─── Soothe live-embed device toggle — swaps the iframe wrapper's
+   width so the same build's tablet/desktop CSS breakpoints kick in,
+   instead of only ever showing the stretched phone layout. ─── */
+function setStillDevice(frameId, device, btn) {
+  const frame = document.getElementById(frameId);
+  if (!frame) return;
+  frame.dataset.device = device;
+  const group = btn.parentElement;
+  group.querySelectorAll('.cs-device-btn').forEach(b => b.classList.toggle('active', b === btn));
 }
 
 /* ─── Lightbox ─── */

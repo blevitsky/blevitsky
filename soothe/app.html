@@ -50,6 +50,17 @@ a { color: var(--plum); }
 :focus-visible { outline: 3px solid var(--dot-lavender); outline-offset: 2px; border-radius: 8px; }
 .app { position: relative; overflow-x: clip; max-width: 480px; margin: 0 auto; min-height: 100%; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: calc(var(--gutter) + var(--top-extra)) 120px; }
 @media (min-width: 640px) { body { background: var(--surface-2); } .app { background: var(--bg); box-shadow: 0 0 0 1px var(--line); min-height: 100vh; } }
+/* Tablet / desktop: the app stops being a stretched phone column and
+   actually widens, with lists that were single-column on mobile
+   becoming a real grid once there's room for one. */
+@media (min-width: 760px) {
+  .app { max-width: 720px; --gutter: 28px; }
+  .circle-grid { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-lg); align-items: start; }
+}
+@media (min-width: 1040px) {
+  .app { max-width: 980px; --gutter: 36px; }
+  .circle-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 .disp { font-family: var(--display); font-variation-settings: 'SOFT' 100; font-weight: 500; letter-spacing: -0.01em; text-wrap: balance; margin: 0; }
 h1.disp { font-size: var(--h1); line-height: 1.12; }
 h2.disp { font-size: 21px; line-height: 1.2; }
@@ -367,7 +378,7 @@ SCREENS.matches = function () {
   var m = matches(5);
   return '<div class="screen stack-lg">' + blob('sage', 'top:-180px;left:-150px') + topbar({ back: true, right: '' }) +
     '<div class="stack" style="gap:6px"><span class="eyebrow" style="color:var(--plum)">Picked from your answers</span><h1 class="disp">A few places to start</h1><p class="muted" style="margin:0">Peek in first. Nobody is notified until you join.</p></div>' +
-    '<div class="stack">' + m.map(function (x) { return circleCard(x.c, x.reason); }).join('') + '</div>' +
+    '<div class="stack circle-grid">' + m.map(function (x) { return circleCard(x.c, x.reason); }).join('') + '</div>' +
     '<a class="btn big" href="#today">Go to Today</a><a href="#start-1" style="text-align:center;font-weight:800">Not quite right? Change my answers</a></div>';
 };
 var WEATHER = [['clear', 'Clear', 'Love that. Maybe leave a kind word in a circle today.'], ['mixed', 'Mixed', 'Some sun, some cloud. One small step might help.'], ['cloudy', 'Cloudy', 'That\'s okay. Nothing here needs you to be fine.'], ['rainy', 'Rainy', 'Rainy days are allowed. A minute of calm is below.'], ['stormy', 'Stormy', 'Thank you for saying so. A real person is one tap away.']];
@@ -555,7 +566,7 @@ SCREENS.plan = function () {
   var steps = suggestedSteps(4), m = matches(2);
   return '<div class="screen stack-lg">' + topbar({ back: true }) + '<div class="stack" style="gap:6px"><span class="eyebrow" style="color:var(--plum)">Guide</span><h1 class="disp">Here\'s a gentle plan for this week</h1><p class="muted" style="margin:0">Based on your answers: about ' + S.time + ' minutes at a time' + (S.feeling === 'heavy' ? ', and going easy' : '') + '. In this demo, Guide uses simple rules, not a chatbot.</p></div>' +
     '<div class="stack"><h2 class="disp">Small steps</h2>' + steps.map(stepRow).join('') + '<button class="btn soft-btn" data-act="addall">Add these to my week</button></div>' +
-    '<div class="stack"><h2 class="disp">Circles to peek into</h2>' + m.map(function (x) { return circleCard(x.c, x.reason); }).join('') + '</div>' +
+    '<div class="stack circle-grid"><h2 class="disp" style="grid-column:1/-1">Circles to peek into</h2>' + m.map(function (x) { return circleCard(x.c, x.reason); }).join('') + '</div>' +
     '<div class="tint t-sky row" style="gap:12px">' + svg(I.heart, 22) + '<span style="font-size:14px">Guide isn\'t a counselor. If things feel like too much, <a href="#help" style="font-weight:800;color:inherit">reach a real person</a>.</span></div></div>' + nav('today');
 };
 SCREENS.you = function () {
