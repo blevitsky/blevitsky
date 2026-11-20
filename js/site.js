@@ -18,6 +18,7 @@ function rootImg(v) {
 }
 function rootProjectImages(p) {
   ['cover', 'hero', 'downloadUrl', 'logo'].forEach(k => { if (p[k]) p[k] = rootImg(p[k]); });
+  if (p.coverImages) p.coverImages.forEach(im => { if (im.src) im.src = rootImg(im.src); });
   (p.sections || []).forEach(s => {
     ['_img', 'img', 'video', 'src', 'beforeSrc', 'afterSrc', 'beforeImg', 'afterImg'].forEach(k => { if (s[k]) s[k] = rootImg(s[k]); });
     if (s.desktop) s.desktop.src = rootImg(s.desktop.src);
@@ -30,7 +31,7 @@ function rootProjectImages(p) {
 
 const PROJ_READY = Promise.all(
   PROJECT_IDS.map(id =>
-    fetch(`data/${id}.json?v=2`)
+    fetch(`data/${id}.json?v=3`)
       .then(r => { if (!r.ok) throw new Error('Failed to load data/' + id + '.json'); return r.json(); })
       .then(data => { PROJ[id] = rootProjectImages(data); })
       .catch(err => console.error(err))
@@ -65,7 +66,10 @@ function buildCS(id) {
       </div>
       ${p.downloadUrl ? `<a class="cs-hero-download" href="${p.downloadUrl}" download onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download case study (PDF)</a>` : ''}
     </div>
-    ${p.cover ? `<div class="cs-hero"><img class="cs-hero-img" src="${p.cover}" alt="${p.title}"></div>` : ''}
+    ${p.coverImages ? `
+      <div class="cs-hero cs-hero-row">
+        ${p.coverImages.map(im => `<div class="cs-hero-row-item"><img src="${im.src}" alt="${im.alt || p.title}"></div>`).join('')}
+      </div>` : (p.cover ? `<div class="cs-hero"><img class="cs-hero-img" src="${p.cover}" alt="${p.title}"></div>` : '')}
     <div class="cs-content">`;
 
   p.sections.forEach(s => {

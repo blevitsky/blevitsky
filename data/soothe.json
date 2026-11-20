@@ -16,8 +16,6 @@
     "HTML/CSS/JS Prototype",
     "Service Design"
   ],
-  "cover": "soothe-hero-desktop.jpg",
-  "hero": "soothe-hero-desktop.jpg",
   "nextId": "safeplay",
   "sections": [
     {
@@ -346,5 +344,19 @@
     "Amy",
     "Swathi",
     "Lucy"
+  ],
+  "coverImages": [
+    {
+      "src": "soothe-s-welcome.jpg",
+      "alt": "Soothe welcome screen"
+    },
+    {
+      "src": "soothe-s-matches.jpg",
+      "alt": "Soothe matched circles screen"
+    },
+    {
+      "src": "soothe-s-today.jpg",
+      "alt": "Soothe Today screen"
+    }
   ]
 }

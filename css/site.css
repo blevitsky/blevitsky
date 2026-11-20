@@ -955,6 +955,27 @@ body.ui-mode .h-badge{background:var(--mint)}
   transition:transform 1.4s var(--ease);
 }
 .cs-layer.open .cs-hero-img{transform:scale(1)}
+/* ── Multi-screen hero — three real screens standing in for a
+   single wide screenshot, for a project whose UI is phone-shaped
+   and would otherwise have to pick just one screen. ── */
+.cs-hero-row{
+  display:flex;align-items:flex-end;justify-content:center;gap:20px;
+  padding:40px 32px;
+}
+.cs-hero-row-item{
+  flex:1 1 0;min-width:0;max-width:240px;
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 20px 48px rgba(0,0,0,.35);
+}
+.cs-hero-row-item img{width:100%;display:block}
+@media(max-width:700px){
+  .cs-hero-row{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    justify-content:flex-start;padding:28px 20px;
+  }
+  .cs-hero-row-item{flex:0 0 150px}
+  .cs-hero-row::-webkit-scrollbar{display:none}
+}
 .cs-hero-text{
   max-width:1040px;margin:0 auto;
   padding:40px 5% 28px;
