@@ -449,7 +449,7 @@ body.ui-mode .h-badge{background:var(--mint)}
 .pc-frame{
   position:relative;
   aspect-ratio:16/10;
-  border-radius:6px;
+  border-radius:14px;
   overflow:hidden;
   background:var(--frame-bg, #F7F7F5);
   border:1px solid rgba(12,12,12,.08);
