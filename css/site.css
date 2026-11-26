@@ -433,8 +433,11 @@ body.ui-mode .h-badge{background:var(--mint)}
 .proj-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:64px 48px;
+  gap:72px 40px;
 }
+/* Staggered columns: right-hand cards sit lower */
+.proj-grid{padding-bottom:112px}
+.proj-grid > .pc:nth-child(even){top:112px}
 
 .pc{
   position:relative;
@@ -448,15 +451,14 @@ body.ui-mode .h-badge{background:var(--mint)}
 /* Media frame — same 16:10 tile for every project */
 .pc-frame{
   position:relative;
-  aspect-ratio:16/10;
+  aspect-ratio:4/3;
   border-radius:14px;
   overflow:hidden;
   background:var(--frame-bg, #F7F7F5);
-  border:1px solid rgba(12,12,12,.08);
-  box-shadow:0 0 40px rgba(0,0,0,.05);
-  transition:box-shadow .4s var(--ease), border-color .4s var(--ease);
+  box-shadow:0 1px 2px rgba(12,12,12,.06),0 14px 34px -12px rgba(12,12,12,.18);
+  transition:transform .45s var(--ease), box-shadow .45s var(--ease);
 }
-.pc:hover .pc-frame{border-color:rgba(12,12,12,.14);box-shadow:0 0 48px rgba(0,0,0,.09)}
+.pc:hover .pc-frame{transform:translateY(-6px);box-shadow:0 2px 4px rgba(12,12,12,.06),0 26px 50px -16px rgba(12,12,12,.26)}
 
 .pc-img,.pc-video{
   position:absolute;inset:0;
@@ -476,36 +478,44 @@ body.ui-mode .h-badge{background:var(--mint)}
   .pc:hover .pc-img{transform:none}
 }
 
-/* Caption — two rows, each split by a hairline */
-.pc-meta{margin-top:28px}
-.pc-row{display:flex;align-items:center;gap:12px;min-width:0}
-.pc-row-sub{margin-top:8px}
-.pc-rule{flex:1 1 24px;min-width:24px;height:1px;background:var(--ink10)}
+/* Caption — mono kicker, name, one-line outcome, chips */
+.pc-meta{margin-top:22px;padding:0 4px}
+.pc-kicker{
+  margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:0 8px;
+  font-family:'SF Mono',ui-monospace,Menlo,Consolas,monospace;
+  font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--ink60);
+}
+.pc-kind{color:var(--card-accent, var(--coral-text));font-weight:700}
+.pc-sep{color:var(--ink10)}
 .pc-title{
-  font-size:15px;font-weight:500;line-height:1.3;
-  color:var(--ink);letter-spacing:-.005em;
-  transition:color .25s var(--ease);
+  margin:10px 0 0;
+  font-family:var(--f-head);font-size:21px;font-weight:700;
+  letter-spacing:-.02em;line-height:1.2;color:var(--ink);
 }
-.pc:hover .pc-title{color:var(--card-accent, var(--coral-text))}
-.pc-org{
-  font-size:15px;font-weight:500;line-height:1.3;
+.pc-title::after{
+  content:'→';display:inline-block;margin-left:8px;
   color:var(--card-accent, var(--coral-text));
-  white-space:nowrap;flex-shrink:0;
+  opacity:0;transform:translateX(-6px);
+  transition:opacity .3s var(--ease),transform .3s var(--ease);
 }
-.pc-tags,.pc-year{font-size:12.5px;line-height:1.3;color:var(--ink60)}
-.pc-year{white-space:nowrap;flex-shrink:0}
+.pc:hover .pc-title::after,.pc:focus-visible .pc-title::after{opacity:1;transform:none}
+.pc-line{margin:6px 0 0;font-size:14.5px;line-height:1.5;color:var(--ink60);max-width:52ch}
+.pc-chips{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.pc-chips li{
+  font-size:11.5px;font-weight:600;line-height:1;
+  padding:6px 10px;border-radius:999px;
+  color:var(--ink);background:rgba(12,12,12,.05);
+}
 
 /* Legacy hooks kept hidden */
-.pc-scrim,.pc-arrow,.pc-prov-dot,.pc-mini-desc,.pc-cta,.pc-cta-arrow,.pc-case-badge,.pc-img-wrap{display:none}
+.pc-scrim,.pc-arrow,.pc-prov-dot,.pc-mini-desc,.pc-rule,.pc-cta,.pc-cta-arrow,.pc-case-badge,.pc-img-wrap{display:none}
 
 @media(max-width:860px){
   .proj-grid{grid-template-columns:1fr;gap:56px}
-}
-@media(max-width:480px){
-  .pc-row-top{flex-wrap:wrap;row-gap:4px}
-  .pc-row-top .pc-rule{display:none}
-  .pc-title{flex-basis:100%}
-  .pc-org{font-size:13px}
+  .proj-grid{padding-bottom:0}
+  .proj-grid > .pc:nth-child(n){top:0}
+  .pc-title{font-size:19px}
 }
 
 
