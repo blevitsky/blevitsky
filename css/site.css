@@ -426,140 +426,86 @@ body.ui-mode .h-badge{background:var(--mint)}
 
 
 /* ═══════════════════════════════════════
-   PROJECT CARDS — framed mockup + plain
-   metadata below, editorial-portfolio style
-   (title/client, tags, year), instead of
-   image-with-text-overlay.
+   PROJECT CARDS — even two-column grid,
+   quiet framed media, two hairline caption
+   rows below (title — org / tags — year).
 ═══════════════════════════════════════ */
 .proj-grid{
   display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:40px 24px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:64px 48px;
 }
 
-/* Base card */
 .pc{
   position:relative;
   cursor:pointer;
   display:flex;flex-direction:column;
-  background:transparent;
+  min-width:0;
   -webkit-tap-highlight-color:transparent;
-  transition:transform .35s var(--ease);
 }
-.pc:hover{transform:translateY(-4px)}
 .pc:active{opacity:.96}
 
-/* Grid slots — span stays asymmetric, height now lives on the
-   media frame only so the text block below can sit in normal flow */
-.pc-premier-card{grid-column:1 / 13}
-.pc-premier-card .pc-frame{aspect-ratio:21/8}
-.pc-premier-card .pc-img{object-fit:cover;object-position:center center}
-.pc-soothe{grid-column:1 / 13}
-.pc-soothe .pc-frame{aspect-ratio:21/9}
-.pc-soothe .pc-img{object-fit:cover;object-position:center top}
-.pc-1{grid-column:1 / 8}
-.pc-2{grid-column:8 / 13}
-.pc-3{grid-column:1 / 7}
-.pc-4{grid-column:7 / 13}
-.pc-1 .pc-frame,.pc-2 .pc-frame,.pc-3 .pc-frame,.pc-4 .pc-frame{aspect-ratio:4/3}
-
-/* Media frame — the "mockup" the image/video sits inside */
+/* Media frame — same 16:10 tile for every project */
 .pc-frame{
   position:relative;
-  border-radius:18px;
+  aspect-ratio:16/10;
+  border-radius:6px;
   overflow:hidden;
-  background:var(--ink);
-  box-shadow:0 24px 54px rgba(12,12,12,.16);
+  background:var(--frame-bg, #F7F7F5);
+  border:1px solid rgba(12,12,12,.08);
+  box-shadow:0 0 40px rgba(0,0,0,.05);
+  transition:box-shadow .4s var(--ease), border-color .4s var(--ease);
 }
+.pc:hover .pc-frame{border-color:rgba(12,12,12,.14);box-shadow:0 0 48px rgba(0,0,0,.09)}
 
-/* Card image */
-.pc-img{
+.pc-img,.pc-video{
   position:absolute;inset:0;
   width:100%;height:100%;
   object-fit:cover;
-  transition:transform .6s var(--ease);
 }
+.pc-contain{object-fit:contain}
+.pc-img{transition:transform .8s var(--ease)}
+.pc:hover .pc-img{transform:scale(1.02)}
 .pc-video{
-  position:absolute;inset:0;z-index:1;
-  width:100%;height:100%;
-  object-fit:cover;
-  opacity:0;
+  z-index:1;opacity:0;pointer-events:none;
   transition:opacity .4s var(--ease);
-  pointer-events:none;
 }
 .pc:hover .pc-video{opacity:1}
 @media(prefers-reduced-motion: reduce){
   .pc-video{display:none}
+  .pc:hover .pc-img{transform:none}
 }
-.pc:hover .pc-img{transform:scale(1.04)}
 
-/* No more overlay scrim — text lives below the frame now */
-.pc-scrim{display:none}
-
-/* ── Metadata block — title + year, description, tag row.
-   Plain text on the page background, the way an editorial
-   portfolio lists a project instead of captioning a photo. ── */
-.pc-meta{margin-top:18px;padding:0 2px}
-.pc-meta-top{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+/* Caption — two rows, each split by a hairline */
+.pc-meta{margin-top:28px}
+.pc-row{display:flex;align-items:center;gap:12px;min-width:0}
+.pc-row-sub{margin-top:8px}
+.pc-rule{flex:1 1 24px;min-width:24px;height:1px;background:var(--ink10)}
 .pc-title{
-  font-family:var(--f-head);font-weight:700;font-size:17px;
-  color:var(--ink);letter-spacing:-.01em;
+  font-size:15px;font-weight:500;line-height:1.3;
+  color:var(--ink);letter-spacing:-.005em;
+  transition:color .25s var(--ease);
 }
-.pc-year{font-size:13px;color:var(--ink60);flex-shrink:0;white-space:nowrap}
-.pc-mini-desc{
-  margin:7px 0 0;
-  font-size:14px;font-weight:450;line-height:1.5;
-  color:var(--ink60);
-  max-width:46ch;
-}
-.pc-tags{
-  margin-top:11px;display:flex;gap:7px;flex-wrap:wrap;
-  font-size:11.5px;font-weight:600;letter-spacing:.02em;
+.pc:hover .pc-title{color:var(--card-accent, var(--coral-text))}
+.pc-org{
+  font-size:15px;font-weight:500;line-height:1.3;
   color:var(--card-accent, var(--coral-text));
+  white-space:nowrap;flex-shrink:0;
 }
-.pc-tags span:not(:last-child)::after{content:'·';margin-left:7px;color:var(--ink10);font-weight:400}
+.pc-tags,.pc-year{font-size:12.5px;line-height:1.3;color:var(--ink60)}
+.pc-year{white-space:nowrap;flex-shrink:0}
 
-.pc-prov-dot{
-  position:absolute;top:16px;left:16px;z-index:3;
-  width:30px;height:30px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.14);
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  color:#fff;
-  cursor:default;
-}
-.pc-prov-dot.pc-prov-logo{
-  background:rgba(255,255,255,.92);
-  padding:5px;box-sizing:border-box;
-}
-.pc-prov-dot img{width:100%;height:100%;object-fit:contain;display:block}
+/* Legacy hooks kept hidden */
+.pc-scrim,.pc-arrow,.pc-prov-dot,.pc-mini-desc,.pc-cta,.pc-cta-arrow,.pc-case-badge,.pc-img-wrap{display:none}
 
-/* Arrow */
-.pc-arrow{
-  position:absolute;top:16px;right:16px;z-index:3;
-  width:36px;height:36px;border-radius:50%;
-  background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.18);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--white);font-size:14px;
-  transition:background .2s,transform .22s var(--ease);
+@media(max-width:860px){
+  .proj-grid{grid-template-columns:1fr;gap:56px}
 }
-.pc:hover .pc-arrow{background:var(--card-accent, var(--coral));border-color:var(--card-accent, var(--coral));transform:rotate(45deg)}
-
-/* CTA row — keep for compatibility but hidden visually */
-.pc-cta{display:none}
-.pc-cta-arrow{display:none}
-.pc-case-badge{display:none}
-/* No img-wrap needed */
-.pc-img-wrap{display:none}
-
-@media(max-width:1060px){
-  .pc-premier-card,.pc-soothe,.pc-1,.pc-2,.pc-3,.pc-4{grid-column:span 12}
-  .pc-premier-card .pc-frame,.pc-soothe .pc-frame{aspect-ratio:16/9}
-}
-@media(max-width:600px){
-  .pc-1 .pc-frame,.pc-2 .pc-frame,.pc-3 .pc-frame,.pc-4 .pc-frame{aspect-ratio:16/11}
-  .pc-desc{display:none}
+@media(max-width:480px){
+  .pc-row-top{flex-wrap:wrap;row-gap:4px}
+  .pc-row-top .pc-rule{display:none}
+  .pc-title{flex-basis:100%}
+  .pc-org{font-size:13px}
 }
 
 
@@ -1774,9 +1720,6 @@ body.ui-mode .h-badge{background:var(--mint)}
    RESPONSIVE
 ═══════════════════════════════════════ */
 @media(max-width:1060px){
-  .pc-1,.pc-2,.pc-3,.pc-4{grid-column:span 12}
-  .pc-1,.pc-2{height:440px}
-  .pc-3,.pc-4{height:400px}
   .about-layout{grid-template-columns:1fr;gap:48px}
   .prod-grid{grid-template-columns:1fr 1fr}
   .prod-hero{grid-column:span 2}
